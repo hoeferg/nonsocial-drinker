@@ -1,7 +1,45 @@
 const $header = document.querySelector('#greeting');
 const test = document.querySelector('#test');
-const $howItWorks = document.querySelector('#how-it-works');
-const $contentSection = document.querySelector('#content-section');
+const $howItWorks = document.querySelector('#howItWorks');
+const $contentSection  = document.querySelector('#content-section');
+
+function init() {
+    createAboutUs();
+    createForm();
+}
+
+function createAboutUs() {
+  const $aboutUsDiv = document.createElement('div');
+  const $aboutUsDesc1 = document.createElement('p');
+  const $aboutUsDesc2 = document.createElement('p');
+  const $aboutUsDesc3 = document.createElement('p');
+
+  $contentSection.appendChild($aboutUsDiv);
+  $aboutUsDiv.appendChild($aboutUsDesc1);
+  $aboutUsDiv.appendChild($aboutUsDesc2);
+  $aboutUsDiv.appendChild($aboutUsDesc3);
+
+  $aboutUsDesc1.textContent =
+    'It is our hope that you will find this app fun while you are out in social situations.';
+    $aboutUsDesc2.textContent =
+  'We only say that the app is for the socially awkward because it was built by the socially awkward.';
+  $aboutUsDesc3.textContent = 
+  ' Its like that weird item on your friends coffee table that prompts conversation and inspires connection.';
+  console.log($aboutUsDesc1.textContent);
+
+  const $appDiv = document.createElement('div');
+  const $appDesc = document.createElement('p');
+  const $appDesc2 = document.createElement('p');
+  $contentSection.appendChild($appDiv);
+  $appDiv.appendChild($appDesc);
+  $appDiv.appendChild($appDesc2);
+  $appDesc.textContent =
+    'This app will generate a cocktail, a joke and an excuse to get yourself on those getaway sticks and hightail it out of any truly awkward situation.';
+    $appDesc2.textContent =
+  'Not only is it an app for the socially awkward but it can help you escape the socially awkward… PURE, GENIUS!';
+
+  console.log($appDesc);
+}
 
 function createForm() {
     const $form = document.createElement('form');
@@ -27,13 +65,7 @@ function createForm() {
     $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
     $form.setAttribute('id', 'how-it-works');
 }
-createForm()
 
-
-
-
-// hideHeader();
-// refreshDisplay();
 
 // This function will hide the header when called
 function hideHeader() {
