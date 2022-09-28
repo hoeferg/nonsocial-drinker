@@ -1,3 +1,7 @@
+const $header = document.querySelector('#greeting');
+const test = document.querySelector('#test');
+const $howItWorks = document.querySelector('#howItWorks');
+const $contentSection  = document.querySelector('#content-section');
 
 function createAboutUs() {
   const $aboutUsDiv = document.createElement('div');
@@ -5,7 +9,7 @@ function createAboutUs() {
   const $aboutUsDesc2 = document.createElement('p');
   const $aboutUsDesc3 = document.createElement('p');
 
-  document.body.appendChild($aboutUsDiv);
+  $contentSection.appendChild($aboutUsDiv);
   $aboutUsDiv.appendChild($aboutUsDesc1);
   $aboutUsDiv.appendChild($aboutUsDesc2);
   $aboutUsDiv.appendChild($aboutUsDesc3);
@@ -21,7 +25,7 @@ function createAboutUs() {
   const $appDiv = document.createElement('div');
   const $appDesc = document.createElement('p');
   const $appDesc2 = document.createElement('p');
-  document.body.appendChild($appDiv);
+  $contentSection.appendChild($appDiv);
   $appDiv.appendChild($appDesc);
   $appDiv.appendChild($appDesc2);
   $appDesc.textContent =
@@ -32,10 +36,7 @@ function createAboutUs() {
   console.log($appDesc);
 }
  createAboutUs();
-const $header = document.querySelector('#greeting');
-const test = document.querySelector('#test');
-const $howItWorks = document.querySelector('#howItWorks');
-const $contentSection  = document.querySelector('content-section');
+
 
 function createForm() {
     const $form = document.createElement('form');
