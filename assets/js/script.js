@@ -20,7 +20,7 @@ function refreshDisplay(parentElement) {
 }
 
 
-
+// TODO: Still have to add main sections to html section
 function displayDrinkInforamtion(drinkData) {
 
     // These will be the main sections that will contain all content
@@ -79,6 +79,7 @@ function displayDrinkInforamtion(drinkData) {
     $section1.append($buttonSection);
 }
 
+// TODO: Still have to add main sections to html section
 function displayJokeInforamtion(jokeDataArray) {
 
     // These will be the main section that will contain all content
