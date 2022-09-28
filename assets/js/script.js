@@ -3,6 +3,11 @@ const test = document.querySelector('#test');
 const $howItWorks = document.querySelector('#howItWorks');
 const $contentSection = document.querySelector('#content-section');
 
+function init() {
+    createAboutUs();
+    createForm();
+}
+
 function createAboutUs() {
     const $aboutUsDiv = document.createElement('div');
     const $aboutUsDesc1 = document.createElement('p');
@@ -35,7 +40,7 @@ function createAboutUs() {
 
     console.log($appDesc);
 }
-createAboutUs();
+
 
 function createForm() {
     const $form = document.createElement('form');
@@ -61,13 +66,7 @@ function createForm() {
     $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
     $form.setAttribute('id', 'how-it-works');
 }
-createForm()
 
-
-
-
-// hideHeader();
-// refreshDisplay();
 
 // This function will hide the header when called
 function hideHeader() {
