@@ -1,17 +1,37 @@
-const $header  = document.querySelector('#greeting');
+const $header = document.querySelector('#greeting');
 const test = document.querySelector('#test');
+const $howItWorks = document.querySelector('#howItWorks');
+const $contentSection  = document.querySelector('content-section');
 
+function createForm() {
+    const $form = document.createElement('form');
+    const $h2 = document.createElement('h2');
+    const $description = document.createElement('p');
+    const $jokeBtn = document.createElement('button');
+    const $excuseBtn = document.createElement('button');
 
+    document.body.appendChild($form);
+    $form.appendChild($h2)
+    $form.appendChild($description)
+    $form.appendChild($jokeBtn)
+    $form.appendChild($excuseBtn)
+    $h2.textContent = 'How It Works!'
+    $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
+}
+
+// hideHeader();
+// refreshDisplay();
+createForm()
 
 // This function will hide the header when called
 function hideHeader() {
-    $header.setAttribute("class","custom-display");
+    $header.setAttribute("class", "custom-display");
 }
 
 // This function can be passed a parent element and will remove its children
 function refreshDisplay(parentElement) {
 
-    while(parentElement.firstChild) {
+    while (parentElement.firstChild) {
 
         parentElement.removeChild(parentElement.firstChild);
 
@@ -19,8 +39,6 @@ function refreshDisplay(parentElement) {
 
 }
 
-
-// TODO: Still have to add main sections to html section
 function displayDrinkInforamtion(drinkData) {
 
     // These will be the main sections that will contain all content
@@ -77,9 +95,10 @@ function displayDrinkInforamtion(drinkData) {
     // Appends content section and button section to main section
     $section1.append($drinkContentSection);
     $section1.append($buttonSection);
+
+    $contentSection.append($section1);
 }
 
-// TODO: Still have to add main sections to html section
 function displayJokeInforamtion(jokeDataArray) {
 
     // These will be the main section that will contain all content
@@ -139,4 +158,54 @@ function displayJokeInforamtion(jokeDataArray) {
     // Appends content section and button section to main section
     $section2.append($jokeContentSection);
     $section2.append($buttonSection);
+
+    $contentSection.append($section2);
 }
+// hideHeader();
+
+function getJoke() {
+    const requestUrl = `https://sv443.net/jokeapi/v2`
+    console.log(jokeInput)
+    fetch(requestUrl)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+        })
+    console.log(Object.values(JokeAPI));
+
+    // JokeAPI.getJokes().then(r => console.log(r.body))
+    JokeAPI.getJokes({
+        jokeType: "single"
+    })
+        .then((r) => r.json())
+        .then((data) => {
+            updateUI(data);
+        });
+
+    // To update the joke on the UI
+    function updateUI(jokeData) {
+        const $ = (id) => document.getElementById(id);
+
+        $("joke--text").innerHTML = jokeData.joke;
+    }
+
+    JokeAPI.getJokes({
+        jokeType: "twopart"
+    })
+        .then((r) => r.json())
+        .then((data) => {
+            updateUI(data);
+        });
+
+    // To update the joke on the UI
+    function updateUI(jokeData) {
+        const $ = (id) => document.getElementById(id);
+
+        $("joke--text").innerHTML = jokeData.joke;
+    }
+}
+console.log(getJoke)
+// refreshDisplay();
+
+
+
