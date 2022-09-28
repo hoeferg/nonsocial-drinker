@@ -1,7 +1,26 @@
 const $header = document.querySelector('#greeting');
 const test = document.querySelector('#test');
+const $howItWorks = document.querySelector('#howItWorks');
 
+function createForm() {
+    const $form = document.createElement('form');
+    const $h2 = document.createElement('h2');
+    const $description = document.createElement('p');
+    const $jokeBtn = document.createElement('button');
+    const $excuseBtn = document.createElement('button');
 
+    document.body.appendChild($form);
+    $form.appendChild($h2)
+    $form.appendChild($description)
+    $form.appendChild($jokeBtn)
+    $form.appendChild($excuseBtn)
+    $h2.textContent = 'How It Works!'
+    $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
+}
+
+// hideHeader();
+// refreshDisplay();
+createForm()
 
 // This function will hide the header when called
 function hideHeader() {
@@ -63,4 +82,6 @@ function getJoke() {
 }
 console.log(getJoke)
 // refreshDisplay();
+
+
 
