@@ -281,19 +281,63 @@ function createFavorites() {
     $favs.textContent = 'favorites';
     //header.appendchild($favs);
     
-    const divDrinks = document.createElement('div');
-    const favDrinks = document.createElement('h2');
-    const drinksUl = document.createElement('ul');
-    const drinksLi1 = document.createElement('li');
-    const drinksLI2 = document.createElement('li');
-    const drinksLi3 = document.createElement('li');
+    const $divDrinks = document.createElement('div');
+    const $favDrinks = document.createElement('h2');
+    // maybe div to seperate 
+    const $drinksUl = document.createElement('ul');
+    const $drinksLi1 = document.createElement('li');
+    const $drinksLI2 = document.createElement('li');
+    const $drinksLi3 = document.createElement('li');
 
     // favHearer.appendChild(divDrinks);
-    favDrinks.appendChild(divDrinks);
-    drinksUl.appendChild(favDrinks);
-    drinksLi1.appendChild(drinksUl);
-    drinksLI2.appendChild(drinksUl);
-    drinksLi3.appendChild(drinksUl);
+    $favDrinks.appendChild($divDrinks);
+    $drinksUl.appendChild($favDrinks);
+    $drinksLi1.appendChild($drinksUl);
+    $drinksLI2.appendChild($drinksUl);
+    $drinksLi3.appendChild($drinksUl);
+
+    // add in li source fav drinks from local storage
+    // $drinksLi1.textContent = (data source)
+    // $drinksLi2.textContent = (data source)
+    // $drinksLi3.textContent = (data source)
+
+    const $divJokes = document.createElement('div');
+    const $faveJokes = document.createElement('h2');
+    // maybe div to seperate 
+    const $jokesUl = document.createElement('ul');
+    const $jokesLi1 = document.createElement('li');
+    const $jokesLI2 = document.createElement('li');
+    const $jokesLi3 = document.createElement('li');
+
+    $faveJokes.appendChild($divJokes);
+    $jokesUl.appendChild($faveJokes);
+    $jokesLi1.appendChild($jokesUl);
+    $jokesLI2.appendChild($jokesUl);
+    $jokesLi3.appendChild($jokesUl);
+
+    // add li source fav jokes from local storage 
+    // $jokesLi1.textContent = (data source)
+    // $jokesLi2.textContent = (data source)
+    // $jokesLi3.textContent = (data source)
+
+    const $excusDiv = document.createElement('div');
+    const $bestExcus = document.createElement('h2');
+    // mayve div sperate 
+    const $excusUl = document.createElement('ul');
+    const $excusLi1 = document.createElement('li');
+    const $excusLi2 = document.createElement('li');
+    const $excusLi3 = document.createElement('li');
+    
+    $bestExcus.appendChild($excusDiv);
+    $excusUl.appendChild($bestExcus);
+    $excusLi1.append($excusUl);
+    $excusLi2.append($excusUl);
+    $excusLi3.append($excusUl);
+
+    // add source for fav excuses from storage
+    // $excusLi1.textContent = (data source)
+    // $excusLi2.textContent = (data source)
+    // $excusLi3.textContent = (data source)
     
 }
 
