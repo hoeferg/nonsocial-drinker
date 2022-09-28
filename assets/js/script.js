@@ -208,6 +208,7 @@ function displayJokeInforamtion(jokeDataArray) {
 // hideHeader();
 
 function getJoke() {
+    // jokeInput = document.querySelector("#jokeInput")
     const requestUrl = `https://sv443.net/jokeapi/v2`
     console.log(jokeInput)
     fetch(requestUrl)
@@ -248,10 +249,30 @@ function getJoke() {
         $("joke--text").innerHTML = jokeData.joke;
     }
 }
-console.log(getJoke)
+console.log(getJoke())
 // refreshDisplay();
 
+function getCocktail() {
+    let ingredients = 'vodka'
+    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
+        fetch($url, {
+            method: 'GET',
+            headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+
+        })
+            .then(function (response) {
+                if (response.ok) {
+                    response.json()
+
+                    .then(function (data) {
+                        console.log(data);
+                    })
+                }
+            })}
+
+
+console.log(getCocktail())
 
 // your favorites 
 function createFavorites() {
@@ -275,3 +296,4 @@ function createFavorites() {
     drinksLi3.appendChild(drinksUl);
     
 }
+
