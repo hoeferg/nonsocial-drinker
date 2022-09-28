@@ -1,7 +1,7 @@
 const $header = document.querySelector('#greeting');
 const test = document.querySelector('#test');
 const $howItWorks = document.querySelector('#howItWorks');
-const $contentSection  = document.querySelector('content-section');
+const $contentSection  = document.querySelector('#content-section');
 
 function createForm() {
     const $form = document.createElement('form');
