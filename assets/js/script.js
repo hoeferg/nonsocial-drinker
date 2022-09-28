@@ -1,7 +1,7 @@
 const $header = document.querySelector('#greeting');
 const test = document.querySelector('#test');
 const $howItWorks = document.querySelector('#howItWorks');
-
+const ingredients = document.querySelector('#ingredients')
 function createForm() {
     const $form = document.createElement('form');
     const $h2 = document.createElement('h2');
@@ -40,6 +40,7 @@ function refreshDisplay(parentElement) {
 // hideHeader();
 
 function getJoke() {
+    jokeInput = document.querySelector.("#jokesComfirm")
     const requestUrl = `https://sv443.net/jokeapi/v2`
     console.log(jokeInput)
     fetch(requestUrl)
@@ -80,8 +81,28 @@ function getJoke() {
         $("joke--text").innerHTML = jokeData.joke;
     }
 }
-console.log(getJoke)
+console.log(getJoke())
 // refreshDisplay();
 
+function getCocktail() {
+    let ingredients = 'vodka'
+    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
+        fetch($url, {
+            method: 'GET',
+            headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+
+        })
+            .then(function (response) {
+                if (response.ok) {
+                    response.json()
+
+                    .then(function (data) {
+                        console.log(data);
+                    })
+                }
+            })}
+
+
+console.log(getCocktail())
 
