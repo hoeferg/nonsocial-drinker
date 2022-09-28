@@ -234,26 +234,26 @@ function getJoke() {
         $("joke--text").innerHTML = jokeData.joke;
     }
 
-    JokeAPI.getJokes({
-        jokeType: "twopart"
-    })
-        .then((r) => r.json())
-        .then((data) => {
-            updateUI(data);
-        });
+    // JokeAPI.getJokes({
+    //     jokeType: "twopart"
+    // })
+    //     .then((r) => r.json())
+    //     .then((data) => {
+    //         updateUI(data);
+    //     });
 
-    // To update the joke on the UI
-    function updateUI(jokeData) {
-        const $ = (id) => document.getElementById(id);
+    // // To update the joke on the UI
+    // function updateUI(jokeData) {
+    //     const $ = (id) => document.getElementById(id);
 
-        $("joke--text").innerHTML = jokeData.joke;
-    }
+    //     $("joke--text").innerHTML = jokeData.joke;
+    // }
 }
 console.log(getJoke())
 // refreshDisplay();
 
 function getCocktail() {
-    let ingredients = 'vodka'
+    let ingredients = 'alcoholType'
     let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
         fetch($url, {
