@@ -1,3 +1,11 @@
 .custom-display {
     display: none;
 }
+
+.form-selections {
+    background-color: blue;
+}
+
+.how-it-works {
+    background-color: aqua;
+}

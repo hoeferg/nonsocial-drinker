@@ -1,6 +1,6 @@
 const $header = document.querySelector('#greeting');
 const test = document.querySelector('#test');
-const $howItWorks = document.querySelector('#howItWorks');
+// const $howItWorks = document.querySelector('#howItWorks');
 
 function createForm() {
     const $form = document.createElement('form');
@@ -16,11 +16,12 @@ function createForm() {
     $form.appendChild($excuseBtn)
     $h2.textContent = 'How It Works!'
     $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
+    $description.addAttribute('id', 'how-it-works');
+    $form.addAttribute('id', 'form-selections');
 }
 
 // hideHeader();
 // refreshDisplay();
-createForm()
 
 // This function will hide the header when called
 function hideHeader() {
@@ -85,3 +86,5 @@ console.log(getJoke)
 
 
 
+
+createForm()
