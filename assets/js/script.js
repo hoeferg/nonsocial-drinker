@@ -253,3 +253,25 @@ console.log(getJoke)
 
 
 
+// your favorites 
+function createFavorites() {
+    // favheader = document.createElement('header');
+    const $favs = document.createElement('h1');
+    $favs.textContent = 'favorites';
+    //header.appendchild($favs);
+    
+    const divDrinks = document.createElement('div');
+    const favDrinks = document.createElement('h2');
+    const drinksUl = document.createElement('ul');
+    const drinksLi1 = document.createElement('li');
+    const drinksLI2 = document.createElement('li');
+    const drinksLi3 = document.createElement('li');
+
+    // favHearer.appendChild(divDrinks);
+    favDrinks.appendChild(divDrinks);
+    drinksUl.appendChild(favDrinks);
+    drinksLi1.appendChild(drinksUl);
+    drinksLI2.appendChild(drinksUl);
+    drinksLi3.appendChild(drinksUl);
+    
+}
