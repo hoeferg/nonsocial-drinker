@@ -223,7 +223,6 @@ function displayJokeInforamtion(jokeDataArray) {
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
 
-
     // Uses for loops to iterate through jokeData array to get jokes and assigns them as text value for list item
     // List items are then appended to the jokes list
     // TODO: connect the jokes data properly also may need to refactor if joke is a two liner
@@ -356,9 +355,8 @@ function getJoke() {
             }
         });
 }
-getJoke()
 
-    function getCocktail() {
+function getCocktail() {
         let ingredients = 'alcoholType'
         let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
@@ -377,7 +375,7 @@ getJoke()
                         })
                 }
             })
-    }
+}
 
 function excuse() {
 
@@ -392,4 +390,3 @@ function excuse() {
     return `My ${who} ${did} my ${what}.`
 
 }
-
