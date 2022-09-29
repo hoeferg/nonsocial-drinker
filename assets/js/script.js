@@ -1,5 +1,5 @@
 const $greetingHeader = document.querySelector('#greeting');
-const $howItWorks = document.querySelector('#howItWorks');
+const $howItWorks = document.querySelector('#how-it-works');
 const $contentSection = document.querySelector('#content-section');
 
 function init() {
@@ -85,7 +85,7 @@ function createForm() {
     $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
 }
 
-init()
+//init()
 
 // This function will hide the header when called
 function hideHeader() {
@@ -148,7 +148,7 @@ function displayDrinkInforamtion(drinkData) {
     for (let i = 0; i < 3; i++) {
         const $contentItem = document.createElement('li');
 
-        $contentItem.textContent = drinkData[i].drink_name;
+        //$contentItem.textContent = drinkData[i].drink_name;
 
         $drinkList.append($contentItem);
     }
@@ -160,7 +160,7 @@ function displayDrinkInforamtion(drinkData) {
     $section1.append($drinkContentSection);
     $section1.append($buttonSection);
 
-    $contentSection.append($section1);
+    $howItWorks.append($section1);
 }
 
 function displayJokeInforamtion(jokeDataArray) {
@@ -211,7 +211,7 @@ function displayJokeInforamtion(jokeDataArray) {
     for (let i = 0; i < 3; i++) {
         const $contentItem = document.createElement('li');
 
-        $contentItem.textContent = jokeDataArray[i].joke;
+        //$contentItem.textContent = jokeDataArray[i].joke;
 
         $jokeList.append($contentItem);
     }
@@ -223,7 +223,7 @@ function displayJokeInforamtion(jokeDataArray) {
     $section2.append($jokeContentSection);
     $section2.append($buttonSection);
 
-    $contentSection.append($section2);
+    $howItWorks.append($section2);
 }
 
 function displayTopFavorites() {
@@ -294,10 +294,12 @@ function displayTopFavorites() {
         elementArray[i].append($favHeading);
         elementArray[i].append($favList);
 
-    
+        $favoritesSection.append(elementArray[i]);
         
     }
 
+    $contentSection.append($favoritesSection);
+    $contentSection.append($buttonsSection);
 }
 
 function getJoke() {
@@ -362,5 +364,3 @@ function getCocktail() {
             }
         })
 }
-
-
