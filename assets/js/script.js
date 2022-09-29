@@ -388,4 +388,3 @@ function excuse() {
 	return `My ${who} ${did} my ${what}.`
 	
 }
-
