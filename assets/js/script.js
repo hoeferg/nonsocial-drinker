@@ -226,6 +226,7 @@ function displayJokeInforamtion(jokeDataArray) {
     // TODO: connect the jokes data properly also may need to refactor if joke is a two liner
     for (let i = 0; i < 3; i++) {
         const $contentItem = document.createElement('li');
+        const $itemText = document.createElement('p');
         const $saveButton = document.createElement('button');
 
         $saveButton.textContent = "Add to Favorites";
@@ -233,7 +234,10 @@ function displayJokeInforamtion(jokeDataArray) {
         $saveButton.setAttribute('data-name', 'favorites');
         $saveButton.setAttribute('value', 'click');
 
-        //$contentItem.textContent = jokeDataArray[i].joke;
+        //$itemText.textContent = jokeDataArray[i].joke;
+        
+        $contentItem.append($itemText);
+        $contentItem.append($saveButton);
 
         $jokeList.append($contentItem);
     }
@@ -348,17 +352,29 @@ function getJoke() {
                     })
             }
         });
-    }
-
+}
 
 function getCocktail() {
-                let ingredients = 'alcoholType'
-                let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
+        let ingredients = 'alcoholType'
+        let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
-                fetch($url, {
-                    method: 'GET',
-                    headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
-                })}
+        fetch($url, {
+            method: 'GET',
+            headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+
+        })
+            .then(function (response) {
+                if (response.ok) {
+                    response.json()
+
+                        .then(function (data) {
+                            console.log(data);
+                            displayDrinkInforamtion(data);
+                        })
+                }
+            })
+}
+
 function excuse() {
 	
 	let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
@@ -372,5 +388,4 @@ function excuse() {
 	return `My ${who} ${did} my ${what}.`
 	
 }
-
 
