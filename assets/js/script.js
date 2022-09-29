@@ -1,7 +1,5 @@
-const $header = document.querySelector('#greeting');
-const test = document.querySelector('#test');
-const $howItWorks = document.querySelector('#howItWorks');
-const $contentSection  = document.querySelector('#content-section');
+
+
 
 function init() {
     createAboutUs();
@@ -9,36 +7,36 @@ function init() {
 }
 
 function createAboutUs() {
-  const $aboutUsDiv = document.createElement('div');
-  const $aboutUsDesc1 = document.createElement('p');
-  const $aboutUsDesc2 = document.createElement('p');
-  const $aboutUsDesc3 = document.createElement('p');
+    const $aboutUsDiv = document.createElement('div');
+    const $aboutUsDesc1 = document.createElement('p');
+    const $aboutUsDesc2 = document.createElement('p');
+    const $aboutUsDesc3 = document.createElement('p');
 
-  $contentSection.appendChild($aboutUsDiv);
-  $aboutUsDiv.appendChild($aboutUsDesc1);
-  $aboutUsDiv.appendChild($aboutUsDesc2);
-  $aboutUsDiv.appendChild($aboutUsDesc3);
+    $contentSection.appendChild($aboutUsDiv);
+    $aboutUsDiv.appendChild($aboutUsDesc1);
+    $aboutUsDiv.appendChild($aboutUsDesc2);
+    $aboutUsDiv.appendChild($aboutUsDesc3);
 
-  $aboutUsDesc1.textContent =
-    'It is our hope that you will find this app fun while you are out in social situations.';
+    $aboutUsDesc1.textContent =
+        'It is our hope that you will find this app fun while you are out in social situations.';
     $aboutUsDesc2.textContent =
-  'We only say that the app is for the socially awkward because it was built by the socially awkward.';
-  $aboutUsDesc3.textContent = 
-  ' Its like that weird item on your friends coffee table that prompts conversation and inspires connection.';
-  console.log($aboutUsDesc1.textContent);
+        'We only say that the app is for the socially awkward because it was built by the socially awkward.';
+    $aboutUsDesc3.textContent =
+        ' Its like that weird item on your friends coffee table that prompts conversation and inspires connection.';
+    console.log($aboutUsDesc1.textContent);
 
-  const $appDiv = document.createElement('div');
-  const $appDesc = document.createElement('p');
-  const $appDesc2 = document.createElement('p');
-  $contentSection.appendChild($appDiv);
-  $appDiv.appendChild($appDesc);
-  $appDiv.appendChild($appDesc2);
-  $appDesc.textContent =
-    'This app will generate a cocktail, a joke and an excuse to get yourself on those getaway sticks and hightail it out of any truly awkward situation.';
+    const $appDiv = document.createElement('div');
+    const $appDesc = document.createElement('p');
+    const $appDesc2 = document.createElement('p');
+    $contentSection.appendChild($appDiv);
+    $appDiv.appendChild($appDesc);
+    $appDiv.appendChild($appDesc2);
+    $appDesc.textContent =
+        'This app will generate a cocktail, a joke and an excuse to get yourself on those getaway sticks and hightail it out of any truly awkward situation.';
     $appDesc2.textContent =
-  'Not only is it an app for the socially awkward but it can help you escape the socially awkward… PURE, GENIUS!';
+        'Not only is it an app for the socially awkward but it can help you escape the socially awkward… PURE, GENIUS!';
 
-  console.log($appDesc);
+    console.log($appDesc);
 }
 
 function createForm() {
@@ -209,68 +207,59 @@ function displayJokeInforamtion(jokeDataArray) {
 
 function getJoke() {
     // jokeInput = document.querySelector("#jokeInput")
-    const requestUrl = `https://sv443.net/jokeapi/v2`
-    console.log(jokeInput)
-    fetch(requestUrl)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data)
+    let requestUrl = `https://v2.jokeapi.dev/joke/Programming,Misc?`
+    fetch(requestUrl, {
+        method: 'GET',
+})
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
+
+                    .then(function (data) {
+                        console.log(data);
+                    displayJokeInforamtion(data);
+                    })
+            }
         })
-    console.log(Object.values(JokeAPI));
-
-    // JokeAPI.getJokes().then(r => console.log(r.body))
-    JokeAPI.getJokes({
-        jokeType: "single"
-    })
-        .then((r) => r.json())
-        .then((data) => {
-            updateUI(data);
-        });
-
-    // To update the joke on the UI
-    function updateUI(jokeData) {
-        const $ = (id) => document.getElementById(id);
-
-        $("joke--text").innerHTML = jokeData.joke;
-    }
-
-    // JokeAPI.getJokes({
-    //     jokeType: "twopart"
-    // })
-    //     .then((r) => r.json())
-    //     .then((data) => {
-    //         updateUI(data);
-    //     });
-
-    // // To update the joke on the UI
-    // function updateUI(jokeData) {
-    //     const $ = (id) => document.getElementById(id);
-
-    //     $("joke--text").innerHTML = jokeData.joke;
-    // }
 }
 console.log(getJoke())
+
+
+
 // refreshDisplay();
 
 function getCocktail() {
     let ingredients = 'alcoholType'
     let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
-        fetch($url, {
-            method: 'GET',
-            headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+    fetch($url, {
+        method: 'GET',
+        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
 
-        })
-            .then(function (response) {
-                if (response.ok) {
-                    response.json()
+    })
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
 
                     .then(function (data) {
                         console.log(data);
                     })
-                }
-            })}
+            }
+        })
+}
 
-
-console.log(getCocktail())
+function excuse() {
+	
+	let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
+	let action = ['broke', 'snapped', 'lost', 'chased'];
+	let event = ['computer', 'project', 'report', 'dog', 'cat', 'goose'];
+	
+	let who = person[Math.floor(Math.random()*person.length)+0];
+	let did = action[Math.floor(Math.random()*action.length)+0];
+	let what = event[Math.floor(Math.random()*event.length)+0];
+	
+	return `My ${who} ${did} my ${what}.`
+	
+}
+console.log(excuse())
 
