@@ -1,6 +1,5 @@
-const $header = document.querySelector('#greeting');
-const test = document.querySelector('#test');
-const $howItWorks = document.querySelector('#howItWorks');
+const $greetingHeader = document.querySelector('#greeting');
+const $howItWorks = document.querySelector('#how-it-works');
 const $contentSection = document.querySelector('#content-section');
 
 function init() {
@@ -102,11 +101,11 @@ function createForm() {
     $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
 }
 
-init()
+//init()
 
 // This function will hide the header when called
 function hideHeader() {
-    $header.setAttribute("class", "custom-display");
+    $greetingHeader.setAttribute("class", "custom-display");
 }
 
 // This function can be passed a parent element and will remove its children
@@ -165,7 +164,7 @@ function displayDrinkInforamtion(drinkData) {
     for (let i = 0; i < 3; i++) {
         const $contentItem = document.createElement('li');
 
-        $contentItem.textContent = drinkData[i].drink_name;
+        //$contentItem.textContent = drinkData[i].drink_name;
 
         $drinkList.append($contentItem);
     }
@@ -177,7 +176,7 @@ function displayDrinkInforamtion(drinkData) {
     $section1.append($drinkContentSection);
     $section1.append($buttonSection);
 
-    $contentSection.append($section1);
+    $howItWorks.append($section1);
 }
 
 function displayJokeInforamtion(jokeDataArray) {
@@ -228,7 +227,7 @@ function displayJokeInforamtion(jokeDataArray) {
     for (let i = 0; i < 3; i++) {
         const $contentItem = document.createElement('li');
 
-        $contentItem.textContent = jokeDataArray[i].joke;
+        //$contentItem.textContent = jokeDataArray[i].joke;
 
         $jokeList.append($contentItem);
     }
@@ -240,9 +239,84 @@ function displayJokeInforamtion(jokeDataArray) {
     $section2.append($jokeContentSection);
     $section2.append($buttonSection);
 
-    $contentSection.append($section2);
+    $howItWorks.append($section2);
 }
-// hideHeader();
+
+function displayTopFavorites() {
+    const $favoritesSection = document.createElement('section');
+    const $buttonsSection = document.createElement('section');
+    const $drinkFavsSection = document.createElement('section');
+    const $jokeFavsSection = document.createElement('section');
+    const $excuseFavsSection = document.createElement('section');
+    const $favoritesSectionHeading = document.createElement('h2');
+    const $goToFavoritesButton = document.createElement('button');
+    const elementArray = [$drinkFavsSection,$jokeFavsSection,$excuseFavsSection];
+    const labelNameArray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
+    const favListsArrray = [];
+    const listsExistArray = [];
+
+    if(localStorage.getItem("topFavDrinksArr") !== null) {
+        const topDrinksArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
+        favListsArrray.push(topDrinksArray);
+        listsExistArray.push(true);
+    } else {
+        listsExistArray.push(false);
+    }
+
+    if(localStorage.getItem("topFavJokesArr") !== null) {
+        const topJokesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
+        favListsArrray.push(topJokesArray);
+        listsExistArray.push(true);
+    } else {
+        listsExistArray.push(false);
+    }
+
+    if(localStorage.getItem("topFavExcusesArr") !== null) {
+        const topExcusesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
+        favListsArrray.push(topExcusesArray);
+        listsExistArray.push(true);
+    } else {
+        listsExistArray.push(false);
+    }
+
+    $favoritesSectionHeading.textContent = "Your Top Saved Favorites";
+    $goToFavoritesButton.textContent = "Go to Favorites Page";
+
+    $goToFavoritesButton.setAttribute('type','click');
+    $goToFavoritesButton.setAttribute('value','click');
+
+    $favoritesSection.append($favoritesSectionHeading);
+    $buttonsSection.append($goToFavoritesButton);
+
+    for(let i = 0; i < elementArray.length; i++) {
+
+        const $favHeading = document.createElement('h3');
+        const $favList = document.createElement('ul');
+
+        $favHeading.textContent = labelNameArray[i];
+
+        if(listsExistArray[i]) {
+
+            for(let y = 0; y < favListsArrray[i].length; y++) {
+                const $favItem = document.createElement('li');
+
+                $favItem.textContent = favListsArrray[i][y];
+
+                $favList.append($favItem);
+            }
+
+        }
+
+        elementArray[i].append($favHeading);
+        elementArray[i].append($favList);
+
+        $favoritesSection.append(elementArray[i]);
+        
+    }
+
+    $contentSection.append($favoritesSection);
+    $contentSection.append($buttonsSection);
+}
 
 function getJoke() {
     // jokeInput = document.querySelector("#jokeInput")
@@ -286,8 +360,6 @@ function getJoke() {
         $("joke--text").innerHTML = jokeData.joke;
     }
 }
-console.log(getJoke())
-// refreshDisplay();
 
 function getCocktail() {
     let ingredients = 'vodka'
@@ -308,7 +380,3 @@ function getCocktail() {
             }
         })
 }
-
-
-console.log(getCocktail())
-
