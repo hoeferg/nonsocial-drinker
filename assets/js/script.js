@@ -234,12 +234,12 @@ function displayTopFavorites() {
     const $excuseFavsSection = document.createElement('section');
     const $favoritesSectionHeading = document.createElement('h2');
     const $goToFavoritesButton = document.createElement('button');
-    const elementArray = [$drinkFavsSection,$jokeFavsSection,$excuseFavsSection];
+    const elementArray = [$drinkFavsSection, $jokeFavsSection, $excuseFavsSection];
     const labelNameArray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
     const favListsArrray = [];
     const listsExistArray = [];
 
-    if(localStorage.getItem("topFavDrinksArr") !== null) {
+    if (localStorage.getItem("topFavDrinksArr") !== null) {
         const topDrinksArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArrray.push(topDrinksArray);
         listsExistArray.push(true);
@@ -247,7 +247,7 @@ function displayTopFavorites() {
         listsExistArray.push(false);
     }
 
-    if(localStorage.getItem("topFavJokesArr") !== null) {
+    if (localStorage.getItem("topFavJokesArr") !== null) {
         const topJokesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArrray.push(topJokesArray);
         listsExistArray.push(true);
@@ -255,7 +255,7 @@ function displayTopFavorites() {
         listsExistArray.push(false);
     }
 
-    if(localStorage.getItem("topFavExcusesArr") !== null) {
+    if (localStorage.getItem("topFavExcusesArr") !== null) {
         const topExcusesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArrray.push(topExcusesArray);
         listsExistArray.push(true);
@@ -266,22 +266,22 @@ function displayTopFavorites() {
     $favoritesSectionHeading.textContent = "Your Top Saved Favorites";
     $goToFavoritesButton.textContent = "Go to Favorites Page";
 
-    $goToFavoritesButton.setAttribute('type','click');
-    $goToFavoritesButton.setAttribute('value','click');
+    $goToFavoritesButton.setAttribute('type', 'click');
+    $goToFavoritesButton.setAttribute('value', 'click');
 
     $favoritesSection.append($favoritesSectionHeading);
     $buttonsSection.append($goToFavoritesButton);
 
-    for(let i = 0; i < elementArray.length; i++) {
+    for (let i = 0; i < elementArray.length; i++) {
 
         const $favHeading = document.createElement('h3');
         const $favList = document.createElement('ul');
 
         $favHeading.textContent = labelNameArray[i];
 
-        if(listsExistArray[i]) {
+        if (listsExistArray[i]) {
 
-            for(let y = 0; y < favListsArrray[i].length; y++) {
+            for (let y = 0; y < favListsArrray[i].length; y++) {
                 const $favItem = document.createElement('li');
 
                 $favItem.textContent = favListsArrray[i][y];
@@ -295,7 +295,7 @@ function displayTopFavorites() {
         elementArray[i].append($favList);
 
         $favoritesSection.append(elementArray[i]);
-        
+
     }
 
     $contentSection.append($favoritesSection);
@@ -304,63 +304,35 @@ function displayTopFavorites() {
 
 function getJoke() {
     // jokeInput = document.querySelector("#jokeInput")
-    const requestUrl = `https://sv443.net/jokeapi/v2`
-    console.log(jokeInput)
+    const requestUrl = `https://v2.jokeapi.dev/joke/Misc`
     fetch(requestUrl)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-        })
-    console.log(Object.values(JokeAPI));
-
-    // JokeAPI.getJokes().then(r => console.log(r.body))
-    JokeAPI.getJokes({
-        jokeType: "single"
-    })
-        .then((r) => r.json())
-        .then((data) => {
-            updateUI(data);
-        });
-
-    // To update the joke on the UI
-    function updateUI(jokeData) {
-        const $ = (id) => document.getElementById(id);
-
-        $("joke--text").innerHTML = jokeData.joke;
-    }
-
-    // JokeAPI.getJokes({
-    //     jokeType: "twopart"
-    // })
-    //     .then((r) => r.json())
-    //     .then((data) => {
-    //         updateUI(data);
-    //     });
-
-    // // To update the joke on the UI
-    // function updateUI(jokeData) {
-    //     const $ = (id) => document.getElementById(id);
-
-    //     $("joke--text").innerHTML = jokeData.joke;
-    // }
-}
-
-function getCocktail() {
-    let ingredients = 'alcoholType'
-    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
-
-    fetch($url, {
-        method: 'GET',
-        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
-
-    })
         .then(function (response) {
             if (response.ok) {
                 response.json()
-
                     .then(function (data) {
                         console.log(data);
                     })
             }
-        })
-}
+        });
+    }
+    getJoke()
+
+function getCocktail() {
+                let ingredients = 'alcoholType'
+                let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
+
+                fetch($url, {
+                    method: 'GET',
+                    headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+
+                })
+                    .then(function (response) {
+                        if (response.ok) {
+                            response.json()
+
+                                .then(function (data) {
+                                    console.log(data);
+                                })
+                        }
+                    })
+            }
