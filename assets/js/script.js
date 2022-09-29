@@ -296,63 +296,6 @@ function getCocktail() {
 
 console.log(getCocktail())
 
-// your favorites 
-function createFavorites() {
-    favheader = document.createElement('header');
-    const $favs = document.createElement('h1');
-    $favs.textContent = 'favorites';
-    
-    //header.appendchild($favs);
-    
-    // get drinks
-    const $divDrinks = document.createElement('div');
-    const $favDrinks = document.createElement('h2');
-    $favDrinks.appendChild($divDrinks);
-    // maybe <br> to seperate 
-     // gets drink favorites from local storage
-
-    const getDrinks = JSON.parse(localStorage.getItem("drink favorites"));
-    // if none display none 
-    if (!getDrinks) return; 
-
-    getDrinks.forEach(function(drinks, index, drink) {
-    const $drinksLi = document.createElement('li');
-    $drinksLi.textContent = index + 1;
-    $favDrinks.append($drinksLi);
-    console.log("drink favorites")
-
-    });
-
-    //Get jokes
-    const $divJokes = document.createElement('div');
-    const $faveJokes = document.createElement('h2');
-    $faveJokes.appendChild($divJokes);
-
-    const getJokes = JSON.parse(localStorage.getItem("jokeFavorites"));
-    // if none display none 
-    if (!getJokes) return; 
-    
-    getJokes.forEach(function(jokes, index, joke) {
-    const $jokesLi = document.createElement('li');
-    $jokesLi.textContent = index + 1;
-    $faveJokes.appendChild($jokesLi);
-    console.log(getJokes);
-    })
 
 
-    // get excuses 
-    const $excusDiv = document.createElement('div');
-    const $bestExcus = document.createElement('h2');
-    // mayve div sperate 
 
-     const getexcuse = JSON.parse(localStorage.getItem("excuse favorites"));
-    // if none display none 
-    if (!getexcuse) return; 
-    
-    getexcuse.forEach(function(excuse, index, excuse) {
-    const $excusLi = document.createElement('li');
-    $excusLi.textContent = index + 1;
-    $bestExcus.appendChild($excusLi);
-    })
-
-}
