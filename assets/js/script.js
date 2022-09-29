@@ -42,7 +42,6 @@ function createAboutUs() {
 
 
 function createForm() {
-    const $hr = document.createElement('hr')
     const $form = document.createElement('form');
     const $h2 = document.createElement('h2');
     const $description = document.createElement('p');
@@ -71,10 +70,10 @@ function createForm() {
     $jokeInput.classList.add('button-margin');
     $excuseInput.setAttribute('type', 'checkbox');
     $excuseInput.classList.add('button-margin');
-    $selectOption.setAttribute('class', 'w3-select');
+    $selectOption.setAttribute('class', 'dropdown');
     $submitBtn.setAttribute('type', 'submit');
     $submitBtn.setAttribute('value', 'submit');
-    $submitBtn.setAttribute('class', 'w3-center');
+    $submitBtn.classList.add('input-margin')
     $form.setAttribute('id', 'howItWorks');
     $h2.setAttribute('class', 'w3-center');
     $description.setAttribute('class', 'w3-center');
@@ -87,7 +86,6 @@ function createForm() {
     $jokeLabel.textContent = 'Jokes!'
     $excuseLabel.textContent = 'Excuses!'
 
-    $hr.appendChild($h2)
     $howItWorks.appendChild($form);
     $form.appendChild($h2);
     $form.appendChild($description);
@@ -101,7 +99,7 @@ function createForm() {
     $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
 }
 
-//init()
+init()
 
 // This function will hide the header when called
 function hideHeader() {
