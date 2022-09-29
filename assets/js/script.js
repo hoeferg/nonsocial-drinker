@@ -65,16 +65,19 @@ function createForm() {
         $selectOption.append($alcholChoices)
     }
 
+    $form.setAttribute('id', 'howItWorks');
     $howItWorks.setAttribute('class', 'class="w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
     $jokeInput.setAttribute('type', 'checkbox');
     $jokeInput.classList.add('button-margin');
+    $jokeInput.setAttribute('id', 'jokeCheck')
     $excuseInput.setAttribute('type', 'checkbox');
+    $excuseInput.setAttribute('id', 'excuseCheck')
     $excuseInput.classList.add('button-margin');
     $selectOption.setAttribute('class', 'dropdown');
     $submitBtn.setAttribute('type', 'submit');
     $submitBtn.setAttribute('value', 'submit');
+    $submitBtn.setAttribute('id', 'submitBtn');
     $submitBtn.classList.add('input-margin')
-    $form.setAttribute('id', 'howItWorks');
     $h2.setAttribute('class', 'w3-center');
     $description.setAttribute('class', 'w3-center');
     $description.setAttribute('class', 'w3-large');
@@ -82,10 +85,9 @@ function createForm() {
     $jokeLabel.setAttribute('class', 'w3-large');
     $jokeLabel.classList.add('button-margin');
     $excuseLabel.classList.add('button-margin');
-    $submitBtn.textContent = 'Lets go!'
+    $submitBtn.textContent = 'SEE WHAT YOU GET!'
     $jokeLabel.textContent = 'Jokes!'
     $excuseLabel.textContent = 'Excuses!'
-
     $howItWorks.appendChild($form);
     $form.appendChild($h2);
     $form.appendChild($description);
