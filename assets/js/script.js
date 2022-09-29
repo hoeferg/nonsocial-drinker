@@ -1,7 +1,7 @@
 const $header = document.querySelector('#greeting');
 const test = document.querySelector('#test');
 const $howItWorks = document.querySelector('#howItWorks');
-const $contentSection  = document.querySelector('#content-section');
+const $contentSection = document.querySelector('#content-section');
 
 function init() {
     createAboutUs();
@@ -9,63 +9,84 @@ function init() {
 }
 
 function createAboutUs() {
-  const $aboutUsDiv = document.createElement('div');
-  const $aboutUsDesc1 = document.createElement('p');
-  const $aboutUsDesc2 = document.createElement('p');
-  const $aboutUsDesc3 = document.createElement('p');
+    const $aboutUsDiv = document.createElement('div');
+    const $aboutUsDesc1 = document.createElement('p');
+    const $aboutUsDesc2 = document.createElement('p');
+    const $aboutUsDesc3 = document.createElement('p');
 
-  $contentSection.appendChild($aboutUsDiv);
-  $aboutUsDiv.appendChild($aboutUsDesc1);
-  $aboutUsDiv.appendChild($aboutUsDesc2);
-  $aboutUsDiv.appendChild($aboutUsDesc3);
+    $contentSection.appendChild($aboutUsDiv);
+    $aboutUsDiv.appendChild($aboutUsDesc1);
+    $aboutUsDiv.appendChild($aboutUsDesc2);
+    $aboutUsDiv.appendChild($aboutUsDesc3);
 
-  $aboutUsDesc1.textContent =
-    'It is our hope that you will find this app fun while you are out in social situations.';
+    $aboutUsDesc1.textContent =
+        'It is our hope that you will find this app fun while you are out in social situations.';
     $aboutUsDesc2.textContent =
-  'We only say that the app is for the socially awkward because it was built by the socially awkward.';
-  $aboutUsDesc3.textContent = 
-  ' Its like that weird item on your friends coffee table that prompts conversation and inspires connection.';
-  console.log($aboutUsDesc1.textContent);
+        'We only say that the app is for the socially awkward because it was built by the socially awkward.';
+    $aboutUsDesc3.textContent =
+        ' Its like that weird item on your friends coffee table that prompts conversation and inspires connection.';
+    console.log($aboutUsDesc1.textContent);
 
-  const $appDiv = document.createElement('div');
-  const $appDesc = document.createElement('p');
-  const $appDesc2 = document.createElement('p');
-  $contentSection.appendChild($appDiv);
-  $appDiv.appendChild($appDesc);
-  $appDiv.appendChild($appDesc2);
-  $appDesc.textContent =
-    'This app will generate a cocktail, a joke and an excuse to get yourself on those getaway sticks and hightail it out of any truly awkward situation.';
+    const $appDiv = document.createElement('div');
+    const $appDesc = document.createElement('p');
+    const $appDesc2 = document.createElement('p');
+    $contentSection.appendChild($appDiv);
+    $appDiv.appendChild($appDesc);
+    $appDiv.appendChild($appDesc2);
+    $appDesc.textContent =
+        'This app will generate a cocktail, a joke and an excuse to get yourself on those getaway sticks and hightail it out of any truly awkward situation.';
     $appDesc2.textContent =
-  'Not only is it an app for the socially awkward but it can help you escape the socially awkward… PURE, GENIUS!';
+        'Not only is it an app for the socially awkward but it can help you escape the socially awkward… PURE, GENIUS!';
 
-  console.log($appDesc);
+    console.log($appDesc);
 }
 
+
 function createForm() {
+
     const $form = document.createElement('form');
     const $h2 = document.createElement('h2');
     const $description = document.createElement('p');
-    const $jokeInput = document.createElement('input');
     const $submitBtn = document.createElement('button');
-    const $inputField = document.createElement('input');
+    const $selectOption = document.createElement('select');
+    const $jokeLabel = document.createElement('label');
+    const $jokeInput = document.createElement('input');
+
+    const $alcoholOptions = ['Select your alcohol', 'Vodka', 'Tequila', 'Rum', 'Gin', 'Whiskey']
+    for (let i = 0; i < $alcoholOptions.length; i++) {
+        const $alcholChoices = document.createElement('option');
+        $alcholChoices.textContent = $alcoholOptions[i]
+        if (i > 0) {
+            $alcholChoices.setAttribute('value', $alcoholOptions[i])
+        } else {
+            $alcholChoices.setAttribute('value', '')
+        }
+        $selectOption.append($alcholChoices)
+    }
 
     $jokeInput.setAttribute('type', 'checkbox');
-    $inputField.setAttribute('type', 'text');
+    $jokeInput.classList.add('button-margin');
+    $selectOption.setAttribute('class', 'w3-select');
     $submitBtn.setAttribute('type', 'submit');
     $submitBtn.setAttribute('value', 'submit');
+    $form.setAttribute('id', 'howItWorks');
+    $howItWorks.setAttribute('class', 'class="w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
+    $h2.setAttribute('class', 'w3-center');
     $submitBtn.textContent = 'Lets go!'
+    $jokeLabel.textContent = 'Jokes!'
 
     $howItWorks.appendChild($form);
     $form.appendChild($h2);
     $form.appendChild($description);
-    $form.appendChild($inputField)
-    $form.appendChild($jokeInput);
+    $form.appendChild($selectOption);
+    $form.appendChild($jokeLabel);
+    $jokeLabel.appendChild($jokeInput)
     $form.appendChild($submitBtn);
     $h2.textContent = 'How It Works!'
     $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
-    $form.setAttribute('id', 'how-it-works');
 }
 
+init()
 
 // This function will hide the header when called
 function hideHeader() {
@@ -256,20 +277,21 @@ function getCocktail() {
     let ingredients = 'vodka'
     let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
-        fetch($url, {
-            method: 'GET',
-            headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+    fetch($url, {
+        method: 'GET',
+        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
 
-        })
-            .then(function (response) {
-                if (response.ok) {
-                    response.json()
+    })
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
 
                     .then(function (data) {
                         console.log(data);
                     })
-                }
-            })}
+            }
+        })
+}
 
 
 console.log(getCocktail())
