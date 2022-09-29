@@ -101,6 +101,8 @@ function createForm() {
     $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
 }
 
+init()
+
 // This function will hide the header when called
 function hideHeader() {
     $greetingHeader.setAttribute("class", "custom-display");
@@ -165,7 +167,7 @@ function displayDrinkInforamtion(drinkData) {
         $saveButton.setAttribute('data-name', 'favorites');
         $saveButton.setAttribute('value', 'click');
 
-        const drinkName = getRandomDrink(drinkData,prevDisplayedDrinks);
+        const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
 
         prevDisplayedDrinks.push(drinkName);
 
@@ -329,14 +331,14 @@ function displayTopFavorites() {
     $contentSection.append($buttonsSection);
 }
 
-function getRandomDrink(drinkData,prevDisplayedDrinks) {
+function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
     const drinkName = drinkData[Math.floor(Math.random() * drinkData.length) + 0].name;
 
-    if(!prevDisplayedDrinks.includes()) {
+    if (!prevDisplayedDrinks.includes()) {
         return drinkName;
     } else {
-        getRandomDrink(drinkData,prevDisplayedDrinks);
+        getRandomDrink(drinkData, prevDisplayedDrinks);
     }
 
 }
@@ -353,8 +355,8 @@ function getJoke() {
                     })
             }
         });
-    }
-    getJoke()
+}
+getJoke()
 
     function getCocktail() {
         let ingredients = 'alcoholType'
@@ -378,16 +380,16 @@ function getJoke() {
     }
 
 function excuse() {
-	
-	let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
-	let action = ['broke', 'snapped', 'lost', 'chased'];
-	let event = ['computer', 'project', 'report', 'dog', 'cat', 'goose'];
-	
-	let who = person[Math.floor(Math.random()*person.length)+0];
-	let did = action[Math.floor(Math.random()*action.length)+0];
-	let what = event[Math.floor(Math.random()*event.length)+0];
-	
-	return `My ${who} ${did} my ${what}.`
-	
+
+    let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
+    let action = ['broke', 'snapped', 'lost', 'chased'];
+    let event = ['computer', 'project', 'report', 'dog', 'cat', 'goose'];
+
+    let who = person[Math.floor(Math.random() * person.length) + 0];
+    let did = action[Math.floor(Math.random() * action.length) + 0];
+    let what = event[Math.floor(Math.random() * event.length) + 0];
+
+    return `My ${who} ${did} my ${what}.`
+
 }
 
