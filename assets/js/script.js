@@ -304,7 +304,7 @@ function displayTopFavorites() {
 
 function getJoke() {
     // jokeInput = document.querySelector("#jokeInput")
-    const requestUrl = `https://v2.jokeapi.dev/joke/Misc`
+    const requestUrl = `https://v2.jokeapi.dev/joke/Misc&type=single`
     fetch(requestUrl)
         .then(function (response) {
             if (response.ok) {
