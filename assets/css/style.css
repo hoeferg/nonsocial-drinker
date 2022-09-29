@@ -23,3 +23,7 @@ label{
 input{
     left: 80px;
 }
+
+.button-margin{
+    margin-left: 20px;
+}
