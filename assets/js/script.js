@@ -165,7 +165,7 @@ function displayDrinkInforamtion(drinkData) {
         $saveButton.setAttribute('data-name', 'favorites');
         $saveButton.setAttribute('value', 'click');
 
-        const drinkName = getRandomDrink(drinkData,prevDisplayedDrinks);
+        const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
 
         prevDisplayedDrinks.push(drinkName);
 
@@ -326,14 +326,14 @@ function displayTopFavorites() {
     $contentSection.append($buttonsSection);
 }
 
-function getRandomDrink(drinkData,prevDisplayedDrinks) {
+function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
     const drinkName = drinkData[Math.floor(Math.random() * drinkData.length) + 0].name;
 
-    if(!prevDisplayedDrinks.includes()) {
+    if (!prevDisplayedDrinks.includes()) {
         return drinkName;
     } else {
-        getRandomDrink(drinkData,prevDisplayedDrinks);
+        getRandomDrink(drinkData, prevDisplayedDrinks);
     }
 
 }
@@ -352,28 +352,29 @@ function getJoke() {
                     })
             }
         });
-    }
-    getJoke()
+}
+getJoke()
 
 function getCocktail() {
-                let ingredients = 'alcoholType'
-                let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
+    let ingredients = 'alcoholType'
+    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
-                fetch($url, {
-                    method: 'GET',
-                    headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
-                })}
+    fetch($url, {
+        method: 'GET',
+        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+    })
+}
 function excuse() {
-	
-	let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
-	let action = ['broke', 'snapped', 'lost', 'chased'];
-	let event = ['computer', 'project', 'report', 'dog', 'cat', 'goose'];
-	
-	let who = person[Math.floor(Math.random()*person.length)+0];
-	let did = action[Math.floor(Math.random()*action.length)+0];
-	let what = event[Math.floor(Math.random()*event.length)+0];
-	
-	return `My ${who} ${did} my ${what}.`
-	
+
+    let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
+    let action = ['broke', 'snapped', 'lost', 'chased'];
+    let event = ['computer', 'project', 'report', 'dog', 'cat', 'goose'];
+
+    let who = person[Math.floor(Math.random() * person.length) + 0];
+    let did = action[Math.floor(Math.random() * action.length) + 0];
+    let what = event[Math.floor(Math.random() * event.length) + 0];
+
+    return `My ${who} ${did} my ${what}.`
+
 }
 
