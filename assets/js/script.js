@@ -320,63 +320,38 @@ function displayTopFavorites() {
 
 function getJoke() {
     // jokeInput = document.querySelector("#jokeInput")
-    const requestUrl = `https://sv443.net/jokeapi/v2`
-    console.log(jokeInput)
+    const requestUrl = `https://v2.jokeapi.dev/joke/Misc&type=single`
     fetch(requestUrl)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-        })
-    console.log(Object.values(JokeAPI));
-
-    // JokeAPI.getJokes().then(r => console.log(r.body))
-    JokeAPI.getJokes({
-        jokeType: "single"
-    })
-        .then((r) => r.json())
-        .then((data) => {
-            updateUI(data);
-        });
-
-    // To update the joke on the UI
-    function updateUI(jokeData) {
-        const $ = (id) => document.getElementById(id);
-
-        $("joke--text").innerHTML = jokeData.joke;
-    }
-
-    JokeAPI.getJokes({
-        jokeType: "twopart"
-    })
-        .then((r) => r.json())
-        .then((data) => {
-            updateUI(data);
-        });
-
-    // To update the joke on the UI
-    function updateUI(jokeData) {
-        const $ = (id) => document.getElementById(id);
-
-        $("joke--text").innerHTML = jokeData.joke;
-    }
-}
-
-function getCocktail() {
-    let ingredients = 'vodka'
-    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
-
-    fetch($url, {
-        method: 'GET',
-        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
-
-    })
         .then(function (response) {
             if (response.ok) {
                 response.json()
-
                     .then(function (data) {
                         console.log(data);
                     })
             }
-        })
+        });
+    }
+    getJoke()
+
+function getCocktail() {
+                let ingredients = 'alcoholType'
+                let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
+
+                fetch($url, {
+                    method: 'GET',
+                    headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+                })}
+function excuse() {
+	
+	let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
+	let action = ['broke', 'snapped', 'lost', 'chased'];
+	let event = ['computer', 'project', 'report', 'dog', 'cat', 'goose'];
+	
+	let who = person[Math.floor(Math.random()*person.length)+0];
+	let did = action[Math.floor(Math.random()*action.length)+0];
+	let what = event[Math.floor(Math.random()*event.length)+0];
+	
+	return `My ${who} ${did} my ${what}.`
+	
 }
+console.log(excuse())
