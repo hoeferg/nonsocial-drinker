@@ -1,5 +1,5 @@
 const $greetingHeader = document.querySelector('#greeting');
-const $howItWorks = document.querySelector('#how-it-works');
+const $howItWorks = document.querySelector('#howItWorks');
 const $contentSection = document.querySelector('#content-section');
 
 function init() {
@@ -250,12 +250,12 @@ function displayTopFavorites() {
     const $excuseFavsSection = document.createElement('section');
     const $favoritesSectionHeading = document.createElement('h2');
     const $goToFavoritesButton = document.createElement('button');
-    const elementArray = [$drinkFavsSection,$jokeFavsSection,$excuseFavsSection];
+    const elementArray = [$drinkFavsSection, $jokeFavsSection, $excuseFavsSection];
     const labelNameArray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
     const favListsArrray = [];
     const listsExistArray = [];
 
-    if(localStorage.getItem("topFavDrinksArr") !== null) {
+    if (localStorage.getItem("topFavDrinksArr") !== null) {
         const topDrinksArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArrray.push(topDrinksArray);
         listsExistArray.push(true);
@@ -263,7 +263,7 @@ function displayTopFavorites() {
         listsExistArray.push(false);
     }
 
-    if(localStorage.getItem("topFavJokesArr") !== null) {
+    if (localStorage.getItem("topFavJokesArr") !== null) {
         const topJokesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArrray.push(topJokesArray);
         listsExistArray.push(true);
@@ -271,7 +271,7 @@ function displayTopFavorites() {
         listsExistArray.push(false);
     }
 
-    if(localStorage.getItem("topFavExcusesArr") !== null) {
+    if (localStorage.getItem("topFavExcusesArr") !== null) {
         const topExcusesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArrray.push(topExcusesArray);
         listsExistArray.push(true);
@@ -282,22 +282,22 @@ function displayTopFavorites() {
     $favoritesSectionHeading.textContent = "Your Top Saved Favorites";
     $goToFavoritesButton.textContent = "Go to Favorites Page";
 
-    $goToFavoritesButton.setAttribute('type','click');
-    $goToFavoritesButton.setAttribute('value','click');
+    $goToFavoritesButton.setAttribute('type', 'click');
+    $goToFavoritesButton.setAttribute('value', 'click');
 
     $favoritesSection.append($favoritesSectionHeading);
     $buttonsSection.append($goToFavoritesButton);
 
-    for(let i = 0; i < elementArray.length; i++) {
+    for (let i = 0; i < elementArray.length; i++) {
 
         const $favHeading = document.createElement('h3');
         const $favList = document.createElement('ul');
 
         $favHeading.textContent = labelNameArray[i];
 
-        if(listsExistArray[i]) {
+        if (listsExistArray[i]) {
 
-            for(let y = 0; y < favListsArrray[i].length; y++) {
+            for (let y = 0; y < favListsArrray[i].length; y++) {
                 const $favItem = document.createElement('li');
 
                 $favItem.textContent = favListsArrray[i][y];
@@ -311,7 +311,7 @@ function displayTopFavorites() {
         elementArray[i].append($favList);
 
         $favoritesSection.append(elementArray[i]);
-        
+
     }
 
     $contentSection.append($favoritesSection);
