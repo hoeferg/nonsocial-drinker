@@ -222,14 +222,14 @@ function displayJokeInforamtion(jokeDataArray) {
     $button1.setAttribute('data-name', 'regenerate');
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
-    $buttonSection.append($saveButon);
-    $buttonSection.append($saveButon);
+
 
     // Uses for loops to iterate through jokeData array to get jokes and assigns them as text value for list item
     // List items are then appended to the jokes list
     // TODO: connect the jokes data properly also may need to refactor if joke is a two liner
     for (let i = 0; i < 3; i++) {
         const $contentItem = document.createElement('li');
+        const $itemText = document.createElement('p');
         const $saveButton = document.createElement('button');
 
         $saveButton.textContent = "Add to Favorites";
@@ -237,7 +237,10 @@ function displayJokeInforamtion(jokeDataArray) {
         $saveButton.setAttribute('data-name', 'favorites');
         $saveButton.setAttribute('value', 'click');
 
-        //$contentItem.textContent = jokeDataArray[i].joke;
+        //$itemText.textContent = jokeDataArray[i].joke;
+        
+        $contentItem.append($itemText);
+        $contentItem.append($saveButton);
 
         $jokeList.append($contentItem);
     }
@@ -349,23 +352,33 @@ function getJoke() {
                 response.json()
                     .then(function (data) {
                         console.log(data);
-                        console.log(data[Math.floor(Math.random() * data.length) + 0].name)
-                        displayDrinkInforamtion(data);
                     })
             }
         });
 }
 getJoke()
 
-function getCocktail() {
-    let ingredients = 'alcoholType'
-    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
+    function getCocktail() {
+        let ingredients = 'alcoholType'
+        let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
-    fetch($url, {
-        method: 'GET',
-        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
-    })
-}
+        fetch($url, {
+            method: 'GET',
+            headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+
+        })
+            .then(function (response) {
+                if (response.ok) {
+                    response.json()
+
+                        .then(function (data) {
+                            console.log(data);
+                            displayDrinkInforamtion(data);
+                        })
+                }
+            })
+    }
+
 function excuse() {
 
     let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
