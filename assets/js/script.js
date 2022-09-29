@@ -43,7 +43,7 @@ function createAboutUs() {
 
 
 function createForm() {
-
+    const $hr = document.createElement('hr')
     const $form = document.createElement('form');
     const $h2 = document.createElement('h2');
     const $description = document.createElement('p');
@@ -51,8 +51,11 @@ function createForm() {
     const $selectOption = document.createElement('select');
     const $jokeLabel = document.createElement('label');
     const $jokeInput = document.createElement('input');
+    const $excuseLabel = document.createElement('label');
+    const $excuseInput = document.createElement('input');
 
-    const $alcoholOptions = ['Select your alcohol', 'Vodka', 'Tequila', 'Rum', 'Gin', 'Whiskey']
+
+    const $alcoholOptions = ['--Select your alcohol--', 'Vodka', 'Tequila', 'Rum', 'Gin', 'Whiskey']
     for (let i = 0; i < $alcoholOptions.length; i++) {
         const $alcholChoices = document.createElement('option');
         $alcholChoices.textContent = $alcoholOptions[i]
@@ -64,23 +67,36 @@ function createForm() {
         $selectOption.append($alcholChoices)
     }
 
+    $howItWorks.setAttribute('class', 'class="w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
     $jokeInput.setAttribute('type', 'checkbox');
     $jokeInput.classList.add('button-margin');
+    $excuseInput.setAttribute('type', 'checkbox');
+    $excuseInput.classList.add('button-margin');
     $selectOption.setAttribute('class', 'w3-select');
     $submitBtn.setAttribute('type', 'submit');
     $submitBtn.setAttribute('value', 'submit');
+    $submitBtn.setAttribute('class', 'w3-center');
     $form.setAttribute('id', 'howItWorks');
-    $howItWorks.setAttribute('class', 'class="w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
     $h2.setAttribute('class', 'w3-center');
+    $description.setAttribute('class', 'w3-center');
+    $description.setAttribute('class', 'w3-large');
+    $excuseLabel.setAttribute('class', 'w3-large');
+    $jokeLabel.setAttribute('class', 'w3-large');
+    $jokeLabel.classList.add('button-margin');
+    $excuseLabel.classList.add('button-margin');
     $submitBtn.textContent = 'Lets go!'
     $jokeLabel.textContent = 'Jokes!'
+    $excuseLabel.textContent = 'Excuses!'
 
+    $hr.appendChild($h2)
     $howItWorks.appendChild($form);
     $form.appendChild($h2);
     $form.appendChild($description);
     $form.appendChild($selectOption);
     $form.appendChild($jokeLabel);
-    $jokeLabel.appendChild($jokeInput)
+    $jokeLabel.appendChild($jokeInput);
+    $form.appendChild($excuseLabel);
+    $excuseLabel.appendChild($excuseInput)
     $form.appendChild($submitBtn);
     $h2.textContent = 'How It Works!'
     $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
