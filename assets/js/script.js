@@ -65,16 +65,19 @@ function createForm() {
         $selectOption.append($alcholChoices)
     }
 
+    $form.setAttribute('id', 'howItWorks');
     $howItWorks.setAttribute('class', 'class="w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
     $jokeInput.setAttribute('type', 'checkbox');
     $jokeInput.classList.add('button-margin');
+    $jokeInput.setAttribute('id', 'jokeCheck')
     $excuseInput.setAttribute('type', 'checkbox');
+    $excuseInput.setAttribute('id', 'excuseCheck')
     $excuseInput.classList.add('button-margin');
     $selectOption.setAttribute('class', 'dropdown');
     $submitBtn.setAttribute('type', 'submit');
     $submitBtn.setAttribute('value', 'submit');
+    $submitBtn.setAttribute('id', 'submitBtn');
     $submitBtn.classList.add('input-margin')
-    $form.setAttribute('id', 'howItWorks');
     $h2.setAttribute('class', 'w3-center');
     $description.setAttribute('class', 'w3-center');
     $description.setAttribute('class', 'w3-large');
@@ -82,10 +85,9 @@ function createForm() {
     $jokeLabel.setAttribute('class', 'w3-large');
     $jokeLabel.classList.add('button-margin');
     $excuseLabel.classList.add('button-margin');
-    $submitBtn.textContent = 'Lets go!'
+    $submitBtn.textContent = 'SEE WHAT YOU GET!'
     $jokeLabel.textContent = 'Jokes!'
     $excuseLabel.textContent = 'Excuses!'
-
     $howItWorks.appendChild($form);
     $form.appendChild($h2);
     $form.appendChild($description);
@@ -338,67 +340,40 @@ function getRandomDrink(drinkData,prevDisplayedDrinks) {
 
 function getJoke() {
     // jokeInput = document.querySelector("#jokeInput")
-    const requestUrl = `https://sv443.net/jokeapi/v2`
-    console.log(jokeInput)
+    const requestUrl = `https://v2.jokeapi.dev/joke/Misc&type=single`
     fetch(requestUrl)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-        })
-    console.log(Object.values(JokeAPI));
-
-    // JokeAPI.getJokes().then(r => console.log(r.body))
-    JokeAPI.getJokes({
-        jokeType: "single"
-    })
-        .then((r) => r.json())
-        .then((data) => {
-            updateUI(data);
-        });
-
-    // To update the joke on the UI
-    function updateUI(jokeData) {
-        const $ = (id) => document.getElementById(id);
-
-        $("joke--text").innerHTML = jokeData.joke;
-    }
-
-    JokeAPI.getJokes({
-        jokeType: "twopart"
-    })
-        .then((r) => r.json())
-        .then((data) => {
-            updateUI(data);
-        });
-
-    // To update the joke on the UI
-    function updateUI(jokeData) {
-        const $ = (id) => document.getElementById(id);
-
-        $("joke--text").innerHTML = jokeData.joke;
-    }
-}
-
-function getCocktail() {
-    let ingredients = 'vodka'
-    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
-
-    fetch($url, {
-        method: 'GET',
-        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
-
-    })
         .then(function (response) {
             if (response.ok) {
                 response.json()
-
                     .then(function (data) {
                         console.log(data);
                         console.log(data[Math.floor(Math.random() * data.length) + 0].name)
                         displayDrinkInforamtion(data);
                     })
             }
-        })
+        });
+    }
+    getJoke()
+
+function getCocktail() {
+                let ingredients = 'alcoholType'
+                let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
+
+                fetch($url, {
+                    method: 'GET',
+                    headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+                })}
+function excuse() {
+	
+	let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
+	let action = ['broke', 'snapped', 'lost', 'chased'];
+	let event = ['computer', 'project', 'report', 'dog', 'cat', 'goose'];
+	
+	let who = person[Math.floor(Math.random()*person.length)+0];
+	let did = action[Math.floor(Math.random()*action.length)+0];
+	let what = event[Math.floor(Math.random()*event.length)+0];
+	
+	return `My ${who} ${did} my ${what}.`
+	
 }
 
-getCocktail();
