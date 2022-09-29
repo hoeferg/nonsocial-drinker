@@ -85,8 +85,6 @@ function createForm() {
     $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
 }
 
-//init()
-
 // This function will hide the header when called
 function hideHeader() {
     $greetingHeader.setAttribute("class", "custom-display");
@@ -126,6 +124,8 @@ function displayDrinkInforamtion(drinkData) {
     const $button1 = document.createElement('button');
     const $button2 = document.createElement('button');
 
+    const prevDisplayedDrinks = [];
+
     // Assign text value for header and appends to content section
     $drinkHeader.textContent = "Drinks";
     $drinkContentSection.append($drinkHeader);
@@ -148,7 +148,11 @@ function displayDrinkInforamtion(drinkData) {
     for (let i = 0; i < 3; i++) {
         const $contentItem = document.createElement('li');
 
-        //$contentItem.textContent = drinkData[i].drink_name;
+        const drinkName = drinkData[Math.floor(Math.random() * drinkData.length) + 0].name;
+
+        prevDisplayedDrinks.push
+
+        $contentItem.textContent = 
 
         $drinkList.append($contentItem);
     }
@@ -360,6 +364,8 @@ function getCocktail() {
 
                     .then(function (data) {
                         console.log(data);
+                        console.log(data[Math.floor(Math.random() * data.length) + 0].name)
+                        displayDrinkInforamtion(data);
                     })
             }
         })
