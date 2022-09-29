@@ -29,7 +29,8 @@ input {
 }
 
 .input-margin {
-    margin-left: 48%;
+    margin-left: 46%;
+    margin-bottom: 5px;
 }
 
 .dropdown {
