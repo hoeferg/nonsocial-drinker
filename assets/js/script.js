@@ -367,6 +367,73 @@ function getCocktail() {
 
 console.log(getCocktail())
 
+function getFavs(){
+    const $favoriteDrinks = document.getElementById('favorite-drinks-list');
+    const $favoriteJokes = document.getElementById('favorite-jokes-list');
+    const $favoriteExcuses = document.getElementById('favorite-excuses-list');
+    $favoriteDrinks.style.display ='block';
+    $favoriteJokes.style.display ='block';
+    $favoriteExcuses.style.display ='block';
+    
+    const favDrinksArray = [];
+    const favJokesArray = [];
+    const favExcuseArray = [];
+
+    const $favoriteDrinks = JSON.parse(localStorage.getItem('favorite-drinks-list'));
+    if (!$favoriteDrinks) return;
+    $favoriteDrinks.textContent = "";
+    for (let i = 0; i < favDrinksArray.length; i ++) {
+        $favoriteDrinks.textContent = favDrinksArray[i];
+        console.log('favorite-drinks-list');
+    }
+
+    const $favoriteJokes =JSON.parse(localStorage.getItem('favorite-jokes-list'));
+    if (!$favoriteJoke) return;
+    $favoriteDrinks.textContent = "";
+    for (let i = 0; i <favJokesArray.length; i ++) {
+        $favoriteJokes.textContent = favJokesArray[i];
+    
+    }
+
+    const $favoriteExcuses = JSON.parse(localStorage.getItem('favorite-excuses-list'));
+    if (!$favoriteExcuses) return;
+    $favoriteDrinks.textContent = "";
+    for (let i = 0; i < favExcuseArray.length; i ++) {
+        $favoriteExcuses.textContent = favExcuseArray[i];
+        
+    }
+    
+}
+
+function saveFavoriteDrink() {
+    const $favoriteDrinks = JSON.parse(localStorage.getItem('favorite-drinks-list'));
+    if (!$favoriteDrinks) {
+        localStorage.setItem('favorite-drinks-list', JSON.stringify(drink));
+        return;
+    
+    }
+    $favoriteDrinks.push(drink);
+
+    localStorage.setItem('')
+
+    const $favoriteJokes =JSON.parse(localStorage.getItem('favorite-jokes-list'));
+    if (!$favoriteJoke) {
+
+    }
+  
+    }
+
+    const $favoriteExcuses = JSON.parse(localStorage.getItem('favorite-excuses-list'));
+    if (!$favoriteExcuses) return;
+    $favoriteDrinks.textContent = "";
+    for (let i = 0; i < favExcuseArray.length; i ++) {
+        $favoriteExcuses.textContent = favExcuseArray[i];
+        
+    }
+}
+
+
+
 
 
 
