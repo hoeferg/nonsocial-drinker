@@ -220,8 +220,6 @@ function displayJokeInforamtion(jokeDataArray) {
     $button1.setAttribute('data-name', 'regenerate');
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
-    $buttonSection.append($saveButon);
-    $buttonSection.append($saveButon);
 
     // Uses for loops to iterate through jokeData array to get jokes and assigns them as text value for list item
     // List items are then appended to the jokes list
@@ -347,12 +345,11 @@ function getJoke() {
                 response.json()
                     .then(function (data) {
                         console.log(data);
-                        console.log(data[Math.floor(Math.random() * data.length) + 0].name)
-                        displayDrinkInforamtion(data);
                     })
             }
         });
     }
+
 
 function getCocktail() {
                 let ingredients = 'alcoholType'
