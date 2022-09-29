@@ -1,3 +1,25 @@
 .custom-display {
     display: none;
 }
+
+h2{
+    margin: 0;
+}
+
+header{
+    padding-bottom: 50px;
+}
+
+.w3-card{
+    min-height: 400px;
+    margin: 20px;
+}
+
+label{
+    display: block;
+    margin: 20px 0;
+}
+
+input{
+    left: 80px;
+}
