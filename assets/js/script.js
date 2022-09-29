@@ -324,15 +324,18 @@ function getCocktail() {
                 fetch($url, {
                     method: 'GET',
                     headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
-
-                })
-                    .then(function (response) {
-                        if (response.ok) {
-                            response.json()
-
-                                .then(function (data) {
-                                    console.log(data);
-                                })
-                        }
-                    })
-            }
+                })}
+function excuse() {
+	
+	let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
+	let action = ['broke', 'snapped', 'lost', 'chased'];
+	let event = ['computer', 'project', 'report', 'dog', 'cat', 'goose'];
+	
+	let who = person[Math.floor(Math.random()*person.length)+0];
+	let did = action[Math.floor(Math.random()*action.length)+0];
+	let what = event[Math.floor(Math.random()*event.length)+0];
+	
+	return `My ${who} ${did} my ${what}.`
+	
+}
+console.log(excuse())
