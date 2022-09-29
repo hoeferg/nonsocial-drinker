@@ -204,6 +204,10 @@ function displayJokeInforamtion(jokeDataArray) {
     $buttonSection.append($button1);
     $buttonSection.append($button2);
     $buttonSection.append($button2);
+    document.querySelector(#removeDrink);
+    document.querySelector(#removeJoke);
+    document.querySelector(#removeExcuse);
+    document.querySelector(#removeAll);
 
     // Uses for loops to iterate through jokeData array to get jokes and assigns them as text value for list item
     // List items are then appended to the jokes list
