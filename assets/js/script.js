@@ -122,6 +122,7 @@ function submitHandler(event) {
     const wantJoke = document.getElementById('jokeCheck').checked;
     const wantExcuse = document.getElementById('excuseCheck').checked;
 
+
     localStorage.setItem('alcholType', alcoholType);
     localStorage.setItem('wantJoke', wantJoke);
     localStorage.setItem('wantExcuse', wantExcuse);
@@ -133,15 +134,6 @@ function submitHandler(event) {
 init();
 const userChoiceForm = document.querySelector('#howItWorksForm');
 // userChoiceForm.addEventListener('submit', submitHandler);
-
-
-
-
-
-
-
-
-
 
  // // This function can be passed a parent element and will remove its children
 // function refreshDisplay(parentElement) {
@@ -155,7 +147,6 @@ const userChoiceForm = document.querySelector('#howItWorksForm');
 // }
 
 // function displayDrinkInformation(drinkData,ingredient) {
-
 
 //     // These will be the main sections that will contain all content
 //     const $section1 = document.createElement('section');
@@ -481,3 +472,50 @@ const userChoiceForm = document.querySelector('#howItWorksForm');
 
 //     return `My ${who} ${did} my ${what}.`
 // }
+// const userChoiceForm = document.querySelector('#howItWorksForm');
+// userChoiceForm.addEventListener('submit', submitHandler);
+
+// capture input
+
+// create a button for each element
+
+// add event listener 
+favoriteDrinkList.addEventListener('click', function(event) {
+    let btn = event.target.getAttribute('data-name')
+    let emptyArray = []
+    if (localStorage.getItem('drinkList') !== null) (
+        emptyArray = localStorage.getItem('drinkList')
+    )
+    if (!emptyArray.includes(btn)) {
+        emptyArray.push(btn)
+        localStorage.setItem('drinkList', JSON.stringify(emptyArray))
+    }
+} );
+
+favoriteJokeList.addEventListener('click', function(event) {
+    let btn = event.target.getAttribute('data-name')
+    let emptyArray = []
+    if (localStorage.getItem('jokeList') !== null) (
+        emptyArray = localStorage.getItem('drinkList')
+    )
+    if (!emptyArray.includes(btn)) {
+        emptyArray.push(btn)
+        localStorage.setItem('jokeList', JSON.stringify(emptyArray))
+    }
+} );
+
+favoriteExcuseList.addEventListener('click', function(event) {
+    let btn = event.target.getAttribute('data-name')
+    let emptyArray = []
+    if (localStorage.getItem('excuseList') !== null) (
+        emptyArray = localStorage.getItem('excuseList')
+    )
+    if (!emptyArray.includes(btn)) {
+        emptyArray.push(btn)
+        localStorage.setItem('excuseList', JSON.stringify(emptyArray))
+    }
+} );
+
+// favorites page, grab ul for each favorites section
+// add event listner to each section
+// that is responsible that is getting each part to local storage
