@@ -348,7 +348,7 @@ function getRandomDrink(drinkData,prevDisplayedDrinks) {
 
 function getJoke() {
     // jokeInput = document.querySelector("#jokeInput")
-    const requestUrl = `https://v2.jokeapi.dev/joke/Misc&type=single`
+    const requestUrl = `https://v2.jokeapi.dev/joke/Misc?type=single`
     fetch(requestUrl)
         .then(function (response) {
             if (response.ok) {
@@ -396,9 +396,9 @@ function excuse() {
 	
 }
 
+init()
 const whatEver = document.querySelector('#howItWorksForm')
 whatEver.addEventListener('submit', function(event){
 event.preventDefault()
 console.log(Hello)
 })
-init()
