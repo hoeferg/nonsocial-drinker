@@ -122,7 +122,10 @@ function refreshDisplay(parentElement) {
 
 }
 
+
+
 function displayDrinkInformation(drinkData,ingredient) {
+
 
     // These will be the main sections that will contain all content
     const $section1 = document.createElement('section');
@@ -219,10 +222,10 @@ function displayJokeInformation(jokesArr) {
         $saveButton.setAttribute('type', 'click');
         $saveButton.setAttribute('value', 'click');
 
-    
+
         $itemText.textContent = jokesArray[i]
         $saveButton.setAttribute('data-name', jokesArray[i]);
-        
+
         $contentItem.append($itemText);
         $contentItem.append($saveButton);
 
@@ -232,6 +235,80 @@ function displayJokeInformation(jokesArr) {
 }
 
 getJoke();
+
+
+
+
+function displayExcuseInformation() {
+    let excuseArray = []
+    const $excuseButtonSection = document.querySelector('#excuse-refresh');
+
+    const $excusesList = document.querySelector('#excuses-list');
+
+    const $button2 = document.createElement('button');
+
+
+
+    $button2.textContent = "Regenerate";
+    $button2.setAttribute('type', 'click');
+    $button2.setAttribute('data-name', 'regenerate');
+    $button2.setAttribute('value', 'click');
+    $excuseButtonSection.append($button2);
+
+    while (excuseArray.length < 3) {
+        let excuseAr = getExcuse();
+        if (!excuseArray.includes(excuseAr)) {
+            excuseArray.push(excuseAr)
+        }
+    }
+    console.log(excuseArray)
+
+    for (let i = 0; i < 3; i++) {
+        const $contentItem = document.createElement('li');
+        const $itemText = document.createElement('p');
+        const $saveButton = document.createElement('button');
+
+        $saveButton.textContent = "Save Excuse";
+        $saveButton.setAttribute('type', 'click');
+        $saveButton.setAttribute('value', 'click');
+
+        $itemText.textContent = excuseArray[i]
+        $saveButton.setAttribute('data-name', excuseArray[i]);
+        $contentItem.append($itemText);
+        $contentItem.append($saveButton);
+        $excusesList.append($contentItem);
+    }
+}
+
+displayExcuseInformation();
+
+
+function submitHandler(event) {
+    event.preventDefault();
+
+    const drinkOption = document.querySelector('#user-options-list');
+
+    const alcoholType = drinkOption.value;
+
+    const wantJoke = document.getElementById('jokeCheck').checked;
+    const wantExcuse = document.getElementById('excuseCheck').checked;
+
+    refreshDisplay($howItWorks);
+    hideHeader();
+    getCocktail(alcoholType);
+    if (wantJoke && wantExcuse) {
+        getJoke();
+        //displayExcuseInformation();
+    } else if (wantJoke) {
+        getJoke();
+    } else if (wantExcuse) {
+        //displayExcuseInformation();
+    }
+}
+
+
+
+
 
 function displayTopFavorites() {
     const $favoritesSection = document.createElement('section');
@@ -245,7 +322,7 @@ function displayTopFavorites() {
     const labelNameArray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
 
     //* ID NAMES HERE
-    const idName = ["top-drink-display","top-joke-display","top-excuse-display"];
+    const idName = ["top-drink-display", "top-joke-display", "top-excuse-display"];
 
     const favListsArray = [];
     const listsExistArray = [];
@@ -279,6 +356,7 @@ function displayTopFavorites() {
 
     $goToFavoritesButton.setAttribute('type', 'click');
     $goToFavoritesButton.setAttribute('value', 'click');
+    $goToFavoritesButton.setAttribute('class', 'goToFavs')
 
     $favoritesSection.append($favoritesSectionHeading);
     $buttonsSection.append($goToFavoritesButton);
@@ -301,7 +379,7 @@ function displayTopFavorites() {
                 $removeButton.setAttribute('type', 'click');
                 $removeButton.setAttribute('data-name', 'favorites');
                 $removeButton.setAttribute('value', 'click');
-                
+
 
                 $favItem.textContent = favListsArray[i][y];
 
@@ -333,18 +411,19 @@ function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
 }
 
-function createJokeArray(jokeData,jokeArr) {
+function createJokeArray(jokeData, jokeArr) {
     let tempJArray;
 
-    if(jokeArr === undefined) {
+    if (jokeArr === undefined) {
         tempJArray = []
     } else {
         tempJArray = jokeArr;
     }
 
-    if(!tempJArray.includes(jokeData)) {
+    if (!tempJArray.includes(jokeData)) {
         tempJArray.push(jokeData);
     }
+
 
     if(tempJArray.length === 3) {
         displayJokeInformation(tempJArray);
@@ -364,7 +443,7 @@ function getJoke(jokeArr) {
                     .then(function (data) {
                         let jokeResponse = data.joke;
                         console.log(jokeResponse);
-                        createJokeArray(jokeResponse,jokeArr);
+                        createJokeArray(jokeResponse, jokeArr);
                     })
             }
         });
@@ -372,14 +451,14 @@ function getJoke(jokeArr) {
 }
 
 function getCocktail(userIngredient) {
-        let ingredients = userIngredient;
-        let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
+    let ingredients = userIngredient;
+    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
-        fetch($url, {
-            method: 'GET',
-            headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+    fetch($url, {
+        method: 'GET',
+        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
 
-        })
+    })
             .then(function (response) {
                 if (response.ok) {
                     response.json()
@@ -404,107 +483,7 @@ function getExcuse() {
 
     return `My ${who} ${did} my ${what}.`
 }
-
-function displayExcuseInformation(excuseData) {
-
-    // These will be the main sections that will contain all content
-    const $section1 = document.createElement('section');
-    $section1.setAttribute('data-name', 'excuses');
-
-    // Sections for header and unordered list
-    const $excuseContentSection = document.createElement('section');
-
-    // Section for buttons, will use twice for each main section
-    const $buttonSection = document.createElement('section');
-
-    //* ID FOR REFRESH EXCUSE BUTTON SECTION
-    $buttonSection.setAttribute('id','excuse-refresh');
-
-    $buttonSection.setAttribute('data-name', 'excuse-buttons');
-
-    // Headings for each category
-    const $excuseHeader = document.createElement('h2');
-
-    // Unordered list for each category
-    const $excuseList = document.createElement('ul');
-
-    //* ID FOR DISPLAYED EXCUSE LIST
-    $excuseList.setAttribute('id', 'displayed-excuse');
-
-    // Refresh button
-    const $button1 = document.createElement('button');
-
-    const prevDisplayedExcuse = [];
-
-    // Assign text value for header and appends to content section
-    $excuseHeader.textContent = "Excuses";
-    $excuseContentSection.append($excuseHeader);
-
-    // Assigns text value and attributes buttons and appends to section
-    $button1.textContent = "Regenerate";
-    $button1.setAttribute('type', 'click');
-    $button1.setAttribute('data-name', 'regenerate');
-    $button1.setAttribute('value', 'click');
-    $buttonSection.append($button1);
-
-    // Uses for loops to iterate through excuseData array to get excuse names and assigns them as text value for list item
-    // List items are then appended to the excuse list
-    // TODO: connect the excuse data properly
-    for (let i = 0; i < 3; i++) {
-        const $contentItem = document.createElement('li');
-        const $itemText = document.createElement('p');
-        const $saveButton = document.createElement('button');
-
-        $saveButton.textContent = "Save Excuse";
-        $saveButton.setAttribute('type', 'click');
-        $saveButton.setAttribute('value', 'click');
-
-        const excuseName = getRandomExcuse(excuseData, prevDisplayedExcuse);
-
-        $saveButton.setAttribute('excuse-name', excuseName);
-
-        prevDisplayedExcuse.push(excuseName);
-
-        $itemText.textContent = excuseName;
-        $contentItem.append($itemText)
-        $contentItem.append($saveButton);
-
-        $excuseList.append($contentItem);
-    }
-
-    // Appends excuse list to content section
-    $excuseContentSection.append($excuseList);
-
-    // Appends content section and button section to main section
-    $section1.append($excuseContentSection);
-    $section1.append($buttonSection);
-
-    $howItWorks.append($section1);
-}
-
-function submitHandler(event) {
-    event.preventDefault();
-
-    const drinkOption = document.querySelector('#user-options-list');
-
-    const alcoholType = drinkOption.value;
-
-    const wantJoke = document.getElementById('jokeCheck').checked;
-    const wantExcuse = document.getElementById('excuseCheck').checked;
-
-    refreshDisplay($howItWorks);
-    hideHeader();
-    getCocktail(alcoholType);
-    if(wantJoke && wantExcuse) {
-        getJoke();
-        //displayExcuseInformation();
-    } else if(wantJoke) {
-        getJoke();
-    } else if (wantExcuse) {
-        //displayExcuseInformation();
-    }
-}
-
+getExcuse()
 // init();
 // const userChoiceForm = document.querySelector('#howItWorksForm');
 // userChoiceForm.addEventListener('submit', submitHandler);
