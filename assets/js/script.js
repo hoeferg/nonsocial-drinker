@@ -135,7 +135,7 @@ function displayDrinkInforamtion(drinkData) {
     const $buttonSection = document.createElement('section');
 
     //* ID FOR REFRESH DRINKS BUTTON SECTION
-    $buttonSection.setAttribute('id','drinks-refresh');
+    $buttonSection.setAttribute('id', 'drinks-refresh');
 
     $buttonSection.setAttribute('data-name', 'drinks-buttons');
 
@@ -215,7 +215,7 @@ function displayJokeInforamtion(jokesArr) {
     const $buttonSection = document.createElement('section');
 
     //* ID FOR REFRESH JOKES BUTTON SECTION
-    $buttonSection.setAttribute('id','jokes-refresh');
+    $buttonSection.setAttribute('id', 'jokes-refresh');
     $buttonSection.setAttribute('data-name', 'jokes-buttons');
 
 
@@ -226,7 +226,7 @@ function displayJokeInforamtion(jokesArr) {
     const $jokeList = document.createElement('ul');
 
     //* ID FOR DISPLAYED JOKES LIST
-    $jokeList.setAttribute('id','displayed-jokes');
+    $jokeList.setAttribute('id', 'displayed-jokes');
 
     // Both refresh and save button
     const $button1 = document.createElement('button');
@@ -254,10 +254,10 @@ function displayJokeInforamtion(jokesArr) {
         $saveButton.setAttribute('type', 'click');
         $saveButton.setAttribute('value', 'click');
 
-    
+
         $itemText.textContent = jokesArray[i]
         $saveButton.setAttribute('data-name', jokesArray[i]);
-        
+
         $contentItem.append($itemText);
         $contentItem.append($saveButton);
 
@@ -286,7 +286,7 @@ function displayTopFavorites() {
     const labelNameArray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
 
     //* ID NAMES HERE
-    const idName = ["top-drink-display","top-joke-display","top-excuse-display"];
+    const idName = ["top-drink-display", "top-joke-display", "top-excuse-display"];
 
     const favListsArrray = [];
     const listsExistArray = [];
@@ -343,7 +343,7 @@ function displayTopFavorites() {
                 $removeButton.setAttribute('type', 'click');
                 $removeButton.setAttribute('data-name', 'favorites');
                 $removeButton.setAttribute('value', 'click');
-                
+
 
                 $favItem.textContent = favListsArrray[i][y];
 
@@ -375,20 +375,20 @@ function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
 }
 
-function createJokeArray(jokeData,jokeArr) {
+function createJokeArray(jokeData, jokeArr) {
     let tempJArray;
 
-    if(jokeArr === undefined) {
+    if (jokeArr === undefined) {
         tempJArray = []
     } else {
         tempJArray = jokeArr;
     }
 
-    if(!tempJArray.includes(jokeData)) {
+    if (!tempJArray.includes(jokeData)) {
         tempJArray.push(jokeData);
     }
 
-    if(tempJArray.length === 3) {
+    if (tempJArray.length === 3) {
         displayJokeInforamtion(tempJArray);
     } else {
         getJoke(tempJArray);
@@ -406,7 +406,7 @@ function getJoke(jokeArr) {
                     .then(function (data) {
                         let jokeResponse = data.joke;
                         console.log(jokeResponse);
-                        createJokeArray(jokeResponse,jokeArr);
+                        createJokeArray(jokeResponse, jokeArr);
                     })
             }
         });
@@ -414,24 +414,24 @@ function getJoke(jokeArr) {
 }
 
 function getCocktail(userIngredient) {
-        let ingredients = userIngredient;
-        let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
+    let ingredients = userIngredient;
+    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
-        fetch($url, {
-            method: 'GET',
-            headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+    fetch($url, {
+        method: 'GET',
+        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
 
+    })
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
+
+                    .then(function (data) {
+                        console.log(data);
+                        displayDrinkInforamtion(data);
+                    })
+            }
         })
-            .then(function (response) {
-                if (response.ok) {
-                    response.json()
-
-                        .then(function (data) {
-                            console.log(data);
-                            displayDrinkInforamtion(data);
-                        })
-                }
-            })
 }
 
 function excuse() {
@@ -461,10 +461,10 @@ function submitHandler(event) {
     refreshDisplay($howItWorks);
     hideHeader();
     getCocktail(alcoholType);
-    if(wantJoke && wantExcuse) {
+    if (wantJoke && wantExcuse) {
         getJoke();
         //displayExcuseInformation();
-    } else if(wantJoke) {
+    } else if (wantJoke) {
         getJoke();
     } else if (wantExcuse) {
         //displayExcuseInformation();
