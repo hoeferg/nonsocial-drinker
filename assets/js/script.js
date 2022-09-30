@@ -44,7 +44,7 @@ function createAboutUs() {
 
     //console.log($appDesc);
 }
-
+//for index.html
 function createForm() {
     const $form = document.createElement('form');
     const $h2 = document.createElement('h2');
@@ -121,6 +121,7 @@ function refreshDisplay(parentElement) {
     }
 
 }
+//on results.html
 
 function displayDrinkInforamtion(drinkData) {
 
@@ -199,6 +200,8 @@ function displayDrinkInforamtion(drinkData) {
     $howItWorks.append($section1);
 }
 
+
+//jokes list for results.html
 function displayJokeInforamtion(jokesArr) {
 
     const jokesArray = jokesArr;
