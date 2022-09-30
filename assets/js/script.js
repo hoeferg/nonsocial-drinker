@@ -134,7 +134,7 @@ function refreshDisplay(parentElement) {
 
 }
 
-function displayDrinkInforamtion(drinkData) {
+function displayDrinkInforamtion(drinkData,ingredient) {
 
     // These will be the main sections that will contain all content
     const $section1 = document.createElement('section');
@@ -174,7 +174,7 @@ function displayDrinkInforamtion(drinkData) {
     // Assigns text value and attributes buttons and appends to section
     $button1.textContent = "Regenerate";
     $button1.setAttribute('type', 'click');
-    $button1.setAttribute('data-name', 'regenerate');
+    $button1.setAttribute('data-name', ingredient);
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
 
@@ -331,8 +331,8 @@ function displayTopFavorites() {
         listsExistArray.push(false);
     }
 
-    $favoritesSectionHeading.textContent = "Your Top Saved Favorites";
-    $goToFavoritesButton.textContent = "Go to Favorites Page";
+    $favoritesSectionHeading.textContent = "Your Go To Favorites";
+    $goToFavoritesButton.textContent = "See More of Favorites Page";
 
     $goToFavoritesButton.setAttribute('type', 'click');
     $goToFavoritesButton.setAttribute('value', 'click');
@@ -443,7 +443,7 @@ function getCocktail(userIngredient) {
 
                         .then(function (data) {
                             console.log(data);
-                            displayDrinkInforamtion(data);
+                            displayDrinkInforamtion(data,ingredients);
                         })
                 }
             })
