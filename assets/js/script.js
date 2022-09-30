@@ -190,13 +190,13 @@ function displayDrinkInforamtion(drinkData) {
         $saveButton.setAttribute('type', 'click');
         $saveButton.setAttribute('value', 'click');
 
-        // const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
+        const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
 
-        $saveButton.setAttribute('data-name', 'test'); //drink name
+        $saveButton.setAttribute('data-name', 'drinkName');
 
-        // prevDisplayedDrinks.push(drinkName);
+        prevDisplayedDrinks.push(drinkName);
 
-        $itemText.textContent = 'test'; //drinkName;
+        $itemText.textContent = drinkName;
         $contentItem.append($itemText)
         $contentItem.append($saveButton);
 
@@ -491,7 +491,7 @@ function getFavs() {
     } else if (wantExcuse) {
         //displayExcuseInformation();
     }
-}
+
     if (localStorage.getItem('favorite-excuses-list') !== null) {
     $favoriteExcuses = JSON.parse(localStorage.getItem('favorite-excuses-list'));
     if (!$favoriteExcuses) return;
@@ -500,7 +500,7 @@ function getFavs() {
         $favoriteExcuses.textContent = favExcuseArray[i];
         
     }
-}
+    }
 }
 const favDrinksArray = [];
 const favJokesArray = [];
