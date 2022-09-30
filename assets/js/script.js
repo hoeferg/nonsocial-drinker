@@ -470,41 +470,7 @@ userChoiceForm.addEventListener('submit', submitHandler);
 // create a button for each element
 
 // add event listener 
-favoriteDrinkList.addEventListener('click', function(event) {
-    let btn = event.target.getAttribute('data-name')
-    let emptyArray = []
-    if (localStorage.getItem('drinkList') !== null) (
-        emptyArray = localStorage.getItem('drinkList')
-    )
-    if (!emptyArray.includes(btn)) {
-        emptyArray.push(btn)
-        localStorage.setItem('drinkList', JSON.stringify(emptyArray))
-    }
-} );
 
-favoriteJokeList.addEventListener('click', function(event) {
-    let btn = event.target.getAttribute('data-name')
-    let emptyArray = []
-    if (localStorage.getItem('jokeList') !== null) (
-        emptyArray = localStorage.getItem('drinkList')
-    )
-    if (!emptyArray.includes(btn)) {
-        emptyArray.push(btn)
-        localStorage.setItem('jokeList', JSON.stringify(emptyArray))
-    }
-} );
-
-favoriteExcuseList.addEventListener('click', function(event) {
-    let btn = event.target.getAttribute('data-name')
-    let emptyArray = []
-    if (localStorage.getItem('excuseList') !== null) (
-        emptyArray = localStorage.getItem('excuseList')
-    )
-    if (!emptyArray.includes(btn)) {
-        emptyArray.push(btn)
-        localStorage.setItem('excuseList', JSON.stringify(emptyArray))
-    }
-} );
 
 // favorites page, grab ul for each favorites section
 // add event listner to each section
