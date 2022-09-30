@@ -106,6 +106,8 @@ function createForm() {
     $description.textContent = 'Pick your poison from the drinks drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
 }
 
+init()
+
 // This function will hide the header when called
 function hideHeader() {
     $greetingHeader.setAttribute("class", "custom-display");
@@ -170,7 +172,7 @@ function displayDrinkInforamtion(drinkData) {
         $saveButton.setAttribute('data-name', 'favorites');
         $saveButton.setAttribute('value', 'click');
 
-        const drinkName = getRandomDrink(drinkData,prevDisplayedDrinks);
+        const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
 
         prevDisplayedDrinks.push(drinkName);
 
@@ -225,7 +227,6 @@ function displayJokeInforamtion(jokeDataArray) {
     $button1.setAttribute('data-name', 'regenerate');
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
-
 
     // Uses for loops to iterate through jokeData array to get jokes and assigns them as text value for list item
     // List items are then appended to the jokes list
@@ -334,14 +335,14 @@ function displayTopFavorites() {
     $contentSection.append($buttonsSection);
 }
 
-function getRandomDrink(drinkData,prevDisplayedDrinks) {
+function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
     const drinkName = drinkData[Math.floor(Math.random() * drinkData.length) + 0].name;
 
-    if(!prevDisplayedDrinks.includes()) {
+    if (!prevDisplayedDrinks.includes()) {
         return drinkName;
     } else {
-        getRandomDrink(drinkData,prevDisplayedDrinks);
+        getRandomDrink(drinkData, prevDisplayedDrinks);
     }
 
 }
@@ -358,10 +359,9 @@ function getJoke() {
                     })
             }
         });
-    }
-    getJoke()
+}
 
-    function getCocktail() {
+function getCocktail() {
         let ingredients = 'alcoholType'
         let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
@@ -380,25 +380,19 @@ function getJoke() {
                         })
                 }
             })
-    }
-
-function excuse() {
-	
-	let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
-	let action = ['broke', 'snapped', 'lost', 'chased'];
-	let event = ['computer', 'project', 'report', 'dog', 'cat', 'goose'];
-	
-	let who = person[Math.floor(Math.random()*person.length)+0];
-	let did = action[Math.floor(Math.random()*action.length)+0];
-	let what = event[Math.floor(Math.random()*event.length)+0];
-	
-	return `My ${who} ${did} my ${what}.`
-	
 }
 
-init()
-const whatEver = document.querySelector('#howItWorksForm')
-whatEver.addEventListener('submit', function(event){
-event.preventDefault()
-console.log(Hello)
-})
+function excuse() {
+
+    let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
+    let action = ['broke', 'snapped', 'lost', 'chased'];
+    let event = ['computer', 'project', 'report', 'dog', 'cat', 'goose'];
+
+    let who = person[Math.floor(Math.random() * person.length) + 0];
+    let did = action[Math.floor(Math.random() * action.length) + 0];
+    let what = event[Math.floor(Math.random() * event.length) + 0];
+
+    return `My ${who} ${did} my ${what}.`
+
+}
+
