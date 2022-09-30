@@ -474,7 +474,8 @@ function saveFavoriteDrink() {
         getCocktail($drinkStuff);
     
     }) 
-    const $listOfDrinks = document.getElementById('displayed-drinks');
+
+    const $listOfDrinks = document.getElementById('generated-drinks-list');
     $listOfDrinks.addEventListener('click', function(event){
         let $drinkOptions = event.target.getAttribute('data-name');
         if (!savedDrinks.includes($drinkOptions)) {
@@ -484,6 +485,42 @@ function saveFavoriteDrink() {
         console.log($drinkOptions);
     })
 }
+
+
+function saveFavoritejokes() {
+    const $refreshJokes = document.getElementById('jokes-refresh');
+    $refreshJokes.addEventListener('click', function(event){
+    const $jokeDisplay = document.getElementById('section');
+    refreshDisplay($jokeDisplay);
+    getJoke()
+    })
+    const $listOfJokes = document.getElementById('jokes-list');
+    $listOfJokes.addEventListener('click', function(event){
+        let $jokeOptions = event.target.getAttribute('data-name');
+    if (!savedJokes.includes($jokeOptions)) {
+        savedJokes.push($jokeOptions);
+        localStorage.setItem('likedJokes',JSON.stringify(savedDrinks))
+    }
+    console.log($jokeOptions);
+    })
+}
+    function saveFavoriteExcuses() {
+        const $refreshExcuses = document.getElementById('excuses-regen');
+        $refreshExcuses.addEventListener('click', function(event) {
+        const $excuseDisplay = document.getElementById('excuses-section');
+        refreshDisplay($excuseDisplay);
+        getExcuse()
+        })
+        const $listOfExcuses = document.getElementById('excuse-list');
+        $listOfExcuses.addEventListener('click', function(event){
+            let $excuseOptions = event.target.getAttribute('data-name');
+        if (!savedExcuses.includes($excuseOptions)) {
+            savedExcuses.push($excuseOptions);
+            localStorage.setItem('likedExcuses', JSON.stringify(savedExcuses))
+        }
+        })
+    }
+   
 
 // init();
 // const userChoiceForm = document.querySelector('#howItWorksForm');
