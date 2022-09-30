@@ -111,7 +111,6 @@ function hideHeader() {
     $greetingHeader.setAttribute("class", "custom-display");
 }
 
-<<<<<<< HEAD
 // This function can be passed a parent element and will remove its children
 function refreshDisplay(parentElement) {
 
@@ -410,8 +409,6 @@ function excuse() {
 
 }
 
-=======
->>>>>>> 9f30e2a9301b6c97e2c9706c06ff69f4b074d486
 function submitHandler(event) {
     event.preventDefault();
 
