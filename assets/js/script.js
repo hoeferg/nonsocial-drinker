@@ -39,7 +39,7 @@ function createAboutUs() {
 
     //console.log($appDesc);
 }
-
+//for index.html
 function createForm() {
     const $form = document.createElement('form');
     const $h2 = document.createElement('h2');
