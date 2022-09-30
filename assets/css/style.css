@@ -2,24 +2,41 @@
     display: none;
 }
 
-h2{
+h2 {
     margin: 0;
 }
 
-header{
+header {
     padding-bottom: 50px;
 }
 
-.w3-card{
+.w3-card {
     min-height: 300px;
     margin: 20px;
 }
 
-label{
+label {
     display: block;
     margin: 20px 0;
 }
 
-input{
+input {
     left: 80px;
+}
+
+.button-margin {
+    margin-left: 20px;
+}
+
+.input-margin {
+    margin-left: 46%;
+    margin-bottom: 5px;
+}
+
+.dropdown {
+    margin-left: 17px;
+    padding: 9px 0;
+    width: 20%;
+    border: none;
+    border-bottom: 1px solid #ccc;
 }
