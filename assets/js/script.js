@@ -296,6 +296,7 @@ function displayTopFavorites() {
 
     $goToFavoritesButton.setAttribute('type', 'click');
     $goToFavoritesButton.setAttribute('value', 'click');
+    $goToFavoritesButton.setAttribute('class', 'goToFavs')
 
     $favoritesSection.append($favoritesSectionHeading);
     $buttonsSection.append($goToFavoritesButton);
