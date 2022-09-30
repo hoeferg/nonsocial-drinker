@@ -446,7 +446,9 @@ function saveFavoriteDrink() {
 
     localStorage.setItem('favorite-drinks-list', JSON.stringify($favoriteDrinks));
 
+}
 
+function saveFavoritejokes() {
     const $favoriteJokes =JSON.parse(localStorage.getItem('favorite-jokes-list'));
     if (!$favoriteJoke) {
         localStorage.setItem('favorite-jokes-list', JSON.stringify([jokes]));
@@ -456,8 +458,9 @@ function saveFavoriteDrink() {
     $favoriteJokes.push(jokes);
 
     localStorage.setItem('favorite-jokes-list', JSON.stringify(($favoriteJokes));
-    
+}
 
+function saveBestExcuse() {
     const $favoriteExcuses = JSON.parse(localStorage.getItem('favorite-excuses-list'));
     if (!$favoriteExcuses) {
         localStorage.setItem('favorite-excuses-list',JSON.stringify([excuse]));
