@@ -16,9 +16,9 @@ function init() {
     if (localStorage.getItem('likedJokes') !== null) {
         savedJokes = JSON.parse(localStorage.getItem('likedJokes'))
     }
-    if (localStorage.getItem('likedexcuses') !== null) {
-        savedExcuses = JSON.parse(localStorage.getItem('likedescuses'))
-    }
+    // if (localStorage.getItem('likedexcuses') !== null) {
+    //     savedExcuses = JSON.parse(localStorage.getItem('likedescuses'))
+    // }
     createAboutUs();
     createForm();
 
@@ -513,8 +513,9 @@ function saveFavoriteDrink() {
     const $refresh = document.getElementById('drinks-refresh');
     $refresh.addEventListener('click', function(event){
     const $drinkDisplay = document.getElementById('drinkSection');
+    const $drinkStuff = event.target.getAttribute('data-name');
         refreshDisplay($drinkDisplay);
-        getCocktail('vodka');
+        getCocktail($drinkStuff);
     
     }) 
     const $listOfDrinks = document.getElementById('displayed-drinks');
@@ -553,7 +554,7 @@ function saveFavoritejokes() {
     //     refreshDisplay($excuseDisplay);
     //     getExcuse()
     //     })
-    //     const $listOfExcuses = document.getElementById('displayed-excuses';)
+    //     const $listOfExcuses = document.getElementById('displayed-excuses');
     //     $listOfExcuses.addEventListener('click', function(event){
     //         let $excuseOptions = event.target.getAttribute('data-name');
     //     if (!savedExcuses.includes($excuseOptions)) {
@@ -566,7 +567,7 @@ function saveFavoritejokes() {
 
 getCocktail();
 
-
+init();
 
 
 
