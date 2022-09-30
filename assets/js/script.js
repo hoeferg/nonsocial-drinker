@@ -1,6 +1,11 @@
 const $greetingHeader = document.querySelector('#greeting');
-const $howItWorks = document.querySelector('#howItWorks');
+const $howItWorks = document.querySelector('#how-it-works');
 const $contentSection = document.querySelector('#content-section');
+const $favoriteDrinksList = document.querySelector('#favorite-drinks-list')
+const $favoriteJokesList = document.querySelector('#favorite-jokes-list')
+const $favoriteExcusesList = document.querySelector('#favorite-excuses-list')
+const $clearAll = document.querySelector('#clear-all')
+
 
 function init() {
     createAboutUs();
@@ -65,7 +70,7 @@ function createForm() {
         $selectOption.append($alcholChoices)
     }
 
-    $form.setAttribute('id', 'howItWorks');
+    $form.setAttribute('id', 'howItWorksForm');
     $howItWorks.setAttribute('class', 'class="w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
     $jokeInput.setAttribute('type', 'checkbox');
     $jokeInput.classList.add('button-margin');
@@ -98,7 +103,7 @@ function createForm() {
     $excuseLabel.appendChild($excuseInput)
     $form.appendChild($submitBtn);
     $h2.textContent = 'How It Works!'
-    $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
+    $description.textContent = 'Pick your poison from the drinks drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
 }
 
 init()
@@ -344,7 +349,7 @@ function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
 function getJoke() {
     // jokeInput = document.querySelector("#jokeInput")
-    const requestUrl = `https://v2.jokeapi.dev/joke/Misc&type=single`
+    const requestUrl = `https://v2.jokeapi.dev/joke/Misc?type=single`
     fetch(requestUrl)
         .then(function (response) {
             if (response.ok) {
@@ -390,3 +395,4 @@ function excuse() {
     return `My ${who} ${did} my ${what}.`
 
 }
+
