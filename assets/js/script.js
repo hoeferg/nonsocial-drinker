@@ -59,14 +59,14 @@ function createForm() {
 
     const $alcoholOptions = ['--Select your alcohol--', 'Vodka', 'Tequila', 'Rum', 'Gin', 'Whiskey']
     for (let i = 0; i < $alcoholOptions.length; i++) {
-        const $alcholChoices = document.createElement('option');
-        $alcholChoices.textContent = $alcoholOptions[i]
+        const $alcoholChoices = document.createElement('option');
+        $alcoholChoices.textContent = $alcoholOptions[i]
         if (i > 0) {
-            $alcholChoices.setAttribute('value', $alcoholOptions[i])
+            $alcoholChoices.setAttribute('value', $alcoholOptions[i])
         } else {
-            $alcholChoices.setAttribute('value', '')
+            $alcoholChoices.setAttribute('value', '')
         }
-        $selectOption.append($alcholChoices)
+        $selectOption.append($alcoholChoices)
     }
 
     $form.setAttribute('id', 'howItWorksForm');
@@ -122,7 +122,8 @@ function refreshDisplay(parentElement) {
 
 }
 
-function displayDrinkInforamtion(drinkData,ingredient) {
+function displayDrinkInformation(drinkData,ingredient) {
+
 
     // These will be the main sections that will contain all content
     const $section1 = document.createElement('section');
@@ -143,7 +144,7 @@ function displayDrinkInforamtion(drinkData,ingredient) {
     const prevDisplayedDrinks = [];
 
     // Assign text value for header and appends to content section
-    $drinkHeader.textContent = `Here are some great cokctails with ${ingredient}:`;
+    $drinkHeader.textContent = `Here are some great cocktails with ${ingredient}:`;
 
     // Assigns text value and attributes buttons and appends to section
     $button1.textContent = "Regenerate";
@@ -181,7 +182,7 @@ function displayDrinkInforamtion(drinkData,ingredient) {
 
 }
 
-function displayJokeInforamtion(jokesArr) {
+function displayJokeInformation(jokesArr) {
 
     const jokesArray = jokesArr;
 
@@ -219,16 +220,57 @@ function displayJokeInforamtion(jokesArr) {
         $saveButton.setAttribute('type', 'click');
         $saveButton.setAttribute('value', 'click');
 
-    
+
         $itemText.textContent = jokesArray[i]
         $saveButton.setAttribute('data-name', jokesArray[i]);
-        
+
         $contentItem.append($itemText);
         $contentItem.append($saveButton);
 
         $jokeList.append($contentItem);
     }
 
+}
+
+function displayExcuseInformation() {
+    let excuseArray = []
+    const $excuseButtonSection = document.querySelector('#excuse-refresh');
+
+    const $excusesList = document.querySelector('#excuses-list');
+
+    const $button2 = document.createElement('button');
+
+
+
+    $button2.textContent = "Regenerate";
+    $button2.setAttribute('type', 'click');
+    $button2.setAttribute('data-name', 'regenerate');
+    $button2.setAttribute('value', 'click');
+    $excuseButtonSection.append($button2);
+
+    while (excuseArray.length < 3) {
+        let excuseAr = getExcuse();
+        if (!excuseArray.includes(excuseAr)) {
+            excuseArray.push(excuseAr)
+        }
+    }
+    console.log(excuseArray)
+
+    for (let i = 0; i < 3; i++) {
+        const $contentItem = document.createElement('li');
+        const $itemText = document.createElement('p');
+        const $saveButton = document.createElement('button');
+
+        $saveButton.textContent = "Save Excuse";
+        $saveButton.setAttribute('type', 'click');
+        $saveButton.setAttribute('value', 'click');
+
+        $itemText.textContent = excuseArray[i]
+        $saveButton.setAttribute('data-name', excuseArray[i]);
+        $contentItem.append($itemText);
+        $contentItem.append($saveButton);
+        $excusesList.append($contentItem);
+    }
 }
 
 function displayTopFavorites() {
@@ -243,14 +285,14 @@ function displayTopFavorites() {
     const labelNameArray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
 
     //* ID NAMES HERE
-    const idName = ["top-drink-display","top-joke-display","top-excuse-display"];
+    const idName = ["top-drink-display", "top-joke-display", "top-excuse-display"];
 
-    const favListsArrray = [];
+    const favListsArray = [];
     const listsExistArray = [];
 
     if (localStorage.getItem("topFavDrinksArr") !== null) {
         const topDrinksArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
-        favListsArrray.push(topDrinksArray);
+        favListsArray.push(topDrinksArray);
         listsExistArray.push(true);
     } else {
         favListsArrray.push("fill");
@@ -259,7 +301,7 @@ function displayTopFavorites() {
 
     if (localStorage.getItem("topFavJokesArr") !== null) {
         const topJokesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
-        favListsArrray.push(topJokesArray);
+        favListsArray.push(topJokesArray);
         listsExistArray.push(true);
     } else {
         favListsArrray.push("fill");
@@ -268,7 +310,7 @@ function displayTopFavorites() {
 
     if (localStorage.getItem("topFavExcusesArr") !== null) {
         const topExcusesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
-        favListsArrray.push(topExcusesArray);
+        favListsArray.push(topExcusesArray);
         listsExistArray.push(true);
     } else {
         favListsArrray.push("fill");
@@ -280,6 +322,7 @@ function displayTopFavorites() {
 
     $goToFavoritesButton.setAttribute('type', 'click');
     $goToFavoritesButton.setAttribute('value', 'click');
+    $goToFavoritesButton.setAttribute('class', 'goToFavs')
 
     $favoritesSection.append($favoritesSectionHeading);
     $buttonsSection.append($goToFavoritesButton);
@@ -294,7 +337,7 @@ function displayTopFavorites() {
 
         if (listsExistArray[i]) {
 
-            for (let y = 0; y < favListsArrray[i].length; y++) {
+            for (let y = 0; y < favListsArray[i].length; y++) {
                 const $favItem = document.createElement('li');
                 const $removeButton = document.createElement('button');
 
@@ -302,9 +345,9 @@ function displayTopFavorites() {
                 $removeButton.setAttribute('type', 'click');
                 $removeButton.setAttribute('data-name', 'favorites');
                 $removeButton.setAttribute('value', 'click');
-                
 
-                $favItem.textContent = favListsArrray[i][y];
+
+                $favItem.textContent = favListsArray[i][y];
 
                 $favList.append($favItem);
             }
@@ -334,21 +377,22 @@ function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
 }
 
-function createJokeArray(jokeData,jokeArr) {
+function createJokeArray(jokeData, jokeArr) {
     let tempJArray;
 
-    if(jokeArr === undefined) {
+    if (jokeArr === undefined) {
         tempJArray = []
     } else {
         tempJArray = jokeArr;
     }
 
-    if(!tempJArray.includes(jokeData)) {
+    if (!tempJArray.includes(jokeData)) {
         tempJArray.push(jokeData);
     }
 
+
     if(tempJArray.length === 3) {
-        displayJokeInforamtion(tempJArray);
+        displayJokeInformation(tempJArray);
     } else {
         getJoke(tempJArray);
     }
@@ -365,7 +409,7 @@ function getJoke(jokeArr) {
                     .then(function (data) {
                         let jokeResponse = data.joke;
                         console.log(jokeResponse);
-                        createJokeArray(jokeResponse,jokeArr);
+                        createJokeArray(jokeResponse, jokeArr);
                     })
             }
         });
@@ -373,27 +417,27 @@ function getJoke(jokeArr) {
 }
 
 function getCocktail(userIngredient) {
-        let ingredients = userIngredient;
-        let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
+    let ingredients = userIngredient;
+    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
-        fetch($url, {
-            method: 'GET',
-            headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+    fetch($url, {
+        method: 'GET',
+        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
 
-        })
+    })
             .then(function (response) {
                 if (response.ok) {
                     response.json()
 
                         .then(function (data) {
                             console.log(data);
-                            displayDrinkInforamtion(data,ingredients);
+                            displayDrinkInformation(data,ingredients);
                         })
                 }
             })
 }
 
-function excuse() {
+function getExcuse() {
 
     let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
     let action = ['broke', 'snapped', 'lost', 'chased'];
@@ -404,7 +448,6 @@ function excuse() {
     let what = event[Math.floor(Math.random() * event.length) + 0];
 
     return `My ${who} ${did} my ${what}.`
-
 }
 
 function getNewPage() {
