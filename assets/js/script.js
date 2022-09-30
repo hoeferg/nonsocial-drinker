@@ -69,7 +69,7 @@ function createForm() {
         $selectOption.append($alcoholChoices)
     }
 
-    $form.setAttribute('id', 'howItWorksForm');
+    $form.setAttribute('id', 'howItWorks');
     $howItWorks.setAttribute('class', 'w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
     $jokeInput.setAttribute('type', 'checkbox');
     $jokeInput.classList.add('button-margin');
@@ -93,6 +93,7 @@ function createForm() {
     $submitBtn.textContent = 'SEE WHAT YOU GET!'
     $jokeLabel.textContent = 'Jokes!'
     $excuseLabel.textContent = 'Excuses!'
+
     $howItWorks.appendChild($form);
     $form.appendChild($h2);
     $form.appendChild($description);
@@ -124,7 +125,7 @@ function refreshDisplay(parentElement) {
 
 
 
-function displayDrinkInformation(drinkData,ingredient) {
+function displayDrinkInformation(drinkData, ingredient) {
 
 
     // These will be the main sections that will contain all content
@@ -280,7 +281,6 @@ function displayExcuseInformation() {
     }
 }
 
-displayExcuseInformation();
 
 
 function submitHandler(event) {
@@ -305,7 +305,6 @@ function submitHandler(event) {
         //displayExcuseInformation();
     }
 }
-
 
 
 
@@ -425,7 +424,7 @@ function createJokeArray(jokeData, jokeArr) {
     }
 
 
-    if(tempJArray.length === 3) {
+    if (tempJArray.length === 3) {
         displayJokeInformation(tempJArray);
     } else {
         getJoke(tempJArray);
@@ -459,16 +458,16 @@ function getCocktail(userIngredient) {
         headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
 
     })
-            .then(function (response) {
-                if (response.ok) {
-                    response.json()
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
 
-                        .then(function (data) {
-                            console.log(data);
-                            displayDrinkInformation(data,ingredients);
-                        })
-                }
-            })
+                    .then(function (data) {
+                        console.log(data);
+                        displayDrinkInformation(data, ingredients);
+                    })
+            }
+        })
 }
 
 function getExcuse() {
@@ -483,8 +482,13 @@ function getExcuse() {
 
     return `My ${who} ${did} my ${what}.`
 }
-getExcuse()
-// init();
+
+function generateJokeButton() {
+    const JokeButton = document.createElement('button');
+
+}
+
+init();
 // const userChoiceForm = document.querySelector('#howItWorksForm');
 // userChoiceForm.addEventListener('submit', submitHandler);
 
