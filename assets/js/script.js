@@ -121,6 +121,7 @@ function submitHandler(event) {
     const wantJoke = document.getElementById('jokeCheck').checked;
     const wantExcuse = document.getElementById('excuseCheck').checked;
 
+
     localStorage.setItem('alcholType', alcoholType);
     localStorage.setItem('wantJoke', wantJoke);
     localStorage.setItem('wantExcuse', wantExcuse);
@@ -131,6 +132,7 @@ function submitHandler(event) {
 init();
 const userChoiceForm = document.querySelector('#howItWorksForm');
 userChoiceForm.addEventListener('submit', submitHandler);
+
 
  // // This function can be passed a parent element and will remove its children
 // function refreshDisplay(parentElement) {
