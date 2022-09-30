@@ -1,0 +1,23 @@
+
+header{
+    margin-bottom: 30px;
+    min-height: 200px;
+    padding-top: 60px;
+}
+
+#generated-lists{
+}
+
+#lastSelectionsSection{
+    margin: 40px 16px;
+}
+
+#lastSelectionTitle{
+    margin: 20px 0;
+}
+
+@media only screen and (min-width: 850px){
+    #lastSelectionSectionTitle{
+        margin: auto;
+    }
+}

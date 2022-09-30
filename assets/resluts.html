@@ -14,63 +14,101 @@
     <title>Document</title>
 </head>
 <body class=" w3-signal-black">
-    <header class="w3-center w3-signal-blue w3-margin">
-        <h1 class="w3-cursive w3-jumbo" style="color: deepskyblue;">Here you go</h1>
+    <header class="w3-display-container w3-center w3-signal-blue">
+        <h1 class="w3-display-middle w3-cursive w3-xxlarge w3-border-top w3-border-bottom w3-col s12 l4" style="color: deepskyblue; ">Here you go!</h1>
     </header>
+
+
+
     <!--generated selections from homepage-->
-    <main id="generated-lists" class="w3-container">
-        <section id="drinks" class="w3-display-container w3-container w3-vivid-greenish-blue w3-card w3-round-xlarge">
-            <ul>
-                <li>vodka</li>
-                <li>wiskey</li>
-                <li>rum</li>
-            </ul>
-            <button id="drinks-regen">Regenerate</button>
-            <button id="drinks-save">Save to favorites</button>
+    <main id="generated-lists" class="w3-row-padding">
+        <section class="w3-col s12 l2 ">
+            <section class="w3-container w3-vivid-greenish-blue w3-round w3-margin-top">
+                <h3 class="w3-center w3-border-bottom">Your drinks</h3>
+                <ul id="generatedDrinksList" style="margin: 0;">
+                    <li>vodka</li>
+                    <li>wiskey</li>
+                    <li>rum</li>
+                </ul>
+                    <button id="drinksRegen" class="w3-col" style="margin: 5px 0;">Regenerate</button>
+                    <button id="drinksSave" class="w3-col w3-right" style="margin: 6px 0;">Save to favorites</button>
+            </section>
         </section>
 
-        <section id="jokes">
-            <ul>
-                <li>joke</li>
-                <li>joke</li>
-                <li>joke</li>
-            </ul>
-            <button id="jokes-regen">Regenerate</button>
-            <button id="jokes-save">
+        <section id="generatedJokes" class=" w3-col s12 l5">
+            <section  class="w3-container w3-vivid-greenish-blue w3-round w3-margin-top">
+                <h3 class="w3-center w3-border-bottom">Your jokes</h3>
+                <ul id="jokes-list">
+                    <li>ha</li>
+                    <li>ha</li>
+                    <li>ha</li>
+                </ul>
+                <button id="jokesRegen" class="w3-margin">Regenerate</button>
+                <button id="jokesSave" class="w3-margin w3-right">
                 Save to favorites
-            </button>
+                </button>
+            </section>
         </section>
 
-        <section id="excuses">
-            <ul>
-                <li>some</li>
-                <li>lame</li>
-                <li>excuse</li>
-            </ul>
-            <button id="excuses-regen">Regenerate</button>
-            <button id="excuses-save">Save to favorites</button>
+        <section id="generatedExcuses" class="w3-col s12 l5 ">
+            <section class="w3-container w3-vivid-greenish-blue w3-round w3-margin-top">
+                <h3 class="w3-center w3-border-bottom">Your excuses</h3>
+                <ul id="excuses-list">
+                    <li>some</li>
+                    <li>lame</li>
+                    <li>excuse</li>
+                </ul>
+                <button id="excusesRegen" class="w3-margin">Regenerate</button>
+                <button id="excusesSave" class="w3-margin w3-right">Save to favorites</button>
+            </section>
         </section>
     </main>
+
+
+
     <!--last selections section-->
-    <div id="last-selections-section">
-        <h2>
+    <div id="lastSelectionsSection" class="w3-row-padding w3-food-blueberry w3-round-xlarge">
+        <h2 id="lastSelectionTitle" class="w3-center w3-cursive w3-border-bottom w3-border-top w3-col s12">
             Your last selections
         </h2>
-        <ul id="last-drink-list">
-            <li></li>
-        </ul>
 
-        <ul id="last-jokes-list">
-            <li></li>
-        </ul>
+        <section id="lastDrink" class="w3-col s12 l2">
+            <section class="w3-signal-blue w3-container w3-round-large w3-margin-top">
+                <h4 class="w3-center w3-border-bottom">your last drink</h4>
+                <ul id="last-drink-list">
+                    <li>lkdjf</li>
+                    <li>lkjsdf</li>
+                    <li>lksjdf</li>
+                </ul>
+            </section>
+        </section>
 
-        <ul id="last-excuses-list">
-            <li></li>
-        </ul>
+        <section id="lastJoke" class="w3-col s12 l5">
+            <section class="w3-signal-blue w3-container w3-round-large w3-margin-top">
+                <h4 class="w3-center w3-border-bottom">Your last jokes</h4>
+                <ul id="last-jokes-list">
+                    <li>lksjdf</li>
+                    <li>lksjdf</li>
+                    <li>lskdjf</li>
+                </ul>
+            </section>
+        </section>
 
-        <button id="home-btn">Home</button>
+        <section id="lastExcuses" class="w3-col s12 l5">
+            <section class="w3-signal-blue w3-container w3-round-large w3-margin-top">
+                <h4 class="w3-center w3-border-bottom">Your last excuses</h4>
+                <ul id="last-excuses-list">
+                    <li>jsdf</li>
+                    <li>lksjfd</li>
+                    <li>lskdjf</li>
+                </ul>
+            </section>
+        </section>
 
-        <button id="go-to-favorites">Go to favorites</button>
+        <button id="homeBtn" class="w3-margin">Home</button>
+
+        <button id="goToFavoritesBtn" class=" w3-right w3-margin">Go to favorites</button>
+
     </div>
 </body>
 </html>
