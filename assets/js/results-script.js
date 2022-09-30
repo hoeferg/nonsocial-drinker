@@ -1,114 +1,16 @@
-const $greetingHeader = document.querySelector('#greeting');
-const $howItWorks = document.querySelector('#how-it-works');
-const $contentSection = document.querySelector('#content-section');
-const $favoriteDrinksList = document.querySelector('#favorite-drinks-list')
-const $favoriteJokesList = document.querySelector('#favorite-jokes-list')
-const $favoriteExcusesList = document.querySelector('#favorite-excuses-list')
-const $clearAll = document.querySelector('#clear-all')
-
-
 function init() {
-    createAboutUs();
-    createForm();
-}
+    const alcholType = localStorage.getItem('alcholType');
+    const wantJoke = JSON.parse(localStorage.getItem('wantJoke'));
+    const wantExcuse = JSON.parse(localStorage.getItem('wantExcuse'));
 
-function createAboutUs() {
-    const $aboutUsDiv = document.createElement('div');
-    const $aboutUsDesc1 = document.createElement('p');
-    const $aboutUsDesc2 = document.createElement('p');
-    const $aboutUsDesc3 = document.createElement('p');
-
-    $contentSection.appendChild($aboutUsDiv);
-    $aboutUsDiv.appendChild($aboutUsDesc1);
-    $aboutUsDiv.appendChild($aboutUsDesc2);
-    $aboutUsDiv.appendChild($aboutUsDesc3);
-
-    $aboutUsDesc1.textContent =
-        'It is our hope that you will find this app fun while you are out in social situations.';
-    $aboutUsDesc2.textContent =
-        'We only say that the app is for the socially awkward because it was built by the socially awkward.';
-    $aboutUsDesc3.textContent =
-        ' Its like that weird item on your friends coffee table that prompts conversation and inspires connection.';
-    //console.log($aboutUsDesc1.textContent);
-
-    const $appDiv = document.createElement('div');
-    const $appDesc = document.createElement('p');
-    const $appDesc2 = document.createElement('p');
-    $contentSection.appendChild($appDiv);
-    $appDiv.appendChild($appDesc);
-    $appDiv.appendChild($appDesc2);
-    $appDesc.textContent =
-        'This app will generate a cocktail, a joke and an excuse to get yourself on those getaway sticks and hightail it out of any truly awkward situation.';
-    $appDesc2.textContent =
-        'Not only is it an app for the socially awkward but it can help you escape the socially awkward… PURE, GENIUS!';
-
-    //console.log($appDesc);
-}
-
-function createForm() {
-    const $form = document.createElement('form');
-    const $h2 = document.createElement('h2');
-    const $description = document.createElement('p');
-    const $submitBtn = document.createElement('button');
-    const $selectOption = document.createElement('select');
-    const $jokeLabel = document.createElement('label');
-    const $jokeInput = document.createElement('input');
-    const $excuseLabel = document.createElement('label');
-    const $excuseInput = document.createElement('input');
-
-
-    const $alcoholOptions = ['--Select your alcohol--', 'Vodka', 'Tequila', 'Rum', 'Gin', 'Whiskey']
-    for (let i = 0; i < $alcoholOptions.length; i++) {
-        const $alcoholChoices = document.createElement('option');
-        $alcoholChoices.textContent = $alcoholOptions[i]
-        if (i > 0) {
-            $alcoholChoices.setAttribute('value', $alcoholOptions[i])
-        } else {
-            $alcoholChoices.setAttribute('value', '')
-        }
-        $selectOption.append($alcoholChoices)
+    getCocktail(alcholType);
+    if(wantJoke) {
+        getJoke();
+    }
+    if (wantExcuse) {
+        displayExcuseInformation();
     }
 
-    $form.setAttribute('id', 'howItWorksForm');
-    $howItWorks.setAttribute('class', 'w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
-    $jokeInput.setAttribute('type', 'checkbox');
-    $jokeInput.classList.add('button-margin');
-    $jokeInput.setAttribute('id', 'jokeCheck')
-    $excuseInput.setAttribute('type', 'checkbox');
-    $excuseInput.setAttribute('id', 'excuseCheck')
-    $excuseInput.classList.add('button-margin');
-    $selectOption.setAttribute('class', 'dropdown');
-    $selectOption.setAttribute('id', 'user-options-list');
-    $submitBtn.setAttribute('type', 'submit');
-    $submitBtn.setAttribute('value', 'submit');
-    $submitBtn.setAttribute('id', 'submitBtn');
-    $submitBtn.classList.add('input-margin')
-    $h2.setAttribute('class', 'w3-center');
-    $description.setAttribute('class', 'w3-center');
-    $description.setAttribute('class', 'w3-large');
-    $excuseLabel.setAttribute('class', 'w3-large');
-    $jokeLabel.setAttribute('class', 'w3-large');
-    $jokeLabel.classList.add('button-margin');
-    $excuseLabel.classList.add('button-margin');
-    $submitBtn.textContent = 'SEE WHAT YOU GET!'
-    $jokeLabel.textContent = 'Jokes!'
-    $excuseLabel.textContent = 'Excuses!'
-    $howItWorks.appendChild($form);
-    $form.appendChild($h2);
-    $form.appendChild($description);
-    $form.appendChild($selectOption);
-    $form.appendChild($jokeLabel);
-    $jokeLabel.appendChild($jokeInput);
-    $form.appendChild($excuseLabel);
-    $excuseLabel.appendChild($excuseInput)
-    $form.appendChild($submitBtn);
-    $h2.textContent = 'How It Works!'
-    $description.textContent = 'Pick your poison from the drinks drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
-}
-
-// This function will hide the header when called
-function hideHeader() {
-    $greetingHeader.setAttribute("class", "custom-display");
 }
 
 // This function can be passed a parent element and will remove its children
@@ -122,7 +24,8 @@ function refreshDisplay(parentElement) {
 
 }
 
-function displayDrinkInforamtion(drinkData, ingredient) {
+function displayDrinkInformation(drinkData,ingredient) {
+
 
     // These will be the main sections that will contain all content
     const $section1 = document.createElement('section');
@@ -231,11 +134,6 @@ function displayJokeInformation(jokesArr) {
 
 }
 
-getJoke();
-
-
-
-
 function displayExcuseInformation() {
     let excuseArray = []
     const $excuseButtonSection = document.querySelector('#excuse-refresh');
@@ -277,36 +175,6 @@ function displayExcuseInformation() {
     }
 }
 
-displayExcuseInformation();
-
-
-function submitHandler(event) {
-    event.preventDefault();
-
-    const drinkOption = document.querySelector('#user-options-list');
-
-    const alcoholType = drinkOption.value;
-
-    const wantJoke = document.getElementById('jokeCheck').checked;
-    const wantExcuse = document.getElementById('excuseCheck').checked;
-
-    refreshDisplay($howItWorks);
-    hideHeader();
-    getCocktail(alcoholType);
-    if (wantJoke && wantExcuse) {
-        getJoke();
-        //displayExcuseInformation();
-    } else if (wantJoke) {
-        getJoke();
-    } else if (wantExcuse) {
-        //displayExcuseInformation();
-    }
-}
-
-
-
-
-
 function displayTopFavorites() {
     const $favoritesSection = document.createElement('section');
     const $buttonsSection = document.createElement('section');
@@ -316,7 +184,7 @@ function displayTopFavorites() {
     const $favoritesSectionHeading = document.createElement('h2');
     const $goToFavoritesButton = document.createElement('button');
     const elementArray = [$drinkFavsSection, $jokeFavsSection, $excuseFavsSection];
-    const labelNameArrray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
+    const labelNameArray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
 
     //* ID NAMES HERE
     const idName = ["top-drink-display", "top-joke-display", "top-excuse-display"];
@@ -329,6 +197,7 @@ function displayTopFavorites() {
         favListsArray.push(topDrinksArray);
         listsExistArray.push(true);
     } else {
+        favListsArrray.push("fill");
         listsExistArray.push(false);
     }
 
@@ -337,6 +206,7 @@ function displayTopFavorites() {
         favListsArray.push(topJokesArray);
         listsExistArray.push(true);
     } else {
+        favListsArrray.push("fill");
         listsExistArray.push(false);
     }
 
@@ -345,6 +215,7 @@ function displayTopFavorites() {
         favListsArray.push(topExcusesArray);
         listsExistArray.push(true);
     } else {
+        favListsArrray.push("fill");
         listsExistArray.push(false);
     }
 
@@ -392,8 +263,8 @@ function displayTopFavorites() {
 
     }
 
-    $contentSection.append($favoritesSection);
-    $contentSection.append($buttonsSection);
+    //$contentSection.append($favoritesSection);
+    //$contentSection.append($buttonsSection);
 }
 
 function getRandomDrink(drinkData, prevDisplayedDrinks) {
@@ -422,7 +293,7 @@ function createJokeArray(jokeData, jokeArr) {
     }
 
 
-    if (tempJArray.length === 3) {
+    if(tempJArray.length === 3) {
         displayJokeInformation(tempJArray);
     } else {
         getJoke(tempJArray);
@@ -456,16 +327,16 @@ function getCocktail(userIngredient) {
         headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
 
     })
-        .then(function (response) {
-            if (response.ok) {
-                response.json()
+            .then(function (response) {
+                if (response.ok) {
+                    response.json()
 
-                    .then(function (data) {
-                        console.log(data);
-                        displayDrinkInformation(data, ingredients);
-                    })
-            }
-        })
+                        .then(function (data) {
+                            console.log(data);
+                            displayDrinkInformation(data,ingredients);
+                        })
+                }
+            })
 }
 
 function getExcuse() {
@@ -480,52 +351,5 @@ function getExcuse() {
 
     return `My ${who} ${did} my ${what}.`
 }
-getExcuse()
-// init();
-// const userChoiceForm = document.querySelector('#howItWorksForm');
-// userChoiceForm.addEventListener('submit', submitHandler);
 
-// capture input
-
-// create a button for each element
-
-// add event listener 
-favoriteDrinkList.addEventListener('click', function(event) {
-    let btn = event.target.getAttribute('data-name')
-    let emptyArray = []
-    if (localStorage.getItem('drinkList') !== null) (
-        emptyArray = localStorage.getItem('drinkList')
-    )
-    if (!emptyArray.includes(btn)) {
-        emptyArray.push(btn)
-        localStorage.setItem('drinkList', JSON.stringify(emptyArray))
-    }
-} );
-
-favoriteJokeList.addEventListener('click', function(event) {
-    let btn = event.target.getAttribute('data-name')
-    let emptyArray = []
-    if (localStorage.getItem('jokeList') !== null) (
-        emptyArray = localStorage.getItem('drinkList')
-    )
-    if (!emptyArray.includes(btn)) {
-        emptyArray.push(btn)
-        localStorage.setItem('jokeList', JSON.stringify(emptyArray))
-    }
-} );
-
-favoriteExcuseList.addEventListener('click', function(event) {
-    let btn = event.target.getAttribute('data-name')
-    let emptyArray = []
-    if (localStorage.getItem('excuseList') !== null) (
-        emptyArray = localStorage.getItem('excuseList')
-    )
-    if (!emptyArray.includes(btn)) {
-        emptyArray.push(btn)
-        localStorage.setItem('excuseList', JSON.stringify(emptyArray))
-    }
-} );
-
-// favorites page, grab ul for each favorites section
-// add event listner to each section
-// that is responsible that is getting each part to local storage
+init();
