@@ -699,7 +699,7 @@ function saveFavoritejokes() {
     const $jokeStuff = event.target.getAttribute("data-name");
     refreshDisplay($jokeDisplay);
     getJoke($jokeStuff);
-    console.log($jokeStuff);
+    console.log($jokeStuff)
   });
   const $listOfJokes = document.getElementById("jokes-list");
   $listOfJokes.addEventListener("click", function (event) {
