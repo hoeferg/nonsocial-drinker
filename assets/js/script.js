@@ -504,6 +504,7 @@ function saveFavoritejokes() {
     console.log($jokeOptions);
     })
 }
+
     function saveFavoriteExcuses() {
         const $refreshExcuses = document.getElementById('excuses-regen');
         $refreshExcuses.addEventListener('click', function(event) {
@@ -519,10 +520,11 @@ function saveFavoritejokes() {
             localStorage.setItem('likedExcuses', JSON.stringify(savedExcuses))
         }
         })
+        console.log($excuseOptions);
     }
    
 
-// init();
-// const userChoiceForm = document.querySelector('#howItWorksForm');
-// userChoiceForm.addEventListener('submit', submitHandler);
+init();
+ const userChoiceForm = document.querySelector('#howItWorksForm');
+userChoiceForm.addEventListener('submit', submitHandler);
 
