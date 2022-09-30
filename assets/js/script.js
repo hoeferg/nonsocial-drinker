@@ -29,7 +29,7 @@ function createAboutUs() {
         'We only say that the app is for the socially awkward because it was built by the socially awkward.';
     $aboutUsDesc3.textContent =
         ' Its like that weird item on your friends coffee table that prompts conversation and inspires connection.';
-    console.log($aboutUsDesc1.textContent);
+    //console.log($aboutUsDesc1.textContent);
 
     const $appDiv = document.createElement('div');
     const $appDesc = document.createElement('p');
@@ -42,7 +42,7 @@ function createAboutUs() {
     $appDesc2.textContent =
         'Not only is it an app for the socially awkward but it can help you escape the socially awkward… PURE, GENIUS!';
 
-    console.log($appDesc);
+    //console.log($appDesc);
 }
 
 function createForm() {
@@ -199,7 +199,9 @@ function displayDrinkInforamtion(drinkData) {
     $howItWorks.append($section1);
 }
 
-function displayJokeInforamtion() {
+function displayJokeInforamtion(jokesArr) {
+
+    const jokesArray = jokesArr;
 
     // These will be the main section that will contain all content
     const $section2 = document.createElement('section');
@@ -240,8 +242,6 @@ function displayJokeInforamtion() {
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
 
-
-    const jokeArray = getJokeArray();
     // Uses for loops to iterate through jokeData array to get jokes and assigns them as text value for list item
     // List items are then appended to the jokes list
     // TODO: connect the jokes data properly also may need to refactor if joke is a two liner
@@ -255,8 +255,8 @@ function displayJokeInforamtion() {
         $saveButton.setAttribute('value', 'click');
 
     
-        //$itemText.textContent = jokeArray[i]
-        //$saveButton.setAttribute('data-name', jokeArray[i]);
+        $itemText.textContent = jokesArray[i]
+        $saveButton.setAttribute('data-name', jokesArray[i]);
         
         $contentItem.append($itemText);
         $contentItem.append($saveButton);
@@ -366,7 +366,7 @@ function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
     const drinkName = drinkData[Math.floor(Math.random() * drinkData.length) + 0].name;
 
-    if (!prevDisplayedDrinks.includes()) {
+    if (!prevDisplayedDrinks.includes(drinkName)) {
         return drinkName;
     } else {
         getRandomDrink(drinkData, prevDisplayedDrinks);
@@ -374,30 +374,44 @@ function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
 }
 
-function getJokeArray() {
+function createJokeArray(jokeData,jokeArr) {
+    let tempJArray;
 
+    if(jokeArr === undefined) {
+        tempJArray = []
+    } else {
+        tempJArray = jokeArr;
+    }
 
+    if(!tempJArray.includes(jokeData)) {
+        tempJArray.push(jokeData);
+    }
+
+    if(tempJArray.length === 3) {
+        displayJokeInforamtion(tempJArray);
+    } else {
+        getJoke(tempJArray);
+    }
 
 }
 
-function getJoke() {
-    // jokeInput = document.querySelector("#jokeInput")
+function getJoke(jokeArr) {
+
     const requestUrl = `https://v2.jokeapi.dev/joke/Misc?type=single`
     fetch(requestUrl)
         .then(function (response) {
             if (response.ok) {
                 response.json()
                     .then(function (data) {
-                        console.log(data);
-                        let jokeResponse = data
-                        // let jokeResponseDisplay= document.createElement('p')
-                        // jokeResponseDisplay.textContent = `Joke:${jokeResponse}`
-                        console.log(jokeResponse)
+                        let jokeResponse = data.joke;
+                        console.log(jokeResponse);
+                        createJokeArray(jokeResponse,jokeArr);
                     })
             }
         });
+
 }
-getJoke()
+
 function getCocktail(userIngredient) {
         let ingredients = userIngredient;
         let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
@@ -447,10 +461,10 @@ function submitHandler(event) {
     hideHeader();
     getCocktail(alcoholType);
     if(wantJoke && wantExcuse) {
-        displayJokeInforamtion();
+        getJoke();
         //displayExcuseInformation();
     } else if(wantJoke) {
-        displayJokeInforamtion();
+        getJoke();
     } else if (wantExcuse) {
         //displayExcuseInformation();
     }
