@@ -1,5 +1,5 @@
 const $greetingHeader = document.querySelector('#greeting');
-const $howItWorks = document.querySelector('#how-it-works');
+const $howItWorks = document.querySelector('#howItWorks');
 const $contentSection = document.querySelector('#content-section');
 
 function init() {
@@ -42,7 +42,6 @@ function createAboutUs() {
 
 
 function createForm() {
-
     const $form = document.createElement('form');
     const $h2 = document.createElement('h2');
     const $description = document.createElement('p');
@@ -50,8 +49,11 @@ function createForm() {
     const $selectOption = document.createElement('select');
     const $jokeLabel = document.createElement('label');
     const $jokeInput = document.createElement('input');
+    const $excuseLabel = document.createElement('label');
+    const $excuseInput = document.createElement('input');
 
-    const $alcoholOptions = ['Select your alcohol', 'Vodka', 'Tequila', 'Rum', 'Gin', 'Whiskey']
+
+    const $alcoholOptions = ['--Select your alcohol--', 'Vodka', 'Tequila', 'Rum', 'Gin', 'Whiskey']
     for (let i = 0; i < $alcoholOptions.length; i++) {
         const $alcholChoices = document.createElement('option');
         $alcholChoices.textContent = $alcoholOptions[i]
@@ -63,29 +65,43 @@ function createForm() {
         $selectOption.append($alcholChoices)
     }
 
-    $jokeInput.setAttribute('type', 'checkbox');
-    $jokeInput.classList.add('button-margin');
-    $selectOption.setAttribute('class', 'w3-select');
-    $submitBtn.setAttribute('type', 'submit');
-    $submitBtn.setAttribute('value', 'submit');
     $form.setAttribute('id', 'howItWorks');
     $howItWorks.setAttribute('class', 'class="w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
+    $jokeInput.setAttribute('type', 'checkbox');
+    $jokeInput.classList.add('button-margin');
+    $jokeInput.setAttribute('id', 'jokeCheck')
+    $excuseInput.setAttribute('type', 'checkbox');
+    $excuseInput.setAttribute('id', 'excuseCheck')
+    $excuseInput.classList.add('button-margin');
+    $selectOption.setAttribute('class', 'dropdown');
+    $submitBtn.setAttribute('type', 'submit');
+    $submitBtn.setAttribute('value', 'submit');
+    $submitBtn.setAttribute('id', 'submitBtn');
+    $submitBtn.classList.add('input-margin')
     $h2.setAttribute('class', 'w3-center');
-    $submitBtn.textContent = 'Lets go!'
+    $description.setAttribute('class', 'w3-center');
+    $description.setAttribute('class', 'w3-large');
+    $excuseLabel.setAttribute('class', 'w3-large');
+    $jokeLabel.setAttribute('class', 'w3-large');
+    $jokeLabel.classList.add('button-margin');
+    $excuseLabel.classList.add('button-margin');
+    $submitBtn.textContent = 'SEE WHAT YOU GET!'
     $jokeLabel.textContent = 'Jokes!'
-
+    $excuseLabel.textContent = 'Excuses!'
     $howItWorks.appendChild($form);
     $form.appendChild($h2);
     $form.appendChild($description);
     $form.appendChild($selectOption);
     $form.appendChild($jokeLabel);
-    $jokeLabel.appendChild($jokeInput)
+    $jokeLabel.appendChild($jokeInput);
+    $form.appendChild($excuseLabel);
+    $excuseLabel.appendChild($excuseInput)
     $form.appendChild($submitBtn);
     $h2.textContent = 'How It Works!'
     $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
 }
 
-//init()
+init()
 
 // This function will hide the header when called
 function hideHeader() {
@@ -122,33 +138,42 @@ function displayDrinkInforamtion(drinkData) {
     // Unordered list for each category
     const $drinkList = document.createElement('ul');
 
-    // Both refresh and save button
+    // Refresh button
     const $button1 = document.createElement('button');
-    const $button2 = document.createElement('button');
+
+    const prevDisplayedDrinks = [];
 
     // Assign text value for header and appends to content section
     $drinkHeader.textContent = "Drinks";
     $drinkContentSection.append($drinkHeader);
 
-    // Assigns text value and attributes for buttons and appends them to their section
+    // Assigns text value and attributes buttons and appends to section
     $button1.textContent = "Regenerate";
-    $button2.textContent = "Add to Favorites";
     $button1.setAttribute('type', 'click');
     $button1.setAttribute('data-name', 'regenerate');
-    $button2.setAttribute('type', 'click');
-    $button2.setAttribute('data-name', 'favorites');
     $button1.setAttribute('value', 'click');
-    $button2.setAttribute('value', 'click');
     $buttonSection.append($button1);
-    $buttonSection.append($button2);
 
     // Uses for loops to iterate through drinkData array to get drink names and assigns them as text value for list item
     // List items are then appended to the drinks list
     // TODO: connect the drinks data properly
     for (let i = 0; i < 3; i++) {
         const $contentItem = document.createElement('li');
+        const $itemText = document.createElement('p');
+        const $saveButton = document.createElement('button');
 
-        //$contentItem.textContent = drinkData[i].drink_name;
+        $saveButton.textContent = "Add to Favorites";
+        $saveButton.setAttribute('type', 'click');
+        $saveButton.setAttribute('data-name', 'favorites');
+        $saveButton.setAttribute('value', 'click');
+
+        const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
+
+        prevDisplayedDrinks.push(drinkName);
+
+        $itemText.textContent = drinkName;
+        $contentItem.append($itemText)
+        $contentItem.append($saveButton);
 
         $drinkList.append($contentItem);
     }
@@ -186,7 +211,6 @@ function displayJokeInforamtion(jokeDataArray) {
 
     // Both refresh and save button
     const $button1 = document.createElement('button');
-    const $button2 = document.createElement('button');
 
     // Assign text value for header and appends to content section
     $jokeHeader.textContent = "Jokes";
@@ -194,24 +218,28 @@ function displayJokeInforamtion(jokeDataArray) {
 
     // Assigns text value and attributes for buttons and appends them to their section
     $button1.textContent = "Regenerate";
-    $button2.textContent = "Add to Favorites";
     $button1.setAttribute('type', 'click');
     $button1.setAttribute('data-name', 'regenerate');
-    $button2.setAttribute('type', 'click');
-    $button2.setAttribute('data-name', 'favorites');
     $button1.setAttribute('value', 'click');
-    $button2.setAttribute('value', 'click');
     $buttonSection.append($button1);
-    $buttonSection.append($button2);
-    $buttonSection.append($button2);
 
     // Uses for loops to iterate through jokeData array to get jokes and assigns them as text value for list item
     // List items are then appended to the jokes list
     // TODO: connect the jokes data properly also may need to refactor if joke is a two liner
     for (let i = 0; i < 3; i++) {
         const $contentItem = document.createElement('li');
+        const $itemText = document.createElement('p');
+        const $saveButton = document.createElement('button');
 
-        //$contentItem.textContent = jokeDataArray[i].joke;
+        $saveButton.textContent = "Add to Favorites";
+        $saveButton.setAttribute('type', 'click');
+        $saveButton.setAttribute('data-name', 'favorites');
+        $saveButton.setAttribute('value', 'click');
+
+        //$itemText.textContent = jokeDataArray[i].joke;
+        
+        $contentItem.append($itemText);
+        $contentItem.append($saveButton);
 
         $jokeList.append($contentItem);
     }
@@ -234,12 +262,12 @@ function displayTopFavorites() {
     const $excuseFavsSection = document.createElement('section');
     const $favoritesSectionHeading = document.createElement('h2');
     const $goToFavoritesButton = document.createElement('button');
-    const elementArray = [$drinkFavsSection,$jokeFavsSection,$excuseFavsSection];
+    const elementArray = [$drinkFavsSection, $jokeFavsSection, $excuseFavsSection];
     const labelNameArray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
     const favListsArrray = [];
     const listsExistArray = [];
 
-    if(localStorage.getItem("topFavDrinksArr") !== null) {
+    if (localStorage.getItem("topFavDrinksArr") !== null) {
         const topDrinksArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArrray.push(topDrinksArray);
         listsExistArray.push(true);
@@ -247,7 +275,7 @@ function displayTopFavorites() {
         listsExistArray.push(false);
     }
 
-    if(localStorage.getItem("topFavJokesArr") !== null) {
+    if (localStorage.getItem("topFavJokesArr") !== null) {
         const topJokesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArrray.push(topJokesArray);
         listsExistArray.push(true);
@@ -255,7 +283,7 @@ function displayTopFavorites() {
         listsExistArray.push(false);
     }
 
-    if(localStorage.getItem("topFavExcusesArr") !== null) {
+    if (localStorage.getItem("topFavExcusesArr") !== null) {
         const topExcusesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArrray.push(topExcusesArray);
         listsExistArray.push(true);
@@ -266,22 +294,22 @@ function displayTopFavorites() {
     $favoritesSectionHeading.textContent = "Your Top Saved Favorites";
     $goToFavoritesButton.textContent = "Go to Favorites Page";
 
-    $goToFavoritesButton.setAttribute('type','click');
-    $goToFavoritesButton.setAttribute('value','click');
+    $goToFavoritesButton.setAttribute('type', 'click');
+    $goToFavoritesButton.setAttribute('value', 'click');
 
     $favoritesSection.append($favoritesSectionHeading);
     $buttonsSection.append($goToFavoritesButton);
 
-    for(let i = 0; i < elementArray.length; i++) {
+    for (let i = 0; i < elementArray.length; i++) {
 
         const $favHeading = document.createElement('h3');
         const $favList = document.createElement('ul');
 
         $favHeading.textContent = labelNameArray[i];
 
-        if(listsExistArray[i]) {
+        if (listsExistArray[i]) {
 
-            for(let y = 0; y < favListsArrray[i].length; y++) {
+            for (let y = 0; y < favListsArrray[i].length; y++) {
                 const $favItem = document.createElement('li');
 
                 $favItem.textContent = favListsArrray[i][y];
@@ -295,74 +323,72 @@ function displayTopFavorites() {
         elementArray[i].append($favList);
 
         $favoritesSection.append(elementArray[i]);
-        
+
     }
 
     $contentSection.append($favoritesSection);
     $contentSection.append($buttonsSection);
 }
 
-function getJoke() {
-    // jokeInput = document.querySelector("#jokeInput")
-    const requestUrl = `https://sv443.net/jokeapi/v2`
-    console.log(jokeInput)
-    fetch(requestUrl)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-        })
-    console.log(Object.values(JokeAPI));
+function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
-    // JokeAPI.getJokes().then(r => console.log(r.body))
-    JokeAPI.getJokes({
-        jokeType: "single"
-    })
-        .then((r) => r.json())
-        .then((data) => {
-            updateUI(data);
-        });
+    const drinkName = drinkData[Math.floor(Math.random() * drinkData.length) + 0].name;
 
-    // To update the joke on the UI
-    function updateUI(jokeData) {
-        const $ = (id) => document.getElementById(id);
-
-        $("joke--text").innerHTML = jokeData.joke;
+    if (!prevDisplayedDrinks.includes()) {
+        return drinkName;
+    } else {
+        getRandomDrink(drinkData, prevDisplayedDrinks);
     }
 
-    JokeAPI.getJokes({
-        jokeType: "twopart"
-    })
-        .then((r) => r.json())
-        .then((data) => {
-            updateUI(data);
-        });
-
-    // To update the joke on the UI
-    function updateUI(jokeData) {
-        const $ = (id) => document.getElementById(id);
-
-        $("joke--text").innerHTML = jokeData.joke;
-    }
 }
 
-function getCocktail() {
-    let ingredients = 'vodka'
-    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
-
-    fetch($url, {
-        method: 'GET',
-        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
-
-    })
+function getJoke() {
+    // jokeInput = document.querySelector("#jokeInput")
+    const requestUrl = `https://v2.jokeapi.dev/joke/Misc&type=single`
+    fetch(requestUrl)
         .then(function (response) {
             if (response.ok) {
                 response.json()
-
                     .then(function (data) {
                         console.log(data);
                     })
             }
+        });
+}
+
+function getCocktail() {
+        let ingredients = 'alcoholType'
+        let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
+
+        fetch($url, {
+            method: 'GET',
+            headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+
         })
+            .then(function (response) {
+                if (response.ok) {
+                    response.json()
+
+                        .then(function (data) {
+                            console.log(data);
+                            displayDrinkInforamtion(data);
+                        })
+                }
+            })
+}
+
+function excuse() {
+
+    let person = ['mom', 'dad', 'grandma', 'grandpa', 'sister', 'brother'];
+    let action = ['broke', 'snapped', 'lost', 'chased'];
+    let event = ['computer', 'project', 'report', 'dog', 'cat', 'goose'];
+
+    let who = person[Math.floor(Math.random() * person.length) + 0];
+    let did = action[Math.floor(Math.random() * action.length) + 0];
+    let what = event[Math.floor(Math.random() * event.length) + 0];
+
+    return `My ${who} ${did} my ${what}.`
+
 }
 
 console.log(getCocktail())
