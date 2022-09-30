@@ -122,7 +122,7 @@ function refreshDisplay(parentElement) {
 
 }
 
-function displayDrinkInforamtion(drinkData,ingredient) {
+function displayDrinkInforamtion(drinkData, ingredient) {
 
     // These will be the main sections that will contain all content
     const $section1 = document.createElement('section');
@@ -219,10 +219,10 @@ function displayJokeInforamtion(jokesArr) {
         $saveButton.setAttribute('type', 'click');
         $saveButton.setAttribute('value', 'click');
 
-    
+
         $itemText.textContent = jokesArray[i]
         $saveButton.setAttribute('data-name', jokesArray[i]);
-        
+
         $contentItem.append($itemText);
         $contentItem.append($saveButton);
 
@@ -242,12 +242,12 @@ function displayTopFavorites() {
     const $favoritesSectionHeading = document.createElement('h2');
     const $goToFavoritesButton = document.createElement('button');
     const elementArray = [$drinkFavsSection, $jokeFavsSection, $excuseFavsSection];
-    const labelNameArray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
+    const labelNameArrray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
 
     //* ID NAMES HERE
-    const idName = ["top-drink-display","top-joke-display","top-excuse-display"];
+    const idName = ["top-drink-display", "top-joke-display", "top-excuse-display"];
 
-    const favListsArrray = [];
+    const favListsArray = [];
     const listsExistArray = [];
 
     if (localStorage.getItem("topFavDrinksArr") !== null) {
@@ -301,7 +301,7 @@ function displayTopFavorites() {
                 $removeButton.setAttribute('type', 'click');
                 $removeButton.setAttribute('data-name', 'favorites');
                 $removeButton.setAttribute('value', 'click');
-                
+
 
                 $favItem.textContent = favListsArrray[i][y];
 
@@ -333,20 +333,20 @@ function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
 }
 
-function createJokeArray(jokeData,jokeArr) {
+function createJokeArray(jokeData, jokeArr) {
     let tempJArray;
 
-    if(jokeArr === undefined) {
+    if (jokeArr === undefined) {
         tempJArray = []
     } else {
         tempJArray = jokeArr;
     }
 
-    if(!tempJArray.includes(jokeData)) {
+    if (!tempJArray.includes(jokeData)) {
         tempJArray.push(jokeData);
     }
 
-    if(tempJArray.length === 3) {
+    if (tempJArray.length === 3) {
         displayJokeInforamtion(tempJArray);
     } else {
         getJoke(tempJArray);
@@ -364,7 +364,7 @@ function getJoke(jokeArr) {
                     .then(function (data) {
                         let jokeResponse = data.joke;
                         console.log(jokeResponse);
-                        createJokeArray(jokeResponse,jokeArr);
+                        createJokeArray(jokeResponse, jokeArr);
                     })
             }
         });
@@ -372,24 +372,24 @@ function getJoke(jokeArr) {
 }
 
 function getCocktail(userIngredient) {
-        let ingredients = userIngredient;
-        let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
+    let ingredients = userIngredient;
+    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
-        fetch($url, {
-            method: 'GET',
-            headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+    fetch($url, {
+        method: 'GET',
+        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
 
+    })
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
+
+                    .then(function (data) {
+                        console.log(data);
+                        displayDrinkInforamtion(data, ingredients);
+                    })
+            }
         })
-            .then(function (response) {
-                if (response.ok) {
-                    response.json()
-
-                        .then(function (data) {
-                            console.log(data);
-                            displayDrinkInforamtion(data,ingredients);
-                        })
-                }
-            })
 }
 
 function excuse() {
@@ -405,7 +405,7 @@ function excuse() {
     return `My ${who} ${did} my ${what}.`
 
 }
-
+excuse()
 function submitHandler(event) {
     event.preventDefault();
 
@@ -419,10 +419,10 @@ function submitHandler(event) {
     refreshDisplay($howItWorks);
     hideHeader();
     getCocktail(alcoholType);
-    if(wantJoke && wantExcuse) {
+    if (wantJoke && wantExcuse) {
         getJoke();
         //displayExcuseInformation();
-    } else if(wantJoke) {
+    } else if (wantJoke) {
         getJoke();
     } else if (wantExcuse) {
         //displayExcuseInformation();
@@ -433,3 +433,29 @@ function submitHandler(event) {
 // const userChoiceForm = document.querySelector('#howItWorksForm');
 // userChoiceForm.addEventListener('submit', submitHandler);
 
+// capture input
+
+// create a button for each element
+let favoriteDrinkList = document.appendChild('btn')
+let favoriteJokesList = document.appendChild('btn')
+let favoriteExcusesList = document.appendChild('btn')
+
+// add event listener 
+drinkBtn.addEventListener('click', 'list-item')
+
+// create a function to bring information to the favorites page
+$(document).ready(function () { 
+    $(".saveBtn").on("click", function (event) {
+        event.preventDefault();
+        let drinkText = $favoriteDrinksList.siblings(".description").val();
+        let jokeText = $favoriteDrinksList.siblings(".description").val();
+        let excuseText = $favoriteDrinksList.siblings(".description").val();
+    }
+})
+
+$("drinkText").val(localStorage.getItem('drinkText'))
+$("jokeText").val(localStorage.getItem('jokeText'))
+$("excuseText").val(localStorage.getItem('excuseText'))
+// favorites page, grab ul for each favorites section
+// add event listner to each section
+// that is responsible that is getting each part to local storage
