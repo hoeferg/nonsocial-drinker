@@ -128,6 +128,7 @@ function submitHandler(event) {
 
     window.location.assign('./assets/html/results.html');
 }
+ 
 
 init();
 const userChoiceForm = document.querySelector('#howItWorksForm');
