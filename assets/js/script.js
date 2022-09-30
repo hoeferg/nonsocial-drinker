@@ -1,6 +1,11 @@
 const $greetingHeader = document.querySelector('#greeting');
-const $howItWorks = document.querySelector('#howItWorks');
+const $howItWorks = document.querySelector('#how-it-works');
 const $contentSection = document.querySelector('#content-section');
+const $favoriteDrinksList = document.querySelector('#favorite-drinks-list')
+const $favoriteJokesList = document.querySelector('#favorite-jokes-list')
+const $favoriteExcusesList = document.querySelector('#favorite-excuses-list')
+const $clearAll = document.querySelector('#clear-all')
+
 
 function init() {
     createAboutUs();
@@ -24,7 +29,7 @@ function createAboutUs() {
         'We only say that the app is for the socially awkward because it was built by the socially awkward.';
     $aboutUsDesc3.textContent =
         ' Its like that weird item on your friends coffee table that prompts conversation and inspires connection.';
-    console.log($aboutUsDesc1.textContent);
+    //console.log($aboutUsDesc1.textContent);
 
     const $appDiv = document.createElement('div');
     const $appDesc = document.createElement('p');
@@ -37,9 +42,8 @@ function createAboutUs() {
     $appDesc2.textContent =
         'Not only is it an app for the socially awkward but it can help you escape the socially awkward… PURE, GENIUS!';
 
-    console.log($appDesc);
+    //console.log($appDesc);
 }
-
 
 function createForm() {
     const $form = document.createElement('form');
@@ -65,8 +69,8 @@ function createForm() {
         $selectOption.append($alcholChoices)
     }
 
-    $form.setAttribute('id', 'howItWorks');
-    $howItWorks.setAttribute('class', 'class="w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
+    $form.setAttribute('id', 'howItWorksForm');
+    $howItWorks.setAttribute('class', 'w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
     $jokeInput.setAttribute('type', 'checkbox');
     $jokeInput.classList.add('button-margin');
     $jokeInput.setAttribute('id', 'jokeCheck')
@@ -74,6 +78,7 @@ function createForm() {
     $excuseInput.setAttribute('id', 'excuseCheck')
     $excuseInput.classList.add('button-margin');
     $selectOption.setAttribute('class', 'dropdown');
+    $selectOption.setAttribute('id', 'user-options-list');
     $submitBtn.setAttribute('type', 'submit');
     $submitBtn.setAttribute('value', 'submit');
     $submitBtn.setAttribute('id', 'submitBtn');
@@ -98,10 +103,8 @@ function createForm() {
     $excuseLabel.appendChild($excuseInput)
     $form.appendChild($submitBtn);
     $h2.textContent = 'How It Works!'
-    $description.textContent = 'Pick your poison from the drinks  drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
+    $description.textContent = 'Pick your poison from the drinks drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
 }
-
-init()
 
 // This function will hide the header when called
 function hideHeader() {
@@ -130,6 +133,10 @@ function displayDrinkInforamtion(drinkData) {
 
     // Section for buttons, will use twice for each main section
     const $buttonSection = document.createElement('section');
+
+    //* ID FOR REFRESH DRINKS BUTTON SECTION
+    $buttonSection.setAttribute('id','drinks-refresh');
+
     $buttonSection.setAttribute('data-name', 'drinks-buttons');
 
     // Headings for each category
@@ -137,6 +144,9 @@ function displayDrinkInforamtion(drinkData) {
 
     // Unordered list for each category
     const $drinkList = document.createElement('ul');
+
+    //* ID FOR DISPLAYED DRINKS LIST
+    $drinkList.setAttribute('id', 'displayed-drinks');
 
     // Refresh button
     const $button1 = document.createElement('button');
@@ -162,12 +172,13 @@ function displayDrinkInforamtion(drinkData) {
         const $itemText = document.createElement('p');
         const $saveButton = document.createElement('button');
 
-        $saveButton.textContent = "Add to Favorites";
+        $saveButton.textContent = "Save Drink";
         $saveButton.setAttribute('type', 'click');
-        $saveButton.setAttribute('data-name', 'favorites');
         $saveButton.setAttribute('value', 'click');
 
         const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
+
+        $saveButton.setAttribute('data-name', drinkName);
 
         prevDisplayedDrinks.push(drinkName);
 
@@ -188,7 +199,9 @@ function displayDrinkInforamtion(drinkData) {
     $howItWorks.append($section1);
 }
 
-function displayJokeInforamtion(jokeDataArray) {
+function displayJokeInforamtion(jokesArr) {
+
+    const jokesArray = jokesArr;
 
     // These will be the main section that will contain all content
     const $section2 = document.createElement('section');
@@ -200,6 +213,9 @@ function displayJokeInforamtion(jokeDataArray) {
 
     // Section for buttons
     const $buttonSection = document.createElement('section');
+
+    //* ID FOR REFRESH JOKES BUTTON SECTION
+    $buttonSection.setAttribute('id','jokes-refresh');
     $buttonSection.setAttribute('data-name', 'jokes-buttons');
 
 
@@ -208,6 +224,9 @@ function displayJokeInforamtion(jokeDataArray) {
 
     // Unordered list for each category
     const $jokeList = document.createElement('ul');
+
+    //* ID FOR DISPLAYED JOKES LIST
+    $jokeList.setAttribute('id','displayed-jokes');
 
     // Both refresh and save button
     const $button1 = document.createElement('button');
@@ -231,12 +250,13 @@ function displayJokeInforamtion(jokeDataArray) {
         const $itemText = document.createElement('p');
         const $saveButton = document.createElement('button');
 
-        $saveButton.textContent = "Add to Favorites";
+        $saveButton.textContent = "Save Joke";
         $saveButton.setAttribute('type', 'click');
-        $saveButton.setAttribute('data-name', 'favorites');
         $saveButton.setAttribute('value', 'click');
 
-        //$itemText.textContent = jokeDataArray[i].joke;
+    
+        $itemText.textContent = jokesArray[i]
+        $saveButton.setAttribute('data-name', jokesArray[i]);
         
         $contentItem.append($itemText);
         $contentItem.append($saveButton);
@@ -264,6 +284,10 @@ function displayTopFavorites() {
     const $goToFavoritesButton = document.createElement('button');
     const elementArray = [$drinkFavsSection, $jokeFavsSection, $excuseFavsSection];
     const labelNameArray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
+
+    //* ID NAMES HERE
+    const idName = ["top-drink-display","top-joke-display","top-excuse-display"];
+
     const favListsArrray = [];
     const listsExistArray = [];
 
@@ -307,11 +331,19 @@ function displayTopFavorites() {
         const $favList = document.createElement('ul');
 
         $favHeading.textContent = labelNameArray[i];
+        $favList.setAttribute('id', idName[i]);
 
         if (listsExistArray[i]) {
 
             for (let y = 0; y < favListsArrray[i].length; y++) {
                 const $favItem = document.createElement('li');
+                const $removeButton = document.createElement('button');
+
+                $removeButton.textContent = "Add to Favorites";
+                $removeButton.setAttribute('type', 'click');
+                $removeButton.setAttribute('data-name', 'favorites');
+                $removeButton.setAttribute('value', 'click');
+                
 
                 $favItem.textContent = favListsArrray[i][y];
 
@@ -335,7 +367,7 @@ function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
     const drinkName = drinkData[Math.floor(Math.random() * drinkData.length) + 0].name;
 
-    if (!prevDisplayedDrinks.includes()) {
+    if (!prevDisplayedDrinks.includes(drinkName)) {
         return drinkName;
     } else {
         getRandomDrink(drinkData, prevDisplayedDrinks);
@@ -343,22 +375,46 @@ function getRandomDrink(drinkData, prevDisplayedDrinks) {
 
 }
 
-function getJoke() {
-    // jokeInput = document.querySelector("#jokeInput")
-    const requestUrl = `https://v2.jokeapi.dev/joke/Misc&type=single`
+function createJokeArray(jokeData,jokeArr) {
+    let tempJArray;
+
+    if(jokeArr === undefined) {
+        tempJArray = []
+    } else {
+        tempJArray = jokeArr;
+    }
+
+    if(!tempJArray.includes(jokeData)) {
+        tempJArray.push(jokeData);
+    }
+
+    if(tempJArray.length === 3) {
+        displayJokeInforamtion(tempJArray);
+    } else {
+        getJoke(tempJArray);
+    }
+
+}
+
+function getJoke(jokeArr) {
+
+    const requestUrl = `https://v2.jokeapi.dev/joke/Misc?type=single`
     fetch(requestUrl)
         .then(function (response) {
             if (response.ok) {
                 response.json()
                     .then(function (data) {
-                        console.log(data);
+                        let jokeResponse = data.joke;
+                        console.log(jokeResponse);
+                        createJokeArray(jokeResponse,jokeArr);
                     })
             }
         });
+
 }
 
-function getCocktail() {
-        let ingredients = 'alcoholType'
+function getCocktail(userIngredient) {
+        let ingredients = userIngredient;
         let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
 
         fetch($url, {
@@ -391,3 +447,31 @@ function excuse() {
     return `My ${who} ${did} my ${what}.`
 
 }
+
+function submitHandler(event) {
+    event.preventDefault();
+
+    const drinkOption = document.querySelector('#user-options-list');
+
+    const alcoholType = drinkOption.value;
+
+    const wantJoke = document.getElementById('jokeCheck').checked;
+    const wantExcuse = document.getElementById('excuseCheck').checked;
+
+    refreshDisplay($howItWorks);
+    hideHeader();
+    getCocktail(alcoholType);
+    if(wantJoke && wantExcuse) {
+        getJoke();
+        //displayExcuseInformation();
+    } else if(wantJoke) {
+        getJoke();
+    } else if (wantExcuse) {
+        //displayExcuseInformation();
+    }
+}
+
+init();
+const userChoiceForm = document.querySelector('#howItWorksForm');
+userChoiceForm.addEventListener('submit', submitHandler);
+
