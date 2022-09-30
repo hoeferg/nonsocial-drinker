@@ -122,7 +122,7 @@ function refreshDisplay(parentElement) {
 
 }
 
-function displayDrinkInforamtion(drinkData,ingredient) {
+function displayDrinkInformation(drinkData,ingredient) {
 
     // These will be the main sections that will contain all content
     const $section1 = document.createElement('section');
@@ -143,7 +143,7 @@ function displayDrinkInforamtion(drinkData,ingredient) {
     const prevDisplayedDrinks = [];
 
     // Assign text value for header and appends to content section
-    $drinkHeader.textContent = `Here are some great cokctails with ${ingredient}:`;
+    $drinkHeader.textContent = `Here are some great cocktails with ${ingredient}:`;
 
     // Assigns text value and attributes buttons and appends to section
     $button1.textContent = "Regenerate";
@@ -181,7 +181,7 @@ function displayDrinkInforamtion(drinkData,ingredient) {
 
 }
 
-function displayJokeInforamtion(jokesArr) {
+function displayJokeInformation(jokesArr) {
 
     const jokesArray = jokesArr;
 
@@ -247,12 +247,12 @@ function displayTopFavorites() {
     //* ID NAMES HERE
     const idName = ["top-drink-display","top-joke-display","top-excuse-display"];
 
-    const favListsArrray = [];
+    const favListsArray = [];
     const listsExistArray = [];
 
     if (localStorage.getItem("topFavDrinksArr") !== null) {
         const topDrinksArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
-        favListsArrray.push(topDrinksArray);
+        favListsArray.push(topDrinksArray);
         listsExistArray.push(true);
     } else {
         listsExistArray.push(false);
@@ -260,7 +260,7 @@ function displayTopFavorites() {
 
     if (localStorage.getItem("topFavJokesArr") !== null) {
         const topJokesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
-        favListsArrray.push(topJokesArray);
+        favListsArray.push(topJokesArray);
         listsExistArray.push(true);
     } else {
         listsExistArray.push(false);
@@ -268,7 +268,7 @@ function displayTopFavorites() {
 
     if (localStorage.getItem("topFavExcusesArr") !== null) {
         const topExcusesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
-        favListsArrray.push(topExcusesArray);
+        favListsArray.push(topExcusesArray);
         listsExistArray.push(true);
     } else {
         listsExistArray.push(false);
@@ -293,7 +293,7 @@ function displayTopFavorites() {
 
         if (listsExistArray[i]) {
 
-            for (let y = 0; y < favListsArrray[i].length; y++) {
+            for (let y = 0; y < favListsArray[i].length; y++) {
                 const $favItem = document.createElement('li');
                 const $removeButton = document.createElement('button');
 
@@ -303,7 +303,7 @@ function displayTopFavorites() {
                 $removeButton.setAttribute('value', 'click');
                 
 
-                $favItem.textContent = favListsArrray[i][y];
+                $favItem.textContent = favListsArray[i][y];
 
                 $favList.append($favItem);
             }
@@ -347,7 +347,7 @@ function createJokeArray(jokeData,jokeArr) {
     }
 
     if(tempJArray.length === 3) {
-        displayJokeInforamtion(tempJArray);
+        displayJokeInformation(tempJArray);
     } else {
         getJoke(tempJArray);
     }
@@ -386,7 +386,7 @@ function getCocktail(userIngredient) {
 
                         .then(function (data) {
                             console.log(data);
-                            displayDrinkInforamtion(data,ingredients);
+                            displayDrinkInformation(data,ingredients);
                         })
                 }
             })
