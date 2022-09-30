@@ -1,6 +1,6 @@
 const $greetingHeader = document.querySelector('#greeting');
 const $howItWorks = document.querySelector('#how-it-works');
-const $contentSection = document.querySelector('#content-section');
+const $contentSection = document.querySelector('#intro-1');
 const $favoriteDrinksList = document.querySelector('#favorite-drinks-list')
 const $favoriteJokesList = document.querySelector('#favorite-jokes-list')
 const $favoriteExcusesList = document.querySelector('#favorite-excuses-list')
@@ -231,8 +231,6 @@ function displayJokeInforamtion(jokesArr) {
 
 }
 
-getJoke();
-
 function displayTopFavorites() {
     const $favoritesSection = document.createElement('section');
     const $buttonsSection = document.createElement('section');
@@ -255,6 +253,7 @@ function displayTopFavorites() {
         favListsArrray.push(topDrinksArray);
         listsExistArray.push(true);
     } else {
+        favListsArrray.push("fill");
         listsExistArray.push(false);
     }
 
@@ -263,6 +262,7 @@ function displayTopFavorites() {
         favListsArrray.push(topJokesArray);
         listsExistArray.push(true);
     } else {
+        favListsArrray.push("fill");
         listsExistArray.push(false);
     }
 
@@ -271,6 +271,7 @@ function displayTopFavorites() {
         favListsArrray.push(topExcusesArray);
         listsExistArray.push(true);
     } else {
+        favListsArrray.push("fill");
         listsExistArray.push(false);
     }
 
@@ -317,8 +318,8 @@ function displayTopFavorites() {
 
     }
 
-    $contentSection.append($favoritesSection);
-    $contentSection.append($buttonsSection);
+    //$contentSection.append($favoritesSection);
+    //$contentSection.append($buttonsSection);
 }
 
 function getRandomDrink(drinkData, prevDisplayedDrinks) {
@@ -406,6 +407,10 @@ function excuse() {
 
 }
 
+function getNewPage() {
+    window.location.assign('./assets/html/results.html');
+}
+
 function submitHandler(event) {
     event.preventDefault();
 
@@ -416,8 +421,12 @@ function submitHandler(event) {
     const wantJoke = document.getElementById('jokeCheck').checked;
     const wantExcuse = document.getElementById('excuseCheck').checked;
 
-    refreshDisplay($howItWorks);
-    hideHeader();
+    localStorage.setItem('alcholType', alcoholType);
+    localStorage.setItem('wantJoke', wantJoke);
+    localStorage.setItem('wantExcuse', wantExcuse);
+
+    getNewPage();
+
     getCocktail(alcoholType);
     if(wantJoke && wantExcuse) {
         getJoke();
@@ -429,7 +438,7 @@ function submitHandler(event) {
     }
 }
 
-// init();
-// const userChoiceForm = document.querySelector('#howItWorksForm');
-// userChoiceForm.addEventListener('submit', submitHandler);
+init();
+const userChoiceForm = document.querySelector('#howItWorksForm');
+userChoiceForm.addEventListener('submit', submitHandler);
 
