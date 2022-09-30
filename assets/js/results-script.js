@@ -1,3 +1,8 @@
+
+
+
+
+
 function init() {
     const alcholType = localStorage.getItem('alcholType');
     const wantJoke = JSON.parse(localStorage.getItem('wantJoke'));
@@ -176,90 +181,67 @@ function displayExcuseInformation() {
 }
 
 function displayTopFavorites() {
-    const $favoritesSection = document.createElement('section');
-    const $buttonsSection = document.createElement('section');
-    const $drinkFavsSection = document.createElement('section');
-    const $jokeFavsSection = document.createElement('section');
-    const $excuseFavsSection = document.createElement('section');
-    const $favoritesSectionHeading = document.createElement('h2');
-    const $goToFavoritesButton = document.createElement('button');
-    const elementArray = [$drinkFavsSection, $jokeFavsSection, $excuseFavsSection];
-    const labelNameArray = ["Favorite Drinks", "Favorite Jokes", "Favorite Excuses"];
 
     //* ID NAMES HERE
-    const idName = ["top-drink-display", "top-joke-display", "top-excuse-display"];
+    const idName = ["last-drink-list", "last-joke-list", "last-excuse-list"];
 
     const favListsArray = [];
     const listsExistArray = [];
 
-    if (localStorage.getItem("topFavDrinksArr") !== null) {
+    if (localStorage.getItem("gotoDrinksArr") !== null) {
         const topDrinksArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArray.push(topDrinksArray);
         listsExistArray.push(true);
     } else {
-        favListsArrray.push("fill");
+        favListsArray.push("fill");
         listsExistArray.push(false);
     }
 
-    if (localStorage.getItem("topFavJokesArr") !== null) {
+    if (localStorage.getItem("gotoJokesArr") !== null) {
         const topJokesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArray.push(topJokesArray);
         listsExistArray.push(true);
     } else {
-        favListsArrray.push("fill");
+        favListsArray.push("fill");
         listsExistArray.push(false);
     }
 
-    if (localStorage.getItem("topFavExcusesArr") !== null) {
+    if (localStorage.getItem("gotoFavExcusesArr") !== null) {
         const topExcusesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArray.push(topExcusesArray);
         listsExistArray.push(true);
     } else {
-        favListsArrray.push("fill");
+        favListsArray.push("fill");
         listsExistArray.push(false);
     }
 
-    $favoritesSectionHeading.textContent = "Your Go To Favorites";
-    $goToFavoritesButton.textContent = "See More of Favorites Page";
 
-    $goToFavoritesButton.setAttribute('type', 'click');
-    $goToFavoritesButton.setAttribute('value', 'click');
-    $goToFavoritesButton.setAttribute('class', 'goToFavs')
-
-    $favoritesSection.append($favoritesSectionHeading);
-    $buttonsSection.append($goToFavoritesButton);
 
     for (let i = 0; i < elementArray.length; i++) {
+        const list = document.querySelector(idName[i]);
 
-        const $favHeading = document.createElement('h3');
-        const $favList = document.createElement('ul');
-
-        $favHeading.textContent = labelNameArray[i];
-        $favList.setAttribute('id', idName[i]);
 
         if (listsExistArray[i]) {
 
             for (let y = 0; y < favListsArray[i].length; y++) {
                 const $favItem = document.createElement('li');
+                const $favText = document.createElement('p');
                 const $removeButton = document.createElement('button');
 
                 $removeButton.textContent = "Add to Favorites";
                 $removeButton.setAttribute('type', 'click');
-                $removeButton.setAttribute('data-name', 'favorites');
                 $removeButton.setAttribute('value', 'click');
 
+                $removeButton.setAttribute('data-name', favListsArray[i][y]);
+                $favText.textContent = favListsArray[i][y];
 
-                $favItem.textContent = favListsArray[i][y];
+                $favItem.append($favText);
+                $favItem.append($removeButton);
 
-                $favList.append($favItem);
+                list.append($favItem)
             }
 
         }
-
-        elementArray[i].append($favHeading);
-        elementArray[i].append($favList);
-
-        $favoritesSection.append(elementArray[i]);
 
     }
 

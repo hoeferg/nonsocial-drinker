@@ -1,10 +1,5 @@
-const $greetingHeader = document.querySelector('#greeting');
 const $howItWorks = document.querySelector('#how-it-works');
 const $contentSection = document.querySelector('#intro-1');
-const $favoriteDrinksList = document.querySelector('#favorite-drinks-list')
-const $favoriteJokesList = document.querySelector('#favorite-jokes-list')
-const $favoriteExcusesList = document.querySelector('#favorite-excuses-list')
-const $clearAll = document.querySelector('#clear-all')
 
 
 function init() {
@@ -107,11 +102,6 @@ function createForm() {
     $description.textContent = 'Pick your poison from the drinks drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
 }
 createForm()
-
-// This function will hide the header when called
-function hideHeader() {
-    $greetingHeader.setAttribute("class", "custom-display");
-}
 
 function submitHandler(event) {
     event.preventDefault();
