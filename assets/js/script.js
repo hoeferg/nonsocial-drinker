@@ -148,6 +148,14 @@ function displayDrinkInformation(drinkData, ingredient) {
   // Section for buttons, will use twice for each main section
   const $buttonSection = document.querySelector("#drinks-refresh");
 
+
+function displayDrinkInformation(drinkData,ingredient) {
+
+
+    // These will be the main sections that will contain all content
+    const $section1 = document.createElement('section');
+    $section1.setAttribute('data-name', 'drinks');
+
   // Headings for each category
   const $drinkHeader = document.querySelector("#drink-header");
 
@@ -241,12 +249,95 @@ function displayJokeInformation(jokesArr) {
     $contentItem.append($itemText);
     $contentItem.append($saveButton);
 
+        $itemText.textContent = jokesArray[i]
+        $saveButton.setAttribute('data-name', jokesArray[i]);
+
+        $contentItem.append($itemText);
+        $contentItem.append($saveButton);
+
+        $jokeList.append($contentItem);
+    }
+
     $jokeList.append($contentItem);
     saveFavoritejokes();
   }
 }
 
 getJoke();
+
+
+
+
+function displayExcuseInformation() {
+    let excuseArray = []
+    const $excuseButtonSection = document.querySelector('#excuse-refresh');
+
+    const $excusesList = document.querySelector('#excuses-list');
+
+    const $button2 = document.createElement('button');
+
+
+
+    $button2.textContent = "Regenerate";
+    $button2.setAttribute('type', 'click');
+    $button2.setAttribute('data-name', 'regenerate');
+    $button2.setAttribute('value', 'click');
+    $excuseButtonSection.append($button2);
+
+    while (excuseArray.length < 3) {
+        let excuseAr = getExcuse();
+        if (!excuseArray.includes(excuseAr)) {
+            excuseArray.push(excuseAr)
+        }
+    }
+    console.log(excuseArray)
+
+    for (let i = 0; i < 3; i++) {
+        const $contentItem = document.createElement('li');
+        const $itemText = document.createElement('p');
+        const $saveButton = document.createElement('button');
+
+        $saveButton.textContent = "Save Excuse";
+        $saveButton.setAttribute('type', 'click');
+        $saveButton.setAttribute('value', 'click');
+
+        $itemText.textContent = excuseArray[i]
+        $saveButton.setAttribute('data-name', excuseArray[i]);
+        $contentItem.append($itemText);
+        $contentItem.append($saveButton);
+        $excusesList.append($contentItem);
+    }
+}
+
+displayExcuseInformation();
+
+
+function submitHandler(event) {
+    event.preventDefault();
+
+    const drinkOption = document.querySelector('#user-options-list');
+
+    const alcoholType = drinkOption.value;
+
+    const wantJoke = document.getElementById('jokeCheck').checked;
+    const wantExcuse = document.getElementById('excuseCheck').checked;
+
+    refreshDisplay($howItWorks);
+    hideHeader();
+    getCocktail(alcoholType);
+    if (wantJoke && wantExcuse) {
+        getJoke();
+        //displayExcuseInformation();
+    } else if (wantJoke) {
+        getJoke();
+    } else if (wantExcuse) {
+        //displayExcuseInformation();
+    }
+}
+
+
+
+
 
 function displayTopFavorites() {
   const $favoritesSection = document.createElement("section");
@@ -273,6 +364,8 @@ function displayTopFavorites() {
     "top-joke-display",
     "top-excuse-display",
   ];
+    //* ID NAMES HERE
+    const idName = ["top-drink-display", "top-joke-display", "top-excuse-display"];
 
   const favListsArray = [];
   const listsExistArray = [];
@@ -341,6 +434,52 @@ function displayTopFavorites() {
 
   $contentSection.append($favoritesSection);
   $contentSection.append($buttonsSection);
+    $favoritesSectionHeading.textContent = "Your Go To Favorites";
+    $goToFavoritesButton.textContent = "See More of Favorites Page";
+
+    $goToFavoritesButton.setAttribute('type', 'click');
+    $goToFavoritesButton.setAttribute('value', 'click');
+    $goToFavoritesButton.setAttribute('class', 'goToFavs')
+
+    $favoritesSection.append($favoritesSectionHeading);
+    $buttonsSection.append($goToFavoritesButton);
+
+    for (let i = 0; i < elementArray.length; i++) {
+
+        const $favHeading = document.createElement('h3');
+        const $favList = document.createElement('ul');
+
+        $favHeading.textContent = labelNameArray[i];
+        $favList.setAttribute('id', idName[i]);
+
+        if (listsExistArray[i]) {
+
+            for (let y = 0; y < favListsArray[i].length; y++) {
+                const $favItem = document.createElement('li');
+                const $removeButton = document.createElement('button');
+
+                $removeButton.textContent = "Add to Favorites";
+                $removeButton.setAttribute('type', 'click');
+                $removeButton.setAttribute('data-name', 'favorites');
+                $removeButton.setAttribute('value', 'click');
+
+
+                $favItem.textContent = favListsArray[i][y];
+
+                $favList.append($favItem);
+            }
+
+        }
+
+        elementArray[i].append($favHeading);
+        elementArray[i].append($favList);
+
+        $favoritesSection.append(elementArray[i]);
+
+    }
+
+    $contentSection.append($favoritesSection);
+    $contentSection.append($buttonsSection);
 }
 
 function getRandomDrink(drinkData, prevDisplayedDrinks) {
@@ -366,6 +505,24 @@ function createJokeArray(jokeData, jokeArr) {
   if (!tempJArray.includes(jokeData)) {
     tempJArray.push(jokeData);
   }
+    let tempJArray;
+
+    if (jokeArr === undefined) {
+        tempJArray = []
+    } else {
+        tempJArray = jokeArr;
+    }
+
+    if (!tempJArray.includes(jokeData)) {
+        tempJArray.push(jokeData);
+    }
+
+
+    if(tempJArray.length === 3) {
+        displayJokeInformation(tempJArray);
+    } else {
+        getJoke(tempJArray);
+    }
 
   if (tempJArray.length === 3) {
     displayJokeInformation(tempJArray);
@@ -405,6 +562,41 @@ function getCocktail(userIngredient) {
         });
     }
   });
+
+    const requestUrl = `https://v2.jokeapi.dev/joke/Misc?type=single`
+    fetch(requestUrl)
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
+                    .then(function (data) {
+                        let jokeResponse = data.joke;
+                        console.log(jokeResponse);
+                        createJokeArray(jokeResponse, jokeArr);
+                    })
+            }
+        });
+
+}
+
+function getCocktail(userIngredient) {
+    let ingredients = userIngredient;
+    let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
+
+    fetch($url, {
+        method: 'GET',
+        headers: { 'X-Api-Key': 'OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM' },
+
+    })
+            .then(function (response) {
+                if (response.ok) {
+                    response.json()
+
+                        .then(function (data) {
+                            console.log(data);
+                            displayDrinkInformation(data,ingredients);
+                        })
+                }
+            })
 }
 
 function getExcuse() {
@@ -595,6 +787,7 @@ function saveFavoriteExcuses() {
   console.log($excuseOptions);
 }
 
+getExcuse()
 // init();
 // const userChoiceForm = document.querySelector("#howItWorksForm");
 // userChoiceForm.addEventListener("submit", submitHandler);
