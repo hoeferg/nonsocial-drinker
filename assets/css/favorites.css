@@ -1,3 +1,10 @@
-*{
-    border: solid;
+header{
+    min-height: 100px;
+}
+main{
+    min-height: 250px;
+}
+
+#last-excuses{
+    margin-bottom: 70px;
 }
