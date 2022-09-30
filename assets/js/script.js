@@ -390,14 +390,14 @@ function getJoke() {
                     .then(function (data) {
                         console.log(data);
                         let jokeResponse = data
-                        let jokeResponseDisplay= document.createElement('p')
-                        jokeResponseDisplay.textContent = `Joke:${jokeResponse}`
-                        
+                        // let jokeResponseDisplay= document.createElement('p')
+                        // jokeResponseDisplay.textContent = `Joke:${jokeResponse}`
+                        console.log(jokeResponse)
                     })
             }
         });
 }
-
+getJoke()
 function getCocktail(userIngredient) {
         let ingredients = userIngredient;
         let $url = `https://api.api-ninjas.com/v1/cocktail?ingredients=${ingredients}`
