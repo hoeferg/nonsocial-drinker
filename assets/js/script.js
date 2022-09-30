@@ -124,12 +124,17 @@ function refreshDisplay(parentElement) {
 
 function displayDrinkInforamtion(drinkData) {
 
+    const $resultsMain = document.createElement('main');
+    $resultsMain.setAttribute('class', 'w-3-row-padding');
+
     // These will be the main sections that will contain all content
     const $section1 = document.createElement('section');
     $section1.setAttribute('data-name', 'drinks');
+    $section1.setAttribute('class', 'w3-col s12 l2 ')
 
     // Sections for header and unordered list
     const $drinkContentSection = document.createElement('section');
+    $drinkContentSection.setAttribute('class', 'w3-container w3-vivid-greenish-blue w3-round w3-margin-top')
 
     // Section for buttons, will use twice for each main section
     const $buttonSection = document.createElement('section');
@@ -193,6 +198,7 @@ function displayDrinkInforamtion(drinkData) {
     $drinkContentSection.append($drinkList);
 
     // Appends content section and button section to main section
+    $resultsMain.append($section1)
     $section1.append($drinkContentSection);
     $section1.append($buttonSection);
 
