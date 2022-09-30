@@ -122,19 +122,14 @@ function refreshDisplay(parentElement) {
 
 }
 
-function displayDrinkInforamtion(drinkData) {
-
-    const $resultsMain = document.createElement('main');
-    $resultsMain.setAttribute('class', 'w-3-row-padding');
+function displayDrinkInforamtion(drinkData, ingredient) {
 
     // These will be the main sections that will contain all content
     const $section1 = document.createElement('section');
     $section1.setAttribute('data-name', 'drinks');
-    $section1.setAttribute('class', 'w3-col s12 l2 ')
 
     // Sections for header and unordered list
     const $drinkContentSection = document.createElement('section');
-    $drinkContentSection.setAttribute('class', 'w3-container w3-vivid-greenish-blue w3-round w3-margin-top')
 
     // Section for buttons, will use twice for each main section
     const $buttonSection = document.createElement('section');
@@ -165,7 +160,7 @@ function displayDrinkInforamtion(drinkData) {
     // Assigns text value and attributes buttons and appends to section
     $button1.textContent = "Regenerate";
     $button1.setAttribute('type', 'click');
-    $button1.setAttribute('data-name', 'regenerate');
+    $button1.setAttribute('data-name', ingredient);
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
 
@@ -321,8 +316,8 @@ function displayTopFavorites() {
         listsExistArray.push(false);
     }
 
-    $favoritesSectionHeading.textContent = "Your Top Saved Favorites";
-    $goToFavoritesButton.textContent = "Go to Favorites Page";
+    $favoritesSectionHeading.textContent = "Your Go To Favorites";
+    $goToFavoritesButton.textContent = "See More of Favorites Page";
 
     $goToFavoritesButton.setAttribute('type', 'click');
     $goToFavoritesButton.setAttribute('value', 'click');
@@ -435,6 +430,16 @@ function getCocktail(userIngredient) {
                     .then(function (data) {
                         console.log(data);
                         displayDrinkInforamtion(data);
+                    })
+            }
+        })
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
+
+                    .then(function (data) {
+                        console.log(data);
+                        displayDrinkInforamtion(data, ingredients);
                     })
             }
         })
