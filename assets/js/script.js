@@ -123,31 +123,20 @@ function refreshDisplay(parentElement) {
 }
 //on results.html
 
-function displayDrinkInforamtion(drinkData) {
+function displayDrinkInforamtion(drinkData,ingredient) {
 
     // These will be the main sections that will contain all content
     const $section1 = document.createElement('section');
     $section1.setAttribute('data-name', 'drinks');
 
-    // Sections for header and unordered list
-    const $drinkContentSection = document.createElement('section');
-
     // Section for buttons, will use twice for each main section
-    const $buttonSection = document.createElement('section');
-
-    //* ID FOR REFRESH DRINKS BUTTON SECTION
-    $buttonSection.setAttribute('id','drinks-refresh');
-
-    $buttonSection.setAttribute('data-name', 'drinks-buttons');
+    const $buttonSection = document.querySelector('#drinks-refresh');
 
     // Headings for each category
-    const $drinkHeader = document.createElement('h2');
+    const $drinkHeader = document.querySelector('#drink-header');
 
     // Unordered list for each category
-    const $drinkList = document.createElement('ul');
-
-    //* ID FOR DISPLAYED DRINKS LIST
-    $drinkList.setAttribute('id', 'displayed-drinks');
+    const $drinkList = document.querySelector('#generated-drinks-list');
 
     // Refresh button
     const $button1 = document.createElement('button');
@@ -155,13 +144,13 @@ function displayDrinkInforamtion(drinkData) {
     const prevDisplayedDrinks = [];
 
     // Assign text value for header and appends to content section
-    $drinkHeader.textContent = "Drinks";
-    $drinkContentSection.append($drinkHeader);
+    $drinkHeader.textContent = `Here are some great cokctails with ${ingredient}:`;
 
     // Assigns text value and attributes buttons and appends to section
     $button1.textContent = "Regenerate";
     $button1.setAttribute('type', 'click');
-    $button1.setAttribute('data-name', 'regenerate');
+    $button1.setAttribute('class', 'w3-margin');
+    $button1.setAttribute('data-name', ingredient);
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
 
@@ -175,6 +164,7 @@ function displayDrinkInforamtion(drinkData) {
 
         $saveButton.textContent = "Save Drink";
         $saveButton.setAttribute('type', 'click');
+        $saveButton.setAttribute('class', 'w3-margin w3-right');
         $saveButton.setAttribute('value', 'click');
 
         const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
@@ -190,14 +180,6 @@ function displayDrinkInforamtion(drinkData) {
         $drinkList.append($contentItem);
     }
 
-    // Appends drink list to content section
-    $drinkContentSection.append($drinkList);
-
-    // Appends content section and button section to main section
-    $section1.append($drinkContentSection);
-    $section1.append($buttonSection);
-
-    $howItWorks.append($section1);
 }
 
 
@@ -206,37 +188,20 @@ function displayJokeInforamtion(jokesArr) {
 
     const jokesArray = jokesArr;
 
-    // These will be the main section that will contain all content
-    const $section2 = document.createElement('section');
-    $section2.setAttribute('data-name', 'jokes');
-
-
-    // Section for header and unordered list
-    const $jokeContentSection = document.createElement('section');
-
     // Section for buttons
-    const $buttonSection = document.createElement('section');
-
-    //* ID FOR REFRESH JOKES BUTTON SECTION
-    $buttonSection.setAttribute('id','jokes-refresh');
-    $buttonSection.setAttribute('data-name', 'jokes-buttons');
-
+    const $buttonSection = document.querySelector('#jokes-refresh');
 
     // Headings for each category
-    const $jokeHeader = document.createElement('h2');
+    const $jokeHeader = document.querySelector('#joke-header');
 
     // Unordered list for each category
-    const $jokeList = document.createElement('ul');
-
-    //* ID FOR DISPLAYED JOKES LIST
-    $jokeList.setAttribute('id','displayed-jokes');
+    const $jokeList = document.querySelector('#jokes-list');
 
     // Both refresh and save button
     const $button1 = document.createElement('button');
 
     // Assign text value for header and appends to content section
-    $jokeHeader.textContent = "Jokes";
-    $jokeContentSection.append($jokeHeader);
+    $jokeHeader.textContent = "Your Jokes:";
 
     // Assigns text value and attributes for buttons and appends them to their section
     $button1.textContent = "Regenerate";
@@ -267,15 +232,9 @@ function displayJokeInforamtion(jokesArr) {
         $jokeList.append($contentItem);
     }
 
-    // Appends joke list to section
-    $jokeContentSection.append($jokeList);
-
-    // Appends content section and button section to main section
-    $section2.append($jokeContentSection);
-    $section2.append($buttonSection);
-
-    $howItWorks.append($section2);
 }
+
+getJoke();
 
 function displayTopFavorites() {
     const $favoritesSection = document.createElement('section');
@@ -318,8 +277,8 @@ function displayTopFavorites() {
         listsExistArray.push(false);
     }
 
-    $favoritesSectionHeading.textContent = "Your Top Saved Favorites";
-    $goToFavoritesButton.textContent = "Go to Favorites Page";
+    $favoritesSectionHeading.textContent = "Your Go To Favorites";
+    $goToFavoritesButton.textContent = "See More of Favorites Page";
 
     $goToFavoritesButton.setAttribute('type', 'click');
     $goToFavoritesButton.setAttribute('value', 'click');
@@ -430,7 +389,7 @@ function getCocktail(userIngredient) {
 
                         .then(function (data) {
                             console.log(data);
-                            displayDrinkInforamtion(data);
+                            displayDrinkInforamtion(data,ingredients);
                         })
                 }
             })
@@ -473,7 +432,7 @@ function submitHandler(event) {
     }
 }
 
-init();
-const userChoiceForm = document.querySelector('#howItWorksForm');
-userChoiceForm.addEventListener('submit', submitHandler);
+// init();
+// const userChoiceForm = document.querySelector('#howItWorksForm');
+// userChoiceForm.addEventListener('submit', submitHandler);
 
