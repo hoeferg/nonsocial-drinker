@@ -205,7 +205,7 @@ function displayJokeInforamtion(jokesArr) {
 
     // Assigns text value and attributes for buttons and appends them to their section
     $button1.textContent = "Regenerate";
-    $button1.setAttribute('type', 'click');
+    $button1.setAttribute('class', 'w3-margin-bottom w3-right w3-col s12 l2');
     $button1.setAttribute('data-name', 'regenerate');
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);

@@ -13,3 +13,6 @@ header{
     margin: 20px 0;
 }
 
+#jokes-refresh button{
+    min-width: 100px;
+}
