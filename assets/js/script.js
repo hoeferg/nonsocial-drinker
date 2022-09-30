@@ -66,7 +66,7 @@ function createForm() {
     }
 
     $form.setAttribute('id', 'howItWorks');
-    $howItWorks.setAttribute('class', 'class="w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
+    $howItWorks.setAttribute('class', 'class="w3-container w3-vivid-greenish-blue w3-border w3-round-xlarge w3-card')
     $jokeInput.setAttribute('type', 'checkbox');
     $jokeInput.classList.add('button-margin');
     $jokeInput.setAttribute('id', 'jokeCheck')
@@ -351,6 +351,10 @@ function getJoke() {
                 response.json()
                     .then(function (data) {
                         console.log(data);
+                        let jokeResponse = data
+                        let jokeResponseDisplay= document.createElement('p')
+                        jokeResponseDisplay.textContent = `Joke:${jokeResponse}`
+                        
                     })
             }
         });
