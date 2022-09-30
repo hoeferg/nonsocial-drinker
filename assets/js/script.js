@@ -1,10 +1,5 @@
-const $greetingHeader = document.querySelector('#greeting');
 const $howItWorks = document.querySelector('#how-it-works');
 const $contentSection = document.querySelector('#intro-1');
-const $favoriteDrinksList = document.querySelector('#favorite-drinks-list')
-const $favoriteJokesList = document.querySelector('#favorite-jokes-list')
-const $favoriteExcusesList = document.querySelector('#favorite-excuses-list')
-const $clearAll = document.querySelector('#clear-all')
 
 
 function init() {
@@ -106,10 +101,6 @@ function createForm() {
     $description.textContent = 'Pick your poison from the drinks drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
 }
 
-// This function will hide the header when called
-function hideHeader() {
-    $greetingHeader.setAttribute("class", "custom-display");
-}
 
 function submitHandler(event) {
     event.preventDefault();
@@ -479,41 +470,7 @@ userChoiceForm.addEventListener('submit', submitHandler);
 // create a button for each element
 
 // add event listener 
-favoriteDrinkList.addEventListener('click', function(event) {
-    let btn = event.target.getAttribute('data-name')
-    let emptyArray = []
-    if (localStorage.getItem('drinkList') !== null) (
-        emptyArray = localStorage.getItem('drinkList')
-    )
-    if (!emptyArray.includes(btn)) {
-        emptyArray.push(btn)
-        localStorage.setItem('drinkList', JSON.stringify(emptyArray))
-    }
-} );
 
-favoriteJokeList.addEventListener('click', function(event) {
-    let btn = event.target.getAttribute('data-name')
-    let emptyArray = []
-    if (localStorage.getItem('jokeList') !== null) (
-        emptyArray = localStorage.getItem('drinkList')
-    )
-    if (!emptyArray.includes(btn)) {
-        emptyArray.push(btn)
-        localStorage.setItem('jokeList', JSON.stringify(emptyArray))
-    }
-} );
-
-favoriteExcuseList.addEventListener('click', function(event) {
-    let btn = event.target.getAttribute('data-name')
-    let emptyArray = []
-    if (localStorage.getItem('excuseList') !== null) (
-        emptyArray = localStorage.getItem('excuseList')
-    )
-    if (!emptyArray.includes(btn)) {
-        emptyArray.push(btn)
-        localStorage.setItem('excuseList', JSON.stringify(emptyArray))
-    }
-} );
 
 // favorites page, grab ul for each favorites section
 // add event listner to each section
