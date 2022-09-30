@@ -141,26 +141,14 @@ function displayDrinkInforamtion(drinkData,ingredient) {
     $section1.setAttribute('data-name', 'drinks');
     $section1.setAttribute('id', 'drinkSection');
 
-    // Sections for header and unordered list
-    const $drinkContentSection = document.createElement('section');
-
     // Section for buttons, will use twice for each main section
-    const $buttonSection = document.createElement('section');
-
-    //* ID FOR REFRESH DRINKS BUTTON SECTION
-    $buttonSection.setAttribute('id','drinks-refresh');
-
-
-    $buttonSection.setAttribute('data-name', 'drinks-buttons');
+    const $buttonSection = document.querySelector('#drinks-refresh');
 
     // Headings for each category
-    const $drinkHeader = document.createElement('h2');
+    const $drinkHeader = document.querySelector('#drink-header');
 
     // Unordered list for each category
-    const $drinkList = document.createElement('ul');
-
-    //* ID FOR DISPLAYED DRINKS LIST
-    $drinkList.setAttribute('id', 'displayed-drinks');
+    const $drinkList = document.querySelector('#generated-drinks-list');
 
     // Refresh button
     const $button1 = document.createElement('button');
@@ -168,12 +156,12 @@ function displayDrinkInforamtion(drinkData,ingredient) {
     const prevDisplayedDrinks = [];
 
     // Assign text value for header and appends to content section
-    $drinkHeader.textContent = "Drinks";
-    $drinkContentSection.append($drinkHeader);
+    $drinkHeader.textContent = `Here are some great cokctails with ${ingredient}:`;
 
     // Assigns text value and attributes buttons and appends to section
     $button1.textContent = "Regenerate";
     $button1.setAttribute('type', 'click');
+    $button1.setAttribute('class', 'w3-margin');
     $button1.setAttribute('data-name', ingredient);
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
@@ -188,6 +176,7 @@ function displayDrinkInforamtion(drinkData,ingredient) {
 
         $saveButton.textContent = "Save Drink";
         $saveButton.setAttribute('type', 'click');
+        $saveButton.setAttribute('class', 'w3-margin w3-right');
         $saveButton.setAttribute('value', 'click');
 
         const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
@@ -203,52 +192,26 @@ function displayDrinkInforamtion(drinkData,ingredient) {
         $drinkList.append($contentItem);
     }
 
-    // Appends drink list to content section
-    $drinkContentSection.append($drinkList);
-
-    // Appends content section and button section to main section
-    $section1.append($drinkContentSection);
-    $section1.append($buttonSection);
-
-    $howItWorks.append($section1);
-    saveFavoriteDrink();
 }
 
 function displayJokeInforamtion(jokesArr) {
 
     const jokesArray = jokesArr;
 
-    // These will be the main section that will contain all content
-    const $section2 = document.createElement('section');
-    $section2.setAttribute('data-name', 'jokes');
-
-
-    // Section for header and unordered list
-    const $jokeContentSection = document.createElement('section');
-
     // Section for buttons
-    const $buttonSection = document.createElement('section');
-
-    //* ID FOR REFRESH JOKES BUTTON SECTION
-    $buttonSection.setAttribute('id','jokes-refresh');
-    $buttonSection.setAttribute('data-name', 'jokes-buttons');
-
+    const $buttonSection = document.querySelector('#jokes-refresh');
 
     // Headings for each category
-    const $jokeHeader = document.createElement('h2');
+    const $jokeHeader = document.querySelector('#joke-header');
 
     // Unordered list for each category
-    const $jokeList = document.createElement('ul');
-
-    //* ID FOR DISPLAYED JOKES LIST
-    $jokeList.setAttribute('id','displayed-jokes');
+    const $jokeList = document.querySelector('#jokes-list');
 
     // Both refresh and save button
     const $button1 = document.createElement('button');
 
     // Assign text value for header and appends to content section
-    $jokeHeader.textContent = "Jokes";
-    $jokeContentSection.append($jokeHeader);
+    $jokeHeader.textContent = "Your Jokes:";
 
     // Assigns text value and attributes for buttons and appends them to their section
     $button1.textContent = "Regenerate";
@@ -279,16 +242,9 @@ function displayJokeInforamtion(jokesArr) {
         $jokeList.append($contentItem);
     }
 
-    // Appends joke list to section
-    $jokeContentSection.append($jokeList);
-
-    // Appends content section and button section to main section
-    $section2.append($jokeContentSection);
-    $section2.append($buttonSection);
-
-    $howItWorks.append($section2);
-    saveFavoritejokes();
 }
+
+getJoke();
 
 function displayTopFavorites() {
     const $favoritesSection = document.createElement('section');
@@ -529,47 +485,7 @@ function saveFavoriteDrink() {
     })
 }
 
-
-function saveFavoritejokes() {
-    const $refreshJokes = document.getElementById('jokes-refresh');
-    $refreshJokes.addEventListener('click', function(event){
-    const $jokeDisplay = document.getElementById('section');
-    refreshDisplay($jokeDisplay);
-    getJoke()
-    })
-    const $listOfJokes = document.getElementById('displayed-jokes');
-    $listOfJokes.addEventListener('click', function(event){
-        let $jokeOptions = event.target.getAttribute('data-name');
-    if (!savedJokes.includes($jokeOptions)) {
-        savedJokes.push($jokeOptions);
-        localStorage.setItem('likedJokes',JSON.stringify(savedDrinks))
-    }
-    console.log($jokeOptions);
-    })
-}
-    // function saveFavoriteExcuses() {
-    //     const $refreshExcuses = document.getElementById('excuses-refresh');
-    //     $refreshExcuses.addEventListener('click', function(event) {
-    //     const $excuseDisplay = document.getElementById('excuses-section');
-    //     refreshDisplay($excuseDisplay);
-    //     getExcuse()
-    //     })
-    //     const $listOfExcuses = document.getElementById('displayed-excuses');
-    //     $listOfExcuses.addEventListener('click', function(event){
-    //         let $excuseOptions = event.target.getAttribute('data-name');
-    //     if (!savedExcuses.includes($excuseOptions)) {
-    //         savedExcuses.push($excuseOptions);
-    //         localStorage.setItem('likedExcuses', JSON.stringify(savedExcuses))
-    //     }
-    //     })
-    // }
-   
-
-getCocktail();
-
-init();
-
-
-
-
+// init();
+// const userChoiceForm = document.querySelector('#howItWorksForm');
+// userChoiceForm.addEventListener('submit', submitHandler);
 
