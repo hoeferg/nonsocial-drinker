@@ -393,7 +393,7 @@ function excuse() {
 
 console.log(getCocktail())
 
-function getFavs(){
+function getFavs() {
     const $favoriteDrinks = document.getElementById('favorite-drinks-list');
     const $favoriteJokes = document.getElementById('favorite-jokes-list');
     const $favoriteExcuses = document.getElementById('favorite-excuses-list');
@@ -401,9 +401,7 @@ function getFavs(){
     $favoriteJokes.style.display ='block';
     $favoriteExcuses.style.display ='block';
     
-    const favDrinksArray = [];
-    const favJokesArray = [];
-    const favExcuseArray = [];
+   
 
     if (localStorage.getItem('favorite-drinks-list') !== null) {
     $favoriteDrinks = JSON.parse(localStorage.getItem('favorite-drinks-list'));
@@ -414,7 +412,7 @@ function getFavs(){
         
     }
     }
-
+    console.log(favDrinksArray);
     if (localStorage.getItem('favorite-jokes-list') !== null) {
     $favoriteJokes =JSON.parse(localStorage.getItem('favorite-jokes-list'));
    
@@ -434,6 +432,12 @@ function getFavs(){
     }
 }
 }
+const favDrinksArray = [];
+const favJokesArray = [];
+const favExcuseArray = [];
+
+
+
 
 function saveFavoriteDrink() {
     const $favoriteDrinks = JSON.parse(localStorage.getItem('favorite-drinks-list'));
@@ -447,20 +451,28 @@ function saveFavoriteDrink() {
     localStorage.setItem('favorite-drinks-list', JSON.stringify($favoriteDrinks));
 
 }
+saveDrinks.addEventListener('click', saveFavoriteDrink) 
+console.log(favDrinksArray);
 
+let saveJoke = document.getElementById('jokes-save');
 function saveFavoritejokes() {
+    
     const $favoriteJokes =JSON.parse(localStorage.getItem('favorite-jokes-list'));
-    if (!$favoriteJoke) {
+    if (!$favoriteJokes) {
         localStorage.setItem('favorite-jokes-list', JSON.stringify([jokes]));
         return;
     
     }
     $favoriteJokes.push(jokes);
 
-    localStorage.setItem('favorite-jokes-list', JSON.stringify(($favoriteJokes));
+    localStorage.setItem('favorite-jokes-list', JSON.stringify($favoriteJokes));
 }
 
+saveJoke.addEventListener('click', saveFavoritejokes);
+
+let saveExcuse = document.getElementById('excuses-save');
 function saveBestExcuse() {
+   
     const $favoriteExcuses = JSON.parse(localStorage.getItem('favorite-excuses-list'));
     if (!$favoriteExcuses) {
         localStorage.setItem('favorite-excuses-list',JSON.stringify([excuse]));
@@ -468,8 +480,14 @@ function saveBestExcuse() {
     }
         $favoriteExcuses.push(excuse);
 
-        localStorage.setItem('favorite-excuses-list', JSON.stringify(($favoriteExcuse)));
+        localStorage.setItem('favorite-excuses-list', JSON.stringify($favoriteExcuses));
 } 
+saveExcuse.addEventListener('click', saveBestExcuse);
+
+
+// favdrinkArray[]
+// faveJokeArrat[]
+// faveExcuseArray[]
 
 
 
