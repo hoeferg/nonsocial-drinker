@@ -351,4 +351,7 @@ function generateJokeBtn() {
     });
 }
 
+//making a GO TO FAVS BTN that redirects to fav page
+function
+
 init();
