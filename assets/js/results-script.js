@@ -1,10 +1,28 @@
-const goHome = document.querySelector('#home-btn')
+const goHome = document.querySelector('#home-btn');
+const $favBtn = document.querySelector('#go-to-favorites-btn');
+let savedExcuses = [];
+let savedJokes = [];
+let savedDrinks = [];
+
 
 function init() {
     const alcholType = localStorage.getItem('alcholType');
     const wantJoke = JSON.parse(localStorage.getItem('wantJoke'));
     const wantExcuse = JSON.parse(localStorage.getItem('wantExcuse'));
 
+    if (localStorage.getItem("savedDrinks") !== null) {
+        savedDrinks = JSON.parse(localStorage.getItem("savedDrinks"));
+    }
+
+    if (localStorage.getItem("savedJokes") !== null) {
+        savedJokes = JSON.parse(localStorage.getItem("savedJokes"));
+    }
+
+    if (localStorage.getItem('savedExcuses') !== null) {
+        savedExcuses = JSON.parse(localStorage.getItem('savedExcuses'))
+    }
+
+    displayTopFavorites();
     getCocktail(alcholType);
     if (wantJoke) {
         getJoke();
@@ -18,7 +36,6 @@ function init() {
     }
 
 }
-const $favBtn = document.querySelector('#go-to-favorites-btn');
 
 function displayDrinkInformation(drinkData, ingredient) {
 
@@ -43,7 +60,7 @@ function displayDrinkInformation(drinkData, ingredient) {
     // Assigns text value and attributes buttons and appends to section
     $button1.textContent = "Regenerate";
     $button1.setAttribute('type', 'click');
-    $button1.setAttribute('class', 'w3-col s12 l2 w3-margin-bottom');
+    $button1.setAttribute('class', 'w3-col s11 w3-margin-bottom w3-display-bottommiddle w3-round');
     $button1.setAttribute('data-name', ingredient);
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
@@ -58,8 +75,8 @@ function displayDrinkInformation(drinkData, ingredient) {
 
         $saveButton.textContent = "Save Drink";
         $saveButton.setAttribute('type', 'click');
-
-
+        $saveButton.setAttribute('value', 'click');
+        $saveButton.setAttribute("class", "w3-round")
 
         const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
 
@@ -73,6 +90,8 @@ function displayDrinkInformation(drinkData, ingredient) {
 
         $drinkList.append($contentItem);
     }
+
+    saveFavoriteDrink();
 
 }
 
@@ -93,7 +112,7 @@ function displayJokeInformation(jokesArr) {
 
     // Assigns text value and attributes for buttons and appends them to their section
     $button1.textContent = "Regenerate";
-    $button1.setAttribute('class', 'w3-right w3-col s12 l2 w3-margin-bottom');
+    $button1.setAttribute('class', ' w3-col s11 l2 w3-margin-bottom w3-display-bottomright w3-margin-right w3-round');
     $button1.setAttribute('data-name', 'regenerate');
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
@@ -109,6 +128,7 @@ function displayJokeInformation(jokesArr) {
         $saveButton.textContent = "Save Joke";
         $saveButton.setAttribute('type', 'click');
         $saveButton.setAttribute('value', 'click');
+        $saveButton.setAttribute('class', 'w3-round');
 
 
         $itemText.textContent = jokesArray[i]
@@ -119,6 +139,8 @@ function displayJokeInformation(jokesArr) {
 
         $jokeList.append($contentItem);
     }
+
+    saveFavoritejokes();
 
 }
 
@@ -133,7 +155,7 @@ function displayExcuseInformation() {
 
 
     $button2.textContent = "Regenerate";
-    $button2.setAttribute('class', 'w3-right w3-col s12 l2 w3-margin-bottom');
+    $button2.setAttribute('class', ' w3-col s11 l2 w3-margin-bottom w3-display-bottomright w3-margin-right w3-round');
     $button2.setAttribute('data-name', 'regenerate');
     $button2.setAttribute('value', 'click');
     $excuseButtonSection.append($button2);
@@ -154,6 +176,7 @@ function displayExcuseInformation() {
         $saveButton.textContent = "Save Excuse";
         $saveButton.setAttribute('type', 'click');
         $saveButton.setAttribute('value', 'click');
+        $saveButton.setAttribute('class', 'w3-round');
 
         $itemText.textContent = excuseArray[i]
         $saveButton.setAttribute('data-name', excuseArray[i]);
@@ -161,18 +184,20 @@ function displayExcuseInformation() {
         $contentItem.append($saveButton);
         $excusesList.append($contentItem);
     }
+
+    saveFavoriteExcuses();
 }
 
 function displayTopFavorites() {
 
     //* ID NAMES HERE
-    const idName = ["last-drink-list", "last-joke-list", "last-excuse-list"];
+    const idName = ["#last-drink-list", "#last-jokes-list", "#last-excuses-list"];
 
     const favListsArray = [];
     const listsExistArray = [];
 
     if (localStorage.getItem("gotoDrinkList") !== null) {
-        const topDrinksArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
+        const topDrinksArray = JSON.parse(localStorage.getItem("gotoDrinkList"));
         favListsArray.push(topDrinksArray);
         listsExistArray.push(true);
     } else {
@@ -181,7 +206,7 @@ function displayTopFavorites() {
     }
 
     if (localStorage.getItem("gotoJokeList") !== null) {
-        const topJokesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
+        const topJokesArray = JSON.parse(localStorage.getItem("gotoJokeList"));
         favListsArray.push(topJokesArray);
         listsExistArray.push(true);
     } else {
@@ -190,7 +215,7 @@ function displayTopFavorites() {
     }
 
     if (localStorage.getItem("gotoExcuseList") !== null) {
-        const topExcusesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
+        const topExcusesArray = JSON.parse(localStorage.getItem("gotoExcuseList"));
         favListsArray.push(topExcusesArray);
         listsExistArray.push(true);
     } else {
@@ -200,7 +225,7 @@ function displayTopFavorites() {
 
 
 
-    for (let i = 0; i < elementArray.length; i++) {
+    for (let i = 0; i < idName.length; i++) {
         const list = document.querySelector(idName[i]);
 
 
@@ -315,6 +340,50 @@ function getExcuse() {
     return `My ${who} ${did} my ${what}.`
 }
 
+function saveFavoritejokes() {
+    const $listOfJokes = document.getElementById("jokes-list");
+
+    $listOfJokes.addEventListener("click", function (event) {
+        let $jokeOptions = event.target.getAttribute("data-name");
+        console.log($jokeOptions);
+
+        if (!savedJokes.includes($jokeOptions)) {
+            savedJokes.push($jokeOptions);
+            localStorage.setItem("savedJokes", JSON.stringify(savedJokes));
+        }
+    });
+}
+
+function saveFavoriteDrink() {
+    const $listOfDrinks = document.getElementById("generated-drinks-list");
+
+    $listOfDrinks.addEventListener("click", function (event) {
+        let $drinkOptions = event.target.getAttribute("data-name");
+        console.log($drinkOptions);
+
+        if (!savedDrinks.includes($drinkOptions)) {
+            savedDrinks.push($drinkOptions);
+            localStorage.setItem("savedDrinks", JSON.stringify(savedDrinks));
+            console.log(savedDrinks);
+        }
+    });
+}
+
+function saveFavoriteExcuses() {
+    const $listOfExcuses = document.getElementById("excuses-list");
+
+    $listOfExcuses.addEventListener("click", function (event) {
+        let $excuseOptions = event.target.getAttribute("data-name");
+
+        console.log($excuseOptions);
+        if (!savedExcuses.includes($excuseOptions)) {
+            savedExcuses.push($excuseOptions);
+            localStorage.setItem("savedExcuses", JSON.stringify(savedExcuses));
+            console.log(savedExcuses);
+        }
+    });
+}
+
 function generateExcuseBtn() {
     const $genExcuseBtn = document.createElement('button');
     const $buttonSection = document.querySelector('#excuse-refresh');
@@ -332,7 +401,6 @@ function generateExcuseBtn() {
         displayExcuseInformation()
     });
 }
-
 
 function generateJokeBtn() {
     const $genJokeBtn = document.createElement('button');
