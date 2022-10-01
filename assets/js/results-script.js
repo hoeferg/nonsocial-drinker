@@ -1,4 +1,5 @@
-const goHome = document.querySelector('#home-btn')
+const goHome = document.querySelector('#home-btn');
+const $favBtn = document.querySelector('#go-to-favorites-btn');
 
 function init() {
     const alcholType = localStorage.getItem('alcholType');
@@ -18,7 +19,6 @@ function init() {
     }
 
 }
-const $favBtn = document.querySelector('#go-to-favorites-btn');
 
 function displayDrinkInformation(drinkData, ingredient) {
 
@@ -166,7 +166,7 @@ function displayExcuseInformation() {
 function displayTopFavorites() {
 
     //* ID NAMES HERE
-    const idName = ["last-drink-list", "last-joke-list", "last-excuse-list"];
+    const idName = ["last-drink-list", "last-joke-list", "last-excuses-list"];
 
     const favListsArray = [];
     const listsExistArray = [];
