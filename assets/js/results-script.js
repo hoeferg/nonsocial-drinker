@@ -26,7 +26,7 @@ $refreshJokes.addEventListener("click", function (event) {
    
     // refreshDisplay($refreshJokes);
     getJokes();
-    // displayJokeInformation();
+    //displayJokeInformation();
   });
 
 $refresh.addEventListener("click", function (event) {
@@ -153,7 +153,7 @@ function displayJokeInformation(jokesArr) {
     $saveButton.setAttribute("type", "click");
     $saveButton.setAttribute("value", "click");
 
-    $itemText.textContent = jokesArray[i].joke;
+     $itemText.textContent = jokesArray[i].joke;
     $saveButton.setAttribute("data-name", jokesArray[i].joke);
 
     $contentItem.append($itemText);
