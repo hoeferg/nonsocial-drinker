@@ -5,9 +5,10 @@ let savedDrinks = [];
 const $refreshJokes = document.getElementById("jokes-refresh");
 const $refreshDrinks = document.getElementById("drinks-refresh");
 const $refreshExcuses = document.getElementById("excuses-refresh");
+const alcholType = localStorage.getItem("alcholType");
 
 function init() {
-  const alcholType = localStorage.getItem("alcholType");
+  
   const wantJoke = JSON.parse(localStorage.getItem("wantJoke"));
   const wantExcuse = JSON.parse(localStorage.getItem("wantExcuse"));
 
@@ -57,6 +58,7 @@ function displayDrinkInformation(drinkData, ingredient) {
   // List items are then appended to the drinks list
   // TODO: connect the drinks data properly
   for (let i = 0; i < 3; i++) {
+    
     const $contentItem = document.createElement("li");
     const $itemText = document.createElement("p");
     const $saveButton = document.createElement("button");
@@ -229,11 +231,12 @@ function displayTopFavorites() {
 function getRandomDrink(drinkData, prevDisplayedDrinks) {
   const drinkName =
     drinkData[Math.floor(Math.random() * drinkData.length) + 0].name;
-
+    console.log(drinkName);
+    
   if (!prevDisplayedDrinks.includes(drinkName)) {
     return drinkName;
   } else {
-    getRandomDrink(drinkData, prevDisplayedDrinks);
+    getRandomDrink(drinkData, prevDisplayedDrinks); // reutrn any random
   }
 }
 
@@ -283,7 +286,7 @@ function getCocktail(userIngredient) {
         .json()
 
         .then(function (data) {
-          console.log(data);
+          console.log('response' , data);
           displayDrinkInformation(data, ingredients);
         });
     }
@@ -387,20 +390,7 @@ function refreshDisplay(parentElement) {
     parentElement.removeChild(parentElement.firstChild);
   }
 }
-//   function regenerateJokeBtn() {
-//     const $regenJokeBtn = document.createElement('button');
-//     const $buttonSection = document.querySelector('#jokes-refresh');
-//     $regenJokeBtn.setAttribute('type', 'submit');
-//     $regenJokeBtn.setAttribute('value', 'Get An Joke');
-//     $regenJokeBtn.textContent = "Try again!"
 
-//     $buttonSection.append($regenJokeBtn )
-//     $regenJokeBtn.addEventListener('click', function () {
-//         $regenJokeBtn.style.display = 'none'
-//         getJoke()
-//     });
-// }
-// regenerateJokeBtn();
 
 $refreshJokes.addEventListener("click", function (event) {
   const $jokeDisplay = document.getElementById("jokes-list");
@@ -418,7 +408,7 @@ $refreshDrinks.addEventListener("click", function (event) {
   refreshDisplay($drinkDisplay);
 
   // refreshDisplay($refreshJokes);
-  getCocktail();
+  getCocktail(alcholType);
   //displayJokeInformation();
 });
 
