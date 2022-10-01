@@ -443,7 +443,7 @@ function generateExcuseBtn() {
     $genExcuseBtn.textContent = "Get An Excuse!"
 
 
-    $buttonSection.append($genExcuseBtn)
+   // $buttonSection.append($genExcuseBtn)
 
     $genExcuseBtn.addEventListener('click', function () {
         $genExcuseBtn.style.display = 'none'
