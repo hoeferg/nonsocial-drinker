@@ -19,15 +19,7 @@ function init() {
 }
 
 // This function can be passed a parent element and will remove its children
-function refreshDisplay(parentElement) {
 
-    while (parentElement.firstChild) {
-
-        parentElement.removeChild(parentElement.firstChild);
-
-    }
-
-}
 
 function displayDrinkInformation(drinkData,ingredient) {
 
