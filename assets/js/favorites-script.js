@@ -6,38 +6,48 @@ const $clearAll = document.querySelector('#clear-all')
 $favoriteDrinksList.addEventListener('click', function(event) {
     let btn = event.target.getAttribute('data-name')
     let emptyArray = []
-    if (localStorage.getItem('drinkList') !== null) (
-        emptyArray = localStorage.getItem('drinkList')
+    if (localStorage.getItem('gotoDrinkList') !== null) (
+        emptyArray = localStorage.getItem('gotoDrinkList')
     )
     if (!emptyArray.includes(btn)) {
         emptyArray.push(btn)
-        localStorage.setItem('drinkList', JSON.stringify(emptyArray))
+        localStorage.setItem('gotoDrinkList', JSON.stringify(emptyArray))
     }
 } );
 
 $favoriteJokesList.addEventListener('click', function(event) {
     let btn = event.target.getAttribute('data-name')
     let emptyArray = []
-    if (localStorage.getItem('jokeList') !== null) (
-        emptyArray = localStorage.getItem('drinkList')
+    if (localStorage.getItem('gotoJokeList') !== null) (
+        emptyArray = localStorage.getItem('gotoJokeList')
     )
     if (!emptyArray.includes(btn)) {
         emptyArray.push(btn)
-        localStorage.setItem('jokeList', JSON.stringify(emptyArray))
+        localStorage.setItem('gotoJokeList', JSON.stringify(emptyArray))
     }
 } );
 
 $favoriteExcusesList.addEventListener('click', function(event) {
     let btn = event.target.getAttribute('data-name')
     let emptyArray = []
-    if (localStorage.getItem('excuseList') !== null) (
-        emptyArray = localStorage.getItem('excuseList')
+    if (localStorage.getItem('gotoExcuseList') !== null) (
+        emptyArray = localStorage.getItem('gotoExcuseList')
     )
     if (!emptyArray.includes(btn)) {
         emptyArray.push(btn)
-        localStorage.setItem('excuseList', JSON.stringify(emptyArray))
+        localStorage.setItem('gotoExcuseList', JSON.stringify(emptyArray))
     }
 } );
+
+function refreshDisplay(parentElement) {
+
+    while (parentElement.firstChild) {
+
+        parentElement.removeChild(parentElement.firstChild);
+
+    }
+
+}
 
 function displaySavedFavorites() {
     if(localStorage.getItem('savedDrinks') !== null) {
