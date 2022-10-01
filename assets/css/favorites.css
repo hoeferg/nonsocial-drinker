@@ -1,8 +1,17 @@
 header{
     min-height: 100px;
 }
-main{
-    min-height: 00px;
+
+#last-drink-bckgrnd{
+    min-height: 450px;
+}
+
+#las-joke-bckgrnd{
+    min-height: 450px;
+}
+
+#last-excuses-bckgrnd{
+    min-height: 450px;
 }
 
 @media screen and (max-width: 480px){
