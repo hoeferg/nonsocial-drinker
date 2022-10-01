@@ -1,6 +1,7 @@
 let savedJokes = [];
 let savedDrinks = [];
-
+const $buttonSection = document.querySelector("#jokes-refresh");
+const $refreshJokes = document.getElementById("jokes-refresh");
 let savedExcuses = [];
 
 function init() {
@@ -10,12 +11,25 @@ function init() {
 
   getCocktail(alcholType);
   if (wantJoke) {
-    getJoke();
+  getJokes(); // changes to getjokes
+  
   }
   if (wantExcuse) {
     displayExcuseInformation();
   }
 }
+
+
+
+  
+  $refreshJokes.addEventListener("click", function (event) {
+    const $jokeDisplay = document.getElementById("jokes-list");
+ 
+    //   const $jokeStuff = event.target.getAttribute("data-name");
+    refreshDisplay($jokeDisplay);
+    // refreshDisplay($refreshJokes)
+    getJokes();
+  });
 
 // This function can be passed a parent element and will remove its children
 function refreshDisplay(parentElement) {
@@ -83,10 +97,10 @@ function displayDrinkInformation(drinkData, ingredient) {
 }
 
 function displayJokeInformation(jokesArr) {
-  const jokesArray = jokesArr;
+//   const jokesArray = jokesArr;
 
   // Section for buttons
-  const $buttonSection = document.querySelector("#jokes-refresh");
+//   const $buttonSection = document.querySelector("#jokes-refresh");
 
   // Headings for each category
   const $jokeHeader = document.querySelector("#joke-header");
@@ -95,17 +109,17 @@ function displayJokeInformation(jokesArr) {
   const $jokeList = document.querySelector("#jokes-list");
 
   // Both refresh and save button
-  const $button1 = document.createElement("button");
+//   const $button1 = document.createElement("button");
 
   // Assign text value for header and appends to content section
   $jokeHeader.textContent = "Your Jokes:";
 
   // Assigns text value and attributes for buttons and appends them to their section
-  $button1.textContent = "Regenerate";
-  $button1.setAttribute("type", "click");
-  $button1.setAttribute("data-name", "regenerate");
-  $button1.setAttribute("value", "click");
-  $buttonSection.append($button1);
+//   $button1.textContent = "Regenerate";
+//   $button1.setAttribute("type", "button");
+//   $button1.setAttribute("data-name", "regenerate");
+//   $button1.setAttribute("value", "click");
+//   $buttonSection.append($button1);
 
   // Uses for loops to iterate through jokeData array to get jokes and assigns them as text value for list item
   // List items are then appended to the jokes list
@@ -119,8 +133,8 @@ function displayJokeInformation(jokesArr) {
     $saveButton.setAttribute("type", "click");
     $saveButton.setAttribute("value", "click");
 
-    $itemText.textContent = jokesArray[i];
-    $saveButton.setAttribute("data-name", jokesArray[i]);
+    $itemText.textContent = jokesArr[i].joke;
+    $saveButton.setAttribute("data-name", jokesArr[i].joke);
 
     $contentItem.append($itemText);
     $contentItem.append($saveButton);
@@ -132,7 +146,7 @@ function displayJokeInformation(jokesArr) {
 
 function displayExcuseInformation() {
   let excuseArray = [];
-  const $excuseButtonSection = document.querySelector("#excuse-refresh");
+  const $excuseButtonSection = document.querySelector("#excuses-refresh");
 
   const $excusesList = document.querySelector("#excuses-list");
 
@@ -276,39 +290,53 @@ function getRandomDrink(drinkData, prevDisplayedDrinks) {
   if (!prevDisplayedDrinks.includes(drinkName)) {
     return drinkName;
   } else {
-    getRandomDrink(drinkData, prevDisplayedDrinks);
+    // getRandomDrink(drinkData, prevDisplayedDrinks);
   }
 }
 
-function createJokeArray(jokeData, jokeArr) {
-  let tempJArray;
+// function createJokeArray(jokeData, jokeArr) {
+//   let tempJArray;
 
-  if (jokeArr === undefined) {
-    tempJArray = [];
-  } else {
-    tempJArray = jokeArr;
-  }
+//   if (jokeArr === undefined) {
+//     tempJArray = [];
+//   } else {
+//     tempJArray = jokeArr;
+//   }
 
-  if (!tempJArray.includes(jokeData)) {
-    tempJArray.push(jokeData);
-  }
+//   if (!tempJArray.includes(jokeData)) {
+//     tempJArray.push(jokeData);
+//   }
 
-  if (tempJArray.length === 3) {
-    displayJokeInformation(tempJArray);
-  } else {
-    getJoke(tempJArray);
-  }
-}
+//   if (tempJArray.length === 3) {
+//     displayJokeInformation(tempJArray);
+//   } else {
+//     getJoke(tempJArray);
+//   }
+// }
+// added joke filter 
+// function getJoke(jokeArr) {
+//   const requestUrl = `https://v2.jokeapi.dev/joke/Misc?type=single&blacklistFlags=nsfw,religious,political,racist,sexist,explicit`;
+//   fetch(requestUrl).then(function (response) {
+//     console.log(jokeArr);
+//     if (response.ok) {
+//       response.json().then(function (data) {
+//         let jokeResponse = data.joke;
+//         console.log(jokeResponse);
+//         createJokeArray(jokeResponse, jokeArr);
+//       });
+//     }
+//   });
+// }
 
-function getJoke(jokeArr) {
-  const requestUrl = `https://v2.jokeapi.dev/joke/Misc?type=single`;
+function getJokes() {
+    const requestUrl = `https://v2.jokeapi.dev/joke/Misc?type=single&blacklistFlags=nsfw,religious,political,racist,sexist,explicit&amount=3`;
   fetch(requestUrl).then(function (response) {
+    
     if (response.ok) {
-      response.json().then(function (data) {
-        let jokeResponse = data.joke;
-        console.log(jokeResponse);
-        createJokeArray(jokeResponse, jokeArr);
-      });
+      response.json().then(function(data){
+        console.log(data);
+        displayJokeInformation(data.jokes);
+      }); 
     }
   });
 }
@@ -345,16 +373,10 @@ function getExcuse() {
   return `My ${who} ${did} my ${what}.`;
 }
 
-// init();
+init();
 
 function saveFavoritejokes() {
-  const $refreshJokes = document.getElementById("jokes-refresh");
-  $refreshJokes.addEventListener("click", function (event) {
-    const $jokeDisplay = document.getElementById("jokes-list");
-    //   const $jokeStuff = event.target.getAttribute("data-name");
-    refreshDisplay($jokeDisplay);
-    getJoke();
-  });
+  
   const $listOfJokes = document.getElementById("jokes-list");
   $listOfJokes.addEventListener("click", function (event) {
     let $jokeOptions = event.target.getAttribute("data-name");
@@ -392,12 +414,12 @@ function saveFavoriteDrink() {
 function saveFavoriteExcuses() {
   const $refreshExcuses = document.getElementById("excuses-refresh");
   $refreshExcuses.addEventListener("click", function (event) {
-    const $excuseDisplay = document.getElementById("excuse-list");
+    const $excuseDisplay = document.getElementById("excuses-list");
     const $excuseStuff = event.target.getAttribute("data-name");
     refreshDisplay($excuseDisplay);
     getExcuse($excuseStuff);
   });
-  const $listOfExcuses = document.getElementById("excuse-list");
+  const $listOfExcuses = document.getElementById("excuses-list");
   $listOfExcuses.addEventListener("click", function (event) {
     let $excuseOptions = event.target.getAttribute("data-name");
     if (!savedExcuses.includes($excuseOptions)) {
@@ -405,5 +427,9 @@ function saveFavoriteExcuses() {
       localStorage.setItem("likedExcuses", JSON.stringify(savedExcuses));
     }
   });
-  console.log($excuseOptions);
+ 
 }
+
+// getExcuse();
+// getCocktail();
+// getJokes();
