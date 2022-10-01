@@ -16,6 +16,7 @@ function init() {
     }
 
 }
+const $favBtn = document.querySelector('#go-to-favorites-btn');
 
 function displayDrinkInformation(drinkData, ingredient) {
 
@@ -348,6 +349,9 @@ function generateJokeBtn() {
 }
 
 //making a GO TO FAVS BTN that redirects to fav page
-function
 
 init();
+
+$favBtn.addEventListener('click', function () {
+    window.location.assign('../html/favorites.html')
+});
