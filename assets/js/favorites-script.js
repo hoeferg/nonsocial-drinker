@@ -2,6 +2,7 @@ const $favoriteDrinksList = document.querySelector('#last-drink-list')
 const $favoriteJokesList = document.querySelector('#last-jokes-list')
 const $favoriteExcusesList = document.querySelector('#last-excuses-list')
 const $clearAllBtn = document.querySelector('#clear-all')
+const homeBtn = document.querySelector('#moreFunBtn');
 
 
 $favoriteDrinksList.addEventListener('click', function (event) {
@@ -40,6 +41,10 @@ $favoriteExcusesList.addEventListener('click', function (event) {
     }
 
 });
+
+homeBtn.addEventListener('click', function() {
+    window.location.assign('../../index.html');
+})
 
 function refreshDisplay(parentElement) {
 
