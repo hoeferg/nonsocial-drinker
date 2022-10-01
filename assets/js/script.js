@@ -3,66 +3,73 @@ const $contentSection = document.querySelector('#intro-1');
 
 
 function init() {
-    createAboutUs();
-    createForm();
+
+  createAboutUs();
+  createForm();
+  
 }
 
 function createAboutUs() {
-    const $aboutUsDiv = document.createElement('div');
-    const $aboutUsDesc1 = document.createElement('p');
-    const $aboutUsDesc2 = document.createElement('p');
-    const $aboutUsDesc3 = document.createElement('p');
+  const $aboutUsDiv = document.createElement("div");
+  const $aboutUsDesc1 = document.createElement("p");
+  const $aboutUsDesc2 = document.createElement("p");
+  const $aboutUsDesc3 = document.createElement("p");
 
-    $contentSection.appendChild($aboutUsDiv);
-    $aboutUsDiv.appendChild($aboutUsDesc1);
-    $aboutUsDiv.appendChild($aboutUsDesc2);
-    $aboutUsDiv.appendChild($aboutUsDesc3);
+  $contentSection.appendChild($aboutUsDiv);
+  $aboutUsDiv.appendChild($aboutUsDesc1);
+  $aboutUsDiv.appendChild($aboutUsDesc2);
+  $aboutUsDiv.appendChild($aboutUsDesc3);
 
-    $aboutUsDesc1.textContent =
-        'It is our hope that you will find this app fun while you are out in social situations.';
-    $aboutUsDesc2.textContent =
-        'We only say that the app is for the socially awkward because it was built by the socially awkward.';
-    $aboutUsDesc3.textContent =
-        ' Its like that weird item on your friends coffee table that prompts conversation and inspires connection.';
-    //console.log($aboutUsDesc1.textContent);
+  $aboutUsDesc1.textContent =
+    "It is our hope that you will find this app fun while you are out in social situations.";
+  $aboutUsDesc2.textContent =
+    "We only say that the app is for the socially awkward because it was built by the socially awkward.";
+  $aboutUsDesc3.textContent =
+    " Its like that weird item on your friends coffee table that prompts conversation and inspires connection.";
+  //console.log($aboutUsDesc1.textContent);
 
-    const $appDiv = document.createElement('div');
-    const $appDesc = document.createElement('p');
-    const $appDesc2 = document.createElement('p');
-    $contentSection.appendChild($appDiv);
-    $appDiv.appendChild($appDesc);
-    $appDiv.appendChild($appDesc2);
-    $appDesc.textContent =
-        'This app will generate a cocktail, a joke and an excuse to get yourself on those getaway sticks and hightail it out of any truly awkward situation.';
-    $appDesc2.textContent =
-        'Not only is it an app for the socially awkward but it can help you escape the socially awkward… PURE, GENIUS!';
-
+  const $appDiv = document.createElement("div");
+  const $appDesc = document.createElement("p");
+  const $appDesc2 = document.createElement("p");
+  $contentSection.appendChild($appDiv);
+  $appDiv.appendChild($appDesc);
+  $appDiv.appendChild($appDesc2);
+  $appDesc.textContent =
+    "This app will generate a cocktail, a joke and an excuse to get yourself on those getaway sticks and hightail it out of any truly awkward situation.";
+  $appDesc2.textContent =
+    "Not only is it an app for the socially awkward but it can help you escape the socially awkward… PURE, GENIUS!";
 
 }
 
 function createForm() {
-    const $form = document.createElement('form');
-    const $h2 = document.createElement('h2');
-    const $description = document.createElement('p');
-    const $submitBtn = document.createElement('button');
-    const $selectOption = document.createElement('select');
-    const $jokeLabel = document.createElement('label');
-    const $jokeInput = document.createElement('input');
-    const $excuseLabel = document.createElement('label');
-    const $excuseInput = document.createElement('input');
+  const $form = document.createElement("form");
+  const $h2 = document.createElement("h2");
+  const $description = document.createElement("p");
+  const $submitBtn = document.createElement("button");
+  const $selectOption = document.createElement("select");
+  const $jokeLabel = document.createElement("label");
+  const $jokeInput = document.createElement("input");
+  const $excuseLabel = document.createElement("label");
+  const $excuseInput = document.createElement("input");
 
-
-    const $alcoholOptions = ['--Select your alcohol--', 'Vodka', 'Tequila', 'Rum', 'Gin', 'Whiskey']
-    for (let i = 0; i < $alcoholOptions.length; i++) {
-        const $alcoholChoices = document.createElement('option');
-        $alcoholChoices.textContent = $alcoholOptions[i]
-        if (i > 0) {
-            $alcoholChoices.setAttribute('value', $alcoholOptions[i])
-        } else {
-            $alcoholChoices.setAttribute('value', '')
-        }
-        $selectOption.append($alcoholChoices)
+  const $alcoholOptions = [
+    "--Select your alcohol--",
+    "Vodka",
+    "Tequila",
+    "Rum",
+    "Gin",
+    "Whiskey",
+  ];
+  for (let i = 0; i < $alcoholOptions.length; i++) {
+    const $alcoholChoices = document.createElement("option");
+    $alcoholChoices.textContent = $alcoholOptions[i];
+    if (i > 0) {
+      $alcoholChoices.setAttribute("value", $alcoholOptions[i]);
+    } else {
+      $alcoholChoices.setAttribute("value", "");
     }
+    $selectOption.append($alcoholChoices);
+  }
 
     $form.setAttribute('id', 'howItWorksForm');
     $howItWorks.setAttribute('class', 'w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
