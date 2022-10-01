@@ -1,10 +1,11 @@
-header{
+header {
     min-height: 100px;
 }
-main{
+
+main {
     min-height: 250px;
 }
 
-#last-excuses{
+#last-excuses {
     margin-bottom: 70px;
 }

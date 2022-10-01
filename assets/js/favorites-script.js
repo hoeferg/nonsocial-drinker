@@ -42,7 +42,7 @@ $favoriteExcusesList.addEventListener('click', function (event) {
 
 });
 
-homeBtn.addEventListener('click', function() {
+homeBtn.addEventListener('click', function () {
     window.location.assign('../../index.html');
 })
 

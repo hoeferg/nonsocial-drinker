@@ -321,6 +321,7 @@ function generateExcuseBtn() {
 
     $genExcuseBtn.setAttribute('type', 'submit');
     $genExcuseBtn.setAttribute('value', 'Get An Excuse');
+    $genExcuseBtn.classList.add('button-margin-excuse');
     $genExcuseBtn.textContent = "Get An Excuse!"
 
 
@@ -339,6 +340,7 @@ function generateJokeBtn() {
 
     $genJokeBtn.setAttribute('type', 'submit');
     $genJokeBtn.setAttribute('value', 'Get An Joke');
+    $genJokeBtn.classList.add('button-margin-joke');
     $genJokeBtn.textContent = "Get A Joke!"
 
 
