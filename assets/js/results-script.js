@@ -390,7 +390,19 @@ function refreshDisplay(parentElement) {
     parentElement.removeChild(parentElement.firstChild);
   }
 }
+//   function regenerateJokeBtn() {
+//     const $regenJokeBtn = document.createElement('button');
+//     const $buttonSection = document.querySelector('#jokes-refresh');
+//     $regenJokeBtn.setAttribute('type', 'submit');
+//     $regenJokeBtn.setAttribute('value', 'Get An Joke');
+//     $regenJokeBtn.textContent = "Try again!"
 
+//     $buttonSection.append($regenJokeBtn )
+//     $regenJokeBtn.addEventListener('click', function () {
+//         $regenJokeBtn.style.display = 'none'
+//         getJoke()
+//     });
+// 
 
 $refreshJokes.addEventListener("click", function (event) {
   const $jokeDisplay = document.getElementById("jokes-list");
