@@ -56,7 +56,7 @@ function displayDrinkInformation(drinkData,ingredient) {
     // Assigns text value and attributes buttons and appends to section
     $button1.textContent = "Regenerate";
     $button1.setAttribute('type', 'click');
-    $button1.setAttribute('class', 'w3-margin');
+    $button1.setAttribute('class', 'w3-col s12 l2 w3-margin-bottom');
     $button1.setAttribute('data-name', ingredient);
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
@@ -71,8 +71,8 @@ function displayDrinkInformation(drinkData,ingredient) {
 
         $saveButton.textContent = "Save Drink";
         $saveButton.setAttribute('type', 'click');
-        $saveButton.setAttribute('class', 'w3-margin w3-right');
-        $saveButton.setAttribute('value', 'click');
+       
+    
 
         const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
 
@@ -150,7 +150,7 @@ function displayExcuseInformation() {
 
 
     $button2.textContent = "Regenerate";
-    $button2.setAttribute('class', ' w3-right w3-col s12 l2 w3-margin-bottom');
+    $button2.setAttribute('class', 'w3-right w3-col s12 l2 w3-margin-bottom');
     $button2.setAttribute('data-name', 'regenerate');
     $button2.setAttribute('value', 'click');
     $excuseButtonSection.append($button2);
