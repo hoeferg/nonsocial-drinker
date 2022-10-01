@@ -5,6 +5,7 @@ const $refreshJokes = document.getElementById("jokes-refresh");
 const $refresh = document.getElementById("drinks-refresh");
 const $refreshExcuses = document.getElementById("excuses-refresh");
 let savedExcuses = [];
+const goHome = document.querySelector('#home-btn')
 
 function init() {
     const alcholType = localStorage.getItem('alcholType');
@@ -55,6 +56,7 @@ $refreshExcuses.addEventListener("click", function (event) {
 });
 
 
+const $favBtn = document.querySelector('#go-to-favorites-btn');
 
 function displayDrinkInformation(drinkData, ingredient) {
 
@@ -86,14 +88,20 @@ function displayDrinkInformation(drinkData, ingredient) {
     const $itemText = document.createElement("p");
     const $saveButton = document.createElement("button");
 
-    $saveButton.textContent = "Save Drink";
-    $saveButton.setAttribute("type", "click");
-    $saveButton.setAttribute("class", "w3-margin w3-right");
-    $saveButton.setAttribute("value", "click");
+    // Assigns text value and attributes buttons and appends to section
+    $button1.textContent = "Regenerate";
+    $button1.setAttribute('type', 'click');
+    $button1.setAttribute('class', 'w3-col s12 l2 w3-margin-bottom');
+    $button1.setAttribute('data-name', ingredient);
+    $button1.setAttribute('value', 'click');
+    $buttonSection.append($button1);
 
     const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
 
-    $saveButton.setAttribute("data-name", drinkName);
+        $saveButton.textContent = "Save Drink";
+        $saveButton.setAttribute('type', 'click');
+
+
 
     prevDisplayedDrinks.push(drinkName);
 
@@ -161,7 +169,7 @@ function displayExcuseInformation() {
 
 
     $button2.textContent = "Regenerate";
-    $button2.setAttribute('class', ' w3-right w3-col s12 l2 w3-margin-bottom');
+    $button2.setAttribute('class', 'w3-right w3-col s12 l2 w3-margin-bottom');
     $button2.setAttribute('data-name', 'regenerate');
     $button2.setAttribute('value', 'click');
     $excuseButtonSection.append($button2);
@@ -469,4 +477,12 @@ function generateJokeBtn() {
     });
 }
 
+
 init();
+
+$favBtn.addEventListener('click', function () {
+    window.location.assign('../html/favorites.html')
+});
+goHome.addEventListener('click', function () {
+    window.location.assign("../../index.html")
+});
