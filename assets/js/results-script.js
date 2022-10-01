@@ -245,8 +245,6 @@ function displayTopFavorites() {
 
     }
 
-    //$contentSection.append($favoritesSection);
-    //$contentSection.append($buttonsSection);
 }
 
 function getRandomDrink(drinkData, prevDisplayedDrinks) {
