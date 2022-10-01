@@ -42,10 +42,6 @@ $favoriteExcusesList.addEventListener('click', function (event) {
 
 });
 
-homeBtn.addEventListener('click', function() {
-    window.location.assign('../../index.html');
-})
-
 function refreshDisplay(parentElement) {
 
     while (parentElement.firstChild) {
@@ -67,9 +63,6 @@ function clearAll() {
     refreshDisplay($favoriteJokesList)
     refreshDisplay($favoriteExcusesList)
 }
-
-$clearAllBtn.addEventListener('click', clearAll)
-
 
 function refreshDisplay(parentElement) {
 
@@ -149,3 +142,9 @@ function displaySavedFavorites() {
         }
     }
 }
+
+
+$clearAllBtn.addEventListener('click', clearAll);
+homeBtn.addEventListener('click', function() {
+    window.location.assign('../../index.html');
+})

@@ -1,10 +1,26 @@
 const goHome = document.querySelector('#home-btn');
 const $favBtn = document.querySelector('#go-to-favorites-btn');
+let savedExcuses = [];
+let savedJokes = [];
+let savedDrinks = [];
+
 
 function init() {
     const alcholType = localStorage.getItem('alcholType');
     const wantJoke = JSON.parse(localStorage.getItem('wantJoke'));
     const wantExcuse = JSON.parse(localStorage.getItem('wantExcuse'));
+
+    if (localStorage.getItem("savedDrinks") !== null) {
+        savedDrinks = JSON.parse(localStorage.getItem("savedDrinks"));
+    }
+
+    if (localStorage.getItem("savedJokes") !== null) {
+        savedJokes = JSON.parse(localStorage.getItem("savedJokes"));
+    }
+
+    if (localStorage.getItem('savedExcuses') !== null) {
+        savedExcuses = JSON.parse(localStorage.getItem('savedExcuses'))
+    }
 
     getCocktail(alcholType);
     if (wantJoke) {
@@ -74,6 +90,8 @@ function displayDrinkInformation(drinkData, ingredient) {
         $drinkList.append($contentItem);
     }
 
+    saveFavoriteDrink();
+
 }
 
 function displayJokeInformation(jokesArr) {
@@ -120,6 +138,8 @@ function displayJokeInformation(jokesArr) {
         $jokeList.append($contentItem);
     }
 
+    saveFavoritejokes();
+
 }
 
 function displayExcuseInformation() {
@@ -161,6 +181,8 @@ function displayExcuseInformation() {
         $contentItem.append($saveButton);
         $excusesList.append($contentItem);
     }
+
+    saveFavoriteExcuses();
 }
 
 function displayTopFavorites() {
@@ -315,6 +337,50 @@ function getExcuse() {
     return `My ${who} ${did} my ${what}.`
 }
 
+function saveFavoritejokes() {
+    const $listOfJokes = document.getElementById("jokes-list");
+
+    $listOfJokes.addEventListener("click", function (event) {
+      let $jokeOptions = event.target.getAttribute("data-name");
+      console.log($jokeOptions);
+
+      if (!savedJokes.includes($jokeOptions)) {
+        savedJokes.push($jokeOptions);
+        localStorage.setItem("savedJokes", JSON.stringify(savedJokes));
+      }
+    });
+}
+
+function saveFavoriteDrink() {
+    const $listOfDrinks = document.getElementById("generated-drinks-list");
+
+    $listOfDrinks.addEventListener("click", function (event) {
+      let $drinkOptions = event.target.getAttribute("data-name");
+      console.log($drinkOptions);
+
+      if (!savedDrinks.includes($drinkOptions)) {
+        savedDrinks.push($drinkOptions);
+        localStorage.setItem("savedDrinks", JSON.stringify(savedDrinks));
+        console.log(savedDrinks);
+      }
+    });
+}
+
+function saveFavoriteExcuses() {
+    const $listOfExcuses = document.getElementById("excuses-list");
+
+    $listOfExcuses.addEventListener("click", function (event) {
+      let $excuseOptions = event.target.getAttribute("data-name");
+
+      console.log($excuseOptions);
+      if (!savedExcuses.includes($excuseOptions)) {
+        savedExcuses.push($excuseOptions);
+        localStorage.setItem("savedExcuses", JSON.stringify(savedExcuses));
+        console.log(savedExcuses);
+      }
+    });
+}
+
 function generateExcuseBtn() {
     const $genExcuseBtn = document.createElement('button');
     const $buttonSection = document.querySelector('#excuse-refresh');
@@ -331,7 +397,6 @@ function generateExcuseBtn() {
         displayExcuseInformation()
     });
 }
-
 
 function generateJokeBtn() {
     const $genJokeBtn = document.createElement('button');
