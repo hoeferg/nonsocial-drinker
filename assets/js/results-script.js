@@ -1,3 +1,5 @@
+const goHome = document.querySelector('#home-btn')
+
 function init() {
     const alcholType = localStorage.getItem('alcholType');
     const wantJoke = JSON.parse(localStorage.getItem('wantJoke'));
@@ -348,3 +350,7 @@ function generateJokeBtn() {
 }
 
 init();
+
+goHome.addEventListener('click', function(){
+    window.location.assign("../../index.html")
+})
