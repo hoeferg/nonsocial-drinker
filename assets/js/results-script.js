@@ -19,15 +19,7 @@ function init() {
 }
 
 // This function can be passed a parent element and will remove its children
-function refreshDisplay(parentElement) {
 
-    while (parentElement.firstChild) {
-
-        parentElement.removeChild(parentElement.firstChild);
-
-    }
-
-}
 
 function displayDrinkInformation(drinkData, ingredient) {
 
@@ -92,9 +84,6 @@ function displayJokeInformation(jokesArr) {
     // Section for buttons
     const $buttonSection = document.querySelector('#jokes-refresh');
 
-    // Headings for each category
-    const $jokeHeader = document.querySelector('#joke-header');
-
     // Unordered list for each category
     const $jokeList = document.querySelector('#jokes-list');
 
@@ -102,7 +91,6 @@ function displayJokeInformation(jokesArr) {
     const $button1 = document.createElement('button');
 
     // Assign text value for header and appends to content section
-    $jokeHeader.textContent = "Your Jokes:";
 
     // Assigns text value and attributes for buttons and appends them to their section
     $button1.textContent = "Regenerate";
