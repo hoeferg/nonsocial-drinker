@@ -42,10 +42,6 @@ $favoriteExcusesList.addEventListener('click', function (event) {
 
 });
 
-homeBtn.addEventListener('click', function() {
-    window.location.assign('../../index.html');
-})
-
 function refreshDisplay(parentElement) {
 
     while (parentElement.firstChild) {
@@ -67,9 +63,6 @@ function clearAll() {
     refreshDisplay($favoriteJokesList)
     refreshDisplay($favoriteExcusesList)
 }
-
-$clearAllBtn.addEventListener('click', clearAll)
-
 
 function refreshDisplay(parentElement) {
 
@@ -127,7 +120,7 @@ function displaySavedFavorites() {
         }
     }
     if (localStorage.getItem('savedExcuses') !== null) {
-        const favExcusesArray = localStorage.getItem('savedExcuses');
+        const favExcusesArray = JSON.parse(localStorage.getItem('savedExcuses'));
 
         for (let i = 0; i < favExcusesArray.length; i++) {
             const $contentItem = document.createElement('li');
@@ -149,3 +142,10 @@ function displaySavedFavorites() {
         }
     }
 }
+
+$clearAllBtn.addEventListener('click', clearAll);
+homeBtn.addEventListener('click', function() {
+    window.location.assign('../../index.html');
+})
+
+displaySavedFavorites();
