@@ -2,6 +2,8 @@ const goHome = document.querySelector('#home-btn')
 let savedExcuses = [];
 let savedJokes = [];
 let savedDrinks = [];
+
+
 function init() {
     const alcholType = localStorage.getItem('alcholType');
     const wantJoke = JSON.parse(localStorage.getItem('wantJoke'));
@@ -169,7 +171,7 @@ function displayExcuseInformation() {
 function displayTopFavorites() {
 
     //* ID NAMES HERE
-    const idName = ["last-drink-list", "last-joke-list", "last-excuse-list"];
+    const idName = ["last-drink-list", "last-joke-list", "last-excuses-list"];
 
     const favListsArray = [];
     const listsExistArray = [];
@@ -363,13 +365,6 @@ goHome.addEventListener('click', function () {
     window.location.assign("../../index.html")
 });
 
-// const $saveButton = document.createElement('button');
-// function saveFavoriteJokes() {
-//     let savedExcuses = [];
-// let savedJokes = [];
-// let savedDrinks = [];
-saveFavoritejokes();
-// }
 function saveFavoritejokes() {
     const $listOfJokes = document.getElementById("jokes-list");
     $listOfJokes.addEventListener("click", function (event) {
@@ -381,7 +376,7 @@ function saveFavoritejokes() {
       }
     });
   }
-  saveFavoriteDrink();
+
 
   function saveFavoriteDrink() {
     const $listOfDrinks = document.getElementById("generated-drinks-list");
@@ -395,7 +390,6 @@ function saveFavoritejokes() {
       }
     });
   }
-saveFavoriteExcuses();
 
   function saveFavoriteExcuses() {
     const $listOfExcuses = document.getElementById("excuses-list");
