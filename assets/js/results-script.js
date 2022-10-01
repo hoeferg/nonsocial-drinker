@@ -1,4 +1,8 @@
 const goHome = document.querySelector('#home-btn')
+let savedExcuses = [];
+let savedJokes = [];
+let savedDrinks = [];
+
 
 function init() {
     const alcholType = localStorage.getItem('alcholType');
@@ -18,6 +22,7 @@ function init() {
     }
 
 }
+
 const $favBtn = document.querySelector('#go-to-favorites-btn');
 
 function displayDrinkInformation(drinkData, ingredient) {
@@ -166,7 +171,7 @@ function displayExcuseInformation() {
 function displayTopFavorites() {
 
     //* ID NAMES HERE
-    const idName = ["last-drink-list", "last-joke-list", "last-excuse-list"];
+    const idName = ["last-drink-list", "last-joke-list", "last-excuses-list"];
 
     const favListsArray = [];
     const listsExistArray = [];
@@ -359,3 +364,44 @@ $favBtn.addEventListener('click', function () {
 goHome.addEventListener('click', function () {
     window.location.assign("../../index.html")
 });
+
+function saveFavoritejokes() {
+    const $listOfJokes = document.getElementById("jokes-list");
+    $listOfJokes.addEventListener("click", function (event) {
+      let $jokeOptions = event.target.getAttribute("data-name");
+      console.log($jokeOptions);
+      if (!savedJokes.includes($jokeOptions)) {
+        savedJokes.push($jokeOptions);
+        localStorage.setItem("likedJokes", JSON.stringify(savedJokes));
+      }
+    });
+  }
+
+
+  function saveFavoriteDrink() {
+    const $listOfDrinks = document.getElementById("generated-drinks-list");
+    $listOfDrinks.addEventListener("click", function (event) {
+      let $drinkOptions = event.target.getAttribute("data-name");
+      console.log($drinkOptions);
+      if (!savedDrinks.includes($drinkOptions)) {
+        savedDrinks.push($drinkOptions);
+        localStorage.setItem("likedDrinks", JSON.stringify(savedDrinks));
+        console.log(savedDrinks);
+      }
+    });
+  }
+
+  function saveFavoriteExcuses() {
+    const $listOfExcuses = document.getElementById("excuses-list");
+    $listOfExcuses.addEventListener("click", function (event) {
+      let $excuseOptions = event.target.getAttribute("data-name");
+      console.log($excuseOptions);
+      if (!savedExcuses.includes($excuseOptions)) {
+        savedExcuses.push($excuseOptions);
+        localStorage.setItem("likedExcuses", JSON.stringify(savedExcuses));
+        console.log(savedExcuses);
+      }
+    });
+  }
+
+  
