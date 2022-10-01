@@ -1,10 +1,5 @@
-const $greetingHeader = document.querySelector('#greeting');
 const $howItWorks = document.querySelector('#how-it-works');
 const $contentSection = document.querySelector('#intro-1');
-const $favoriteDrinksList = document.querySelector('#favorite-drinks-list')
-const $favoriteJokesList = document.querySelector('#favorite-jokes-list')
-const $favoriteExcusesList = document.querySelector('#favorite-excuses-list')
-const $clearAll = document.querySelector('#clear-all')
 
 
 function init() {
@@ -51,7 +46,11 @@ function createAboutUs() {
   $appDesc2.textContent =
     "Not only is it an app for the socially awkward but it can help you escape the socially awkward… PURE, GENIUS!";
 
+<<<<<<< HEAD
   //console.log($appDesc);
+=======
+
+>>>>>>> 3bfe0be3520eb114b160e148087ef54364195225
 }
 
 function createForm() {
@@ -84,6 +83,7 @@ function createForm() {
     $selectOption.append($alcoholChoices);
   }
 
+<<<<<<< HEAD
   $form.setAttribute("id", "howItWorksForm");
   $howItWorks.setAttribute(
     "class",
@@ -130,6 +130,46 @@ function hideHeader() {
   $greetingHeader.setAttribute("class", "custom-display");
 }
 
+=======
+    $form.setAttribute('id', 'howItWorksForm');
+    $howItWorks.setAttribute('class', 'w3-container w3-vivid-greenish-blue w3-border w3-round-xxlarge w3-card')
+    $jokeInput.setAttribute('type', 'checkbox');
+    $jokeInput.classList.add('button-margin');
+    $jokeInput.setAttribute('id', 'jokeCheck')
+    $excuseInput.setAttribute('type', 'checkbox');
+    $excuseInput.setAttribute('id', 'excuseCheck')
+    $excuseInput.classList.add('button-margin');
+    $selectOption.setAttribute('class', 'dropdown');
+    $selectOption.setAttribute('id', 'user-options-list');
+    $submitBtn.setAttribute('type', 'submit');
+    $submitBtn.setAttribute('value', 'submit');
+    $submitBtn.setAttribute('id', 'submitBtn');
+    $submitBtn.classList.add('input-margin')
+    $h2.setAttribute('class', 'w3-center');
+    $description.setAttribute('class', 'w3-center');
+    $description.setAttribute('class', 'w3-large');
+    $excuseLabel.setAttribute('class', 'w3-large');
+    $jokeLabel.setAttribute('class', 'w3-large');
+    $jokeLabel.classList.add('button-margin');
+    $excuseLabel.classList.add('button-margin');
+    $submitBtn.textContent = 'SEE WHAT YOU GET!'
+    $jokeLabel.textContent = 'Jokes!'
+    $excuseLabel.textContent = 'Excuses!'
+
+    $howItWorks.appendChild($form);
+    $form.appendChild($h2);
+    $form.appendChild($description);
+    $form.appendChild($selectOption);
+    $form.appendChild($jokeLabel);
+    $jokeLabel.appendChild($jokeInput);
+    $form.appendChild($excuseLabel);
+    $excuseLabel.appendChild($excuseInput)
+    $form.appendChild($submitBtn);
+    $h2.textContent = 'How It Works!'
+    $description.textContent = 'Pick your poison from the drinks drop down and indicate whether or not you would like a joke and/or and excuse to go along with it from the options below. You will be shown a list of options on the next page that will aid you in you journey of libation and liberation.'
+}
+
+>>>>>>> 3bfe0be3520eb114b160e148087ef54364195225
 function submitHandler(event) {
     event.preventDefault();
 
@@ -140,6 +180,7 @@ function submitHandler(event) {
     const wantJoke = document.getElementById('jokeCheck').checked;
     const wantExcuse = document.getElementById('excuseCheck').checked;
 
+
     localStorage.setItem('alcholType', alcoholType);
     localStorage.setItem('wantJoke', wantJoke);
     localStorage.setItem('wantExcuse', wantExcuse);
@@ -147,9 +188,11 @@ function submitHandler(event) {
     window.location.assign('./assets/html/results.html');
 }
 
+
 init();
 const userChoiceForm = document.querySelector('#howItWorksForm');
 userChoiceForm.addEventListener('submit', submitHandler);
+<<<<<<< HEAD
 
 
 
@@ -503,3 +546,5 @@ userChoiceForm.addEventListener('submit', submitHandler);
   
 
   
+=======
+>>>>>>> 3bfe0be3520eb114b160e148087ef54364195225
