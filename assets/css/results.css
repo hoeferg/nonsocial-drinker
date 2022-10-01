@@ -13,26 +13,59 @@ header{
 #last-selection-title{
     margin: 20px 0;
 }
+
+
 #drinks-refresh button{
     min-width: 100px;
 }
 
 #jokes-refresh button{
     min-width: 100px;
+    
 }
 
 #excuse-refresh button{
     min-width: 100px;
+  
 }
 
 #drinks-bckgrnd{
-    min-height: 400px;
+    min-height: 450px;
 }
 
-#jokes-bckgrnd{
-    min-height: 400px;
-}
 
 #excuses-bckgrnd{
-    min-height: 400px;
+    min-height: 450px;
+}
+
+@media screen and (max-width:480px) {
+    #jokes-bckgrnd{
+        min-height: 600px;
+    }
+    #go-to-favorites-btn{
+        margin-right: 14px;
+        margin-bottom: 16px;
+    }
+    
+}
+
+@media screen and (min-width:500px){
+    #jokes-bckgrnd{
+        min-height: 550px;
+    }
+    #go-to-favorites-btn{
+        margin-right: 25px;
+        margin-bottom: 16px;
+    }
+    
+}
+
+@media screen and (min-width:900px){
+    #jokes-bckgrnd{
+        min-height: 450px;
+    }
+    #go-to-favorites-btn{
+        margin: 16px;
+    }
+    
 }
