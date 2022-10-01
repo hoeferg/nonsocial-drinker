@@ -58,8 +58,8 @@ function displayDrinkInformation(drinkData, ingredient) {
 
         $saveButton.textContent = "Save Drink";
         $saveButton.setAttribute('type', 'click');
-       
-    
+
+
 
         const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
 
@@ -350,18 +350,12 @@ function generateJokeBtn() {
     });
 }
 
-<<<<<<< HEAD
-//making a GO TO FAVS BTN that redirects to fav page
 
 init();
 
 $favBtn.addEventListener('click', function () {
     window.location.assign('../html/favorites.html')
 });
-=======
-init();
-
-goHome.addEventListener('click', function(){
+goHome.addEventListener('click', function () {
     window.location.assign("../../index.html")
-})
->>>>>>> 500d51878a2a77f0350649bc64d9d45a1f670fcf
+});
