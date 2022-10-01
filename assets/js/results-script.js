@@ -18,6 +18,7 @@ function init() {
     }
 
 }
+const $favBtn = document.querySelector('#go-to-favorites-btn');
 
 function displayDrinkInformation(drinkData, ingredient) {
 
@@ -57,8 +58,8 @@ function displayDrinkInformation(drinkData, ingredient) {
 
         $saveButton.textContent = "Save Drink";
         $saveButton.setAttribute('type', 'click');
-       
-    
+
+
 
         const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
 
@@ -349,8 +350,12 @@ function generateJokeBtn() {
     });
 }
 
+
 init();
 
-goHome.addEventListener('click', function(){
+$favBtn.addEventListener('click', function () {
+    window.location.assign('../html/favorites.html')
+});
+goHome.addEventListener('click', function () {
     window.location.assign("../../index.html")
-})
+});
