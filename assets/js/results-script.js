@@ -72,13 +72,13 @@ function displayDrinkInformation(drinkData, ingredient) {
   $drinkHeader.textContent = `Here are some great cocktails with ${ingredient}:`;
 
   // Assigns text value and attributes buttons and appends to section
-  $button1.textContent = "Regenerate";
-  $button1.setAttribute("type", "click");
-  $button1.setAttribute("class", "w3-col s12 l2 w3-margin-bottom");
-  $button1.setAttribute("data-name", ingredient);
-  $button1.setAttribute("value", "click");
-  refreshDisplay($buttonSection);
-  $buttonSection.append($button1);
+//   $button1.textContent = "Regenerate";
+//   $button1.setAttribute("type", "click");
+//   $button1.setAttribute("class", "w3-col s12 l2 w3-margin-bottom");
+//   $button1.setAttribute("data-name", ingredient);
+//   $button1.setAttribute("value", "click");
+//   refreshDisplay($buttonSection);
+//   $buttonSection.append($button1);
 
   // Uses for loops to iterate through drinkData array to get drink names and assigns them as text value for list item
   // List items are then appended to the drinks list
@@ -89,8 +89,16 @@ function displayDrinkInformation(drinkData, ingredient) {
     const $itemText = document.createElement("p");
     const $saveButton = document.createElement("button");
 
-    $saveButton.textContent = "Save Drink";
-    $saveButton.setAttribute("type", "click");
+    // $saveButton.textContent = "Save Drink";
+    // $saveButton.setAttribute("type", "click");
+    // Assigns text value and attributes buttons and appends to section
+    $button1.textContent = "Regenerate";
+    $button1.setAttribute('type', 'click');
+    $button1.setAttribute('class', 'w3-col s11 w3-margin-bottom w3-display-bottommiddle w3-round');
+    $button1.setAttribute('data-name', ingredient);
+    $button1.setAttribute('value', 'click');
+    refreshDisplay($buttonSection);
+    $buttonSection.append($button1);
 
     console.log(prevDisplayedDrinks);
     console.log(drinkData);
@@ -103,6 +111,10 @@ function displayDrinkInformation(drinkData, ingredient) {
     $itemText.textContent = drinkName;
     $contentItem.append($itemText);
     $contentItem.append($saveButton);
+        $saveButton.textContent = "Save Drink";
+        $saveButton.setAttribute('type', 'click');
+        $saveButton.setAttribute('value', 'click');
+        $saveButton.setAttribute("class", "w3-round")
 
     $drinkList.append($contentItem);
   }
@@ -125,13 +137,13 @@ function displayJokeInformation(jokesArr) {
 
   // Assign text value for header and appends to content section
 
-  // Assigns text value and attributes for buttons and appends them to their section
-  $button1.textContent = "Regenerate";
-  $button1.setAttribute("class", "w3-right w3-col s12 l2 w3-margin-bottom");
-  $button1.setAttribute("data-name", "regenerate");
-  $button1.setAttribute("value", "click");
-  refreshDisplay($buttonSection); // removes existing button each time
-  $buttonSection.append($button1);
+//   // Assigns text value and attributes for buttons and appends them to their section
+//   $button1.textContent = "Regenerate";
+//   $button1.setAttribute("class", "w3-right w3-col s12 l2 w3-margin-bottom");
+//   $button1.setAttribute("data-name", "regenerate");
+//   $button1.setAttribute("value", "click");
+//   refreshDisplay($buttonSection); // removes existing button each time
+//   $buttonSection.append($button1);
 
   // Uses for loops to iterate through jokeData array to get jokes and assigns them as text value for list item
   // List items are then appended to the jokes list
@@ -140,13 +152,20 @@ function displayJokeInformation(jokesArr) {
     const $contentItem = document.createElement("li");
     const $itemText = document.createElement("p");
     const $saveButton = document.createElement("button");
-
-    $saveButton.textContent = "Save Joke";
-    $saveButton.setAttribute("type", "click");
-    $saveButton.setAttribute("value", "click");
+    // Assigns text value and attributes for buttons and appends them to their section
+    $button1.textContent = "Regenerate";
+    $button1.setAttribute('class', ' w3-col s11 l2 w3-margin-bottom w3-display-bottomright w3-margin-right w3-round');
+    $button1.setAttribute('data-name', 'regenerate');
+    $button1.setAttribute('value', 'click');
+    refreshDisplay($buttonSection);
+    $buttonSection.append($button1);
 
     $itemText.textContent = jokesArray[i];
     $saveButton.setAttribute("data-name", jokesArray[i]);
+        $saveButton.textContent = "Save Joke";
+        $saveButton.setAttribute('type', 'click');
+        $saveButton.setAttribute('value', 'click');
+        $saveButton.setAttribute('class', 'w3-round');
 
     $contentItem.append($itemText);
     $contentItem.append($saveButton);
@@ -172,19 +191,32 @@ function displayExcuseInformation() {
 
   const $button2 = document.createElement("button");
 
-  $button2.textContent = "Regenerate";
-  $button2.setAttribute("class", "w3-right w3-col s12 l2 w3-margin-bottom");
-  $button2.setAttribute("data-name", "regenerate");
-  $button2.setAttribute("value", "click");
-  refreshDisplay($excuseButtonSection);
-  $excuseButtonSection.append($button2);
+//   $button2.textContent = "Regenerate";
+//   $button2.setAttribute("class", "w3-right w3-col s12 l2 w3-margin-bottom");
+//   $button2.setAttribute("data-name", "regenerate");
+//   $button2.setAttribute("value", "click");
+//   refreshDisplay($excuseButtonSection);
+//   $excuseButtonSection.append($button2);
 
-  while (excuseArray.length < 3) {
-    let excuseAr = getExcuse();
-    if (!excuseArray.includes(excuseAr)) {
-      excuseArray.push(excuseAr);
+//   while (excuseArray.length < 3) {
+//     let excuseAr = getExcuse();
+//     if (!excuseArray.includes(excuseAr)) {
+//       excuseArray.push(excuseAr);
+
+    $button2.textContent = "Regenerate";
+    $button2.setAttribute('class', ' w3-col s11 l2 w3-margin-bottom w3-display-bottomright w3-margin-right w3-round');
+    $button2.setAttribute('data-name', 'regenerate');
+    $button2.setAttribute('value', 'click');
+    refreshDisplay($excuseButtonSection);
+    $excuseButtonSection.append($button2);
+
+    while (excuseArray.length < 3) {
+        let excuseAr = getExcuse();
+        if (!excuseArray.includes(excuseAr)) {
+            excuseArray.push(excuseAr)
+        }
     }
-  }
+  
   console.log(excuseArray);
 
   for (let i = 0; i < 3; i++) {
@@ -192,9 +224,10 @@ function displayExcuseInformation() {
     const $itemText = document.createElement("p");
     const $saveButton = document.createElement("button");
 
-    $saveButton.textContent = "Save Excuse";
-    $saveButton.setAttribute("type", "click");
-    $saveButton.setAttribute("value", "click");
+        $saveButton.textContent = "Save Excuse";
+        $saveButton.setAttribute('type', 'click');
+        $saveButton.setAttribute('value', 'click');
+        $saveButton.setAttribute('class', 'w3-round');
 
         $itemText.textContent = excuseArray[i]
         $saveButton.setAttribute('data-name', excuseArray[i]);
@@ -453,7 +486,7 @@ function saveFavoritejokes() {
     console.log($jokeOptions);
     if (!savedJokes.includes($jokeOptions)) {
       savedJokes.push($jokeOptions);
-      localStorage.setItem("likedJokes", JSON.stringify(savedJokes));
+      localStorage.setItem("savedJokes", JSON.stringify(savedJokes));
     }
   });
 }
@@ -465,7 +498,7 @@ function saveFavoriteDrink() {
     console.log($drinkOptions);
     if (!savedDrinks.includes($drinkOptions)) {
       savedDrinks.push($drinkOptions);
-      localStorage.setItem("likedDrinks", JSON.stringify(savedDrinks));
+      localStorage.setItem("savedDrinks", JSON.stringify(savedDrinks));
       console.log(savedDrinks);
     }
   });
@@ -478,7 +511,7 @@ function saveFavoriteExcuses() {
     console.log($excuseOptions);
     if (!savedExcuses.includes($excuseOptions)) {
       savedExcuses.push($excuseOptions);
-      localStorage.setItem("likedExcuses", JSON.stringify(savedExcuses));
+      localStorage.setItem("savedExcuses", JSON.stringify(savedExcuses));
       console.log(savedExcuses);
     }
   });
