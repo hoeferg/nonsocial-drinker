@@ -88,9 +88,6 @@ function displayJokeInformation(jokesArr) {
     // Section for buttons
     const $buttonSection = document.querySelector('#jokes-refresh');
 
-    // Headings for each category
-    const $jokeHeader = document.querySelector('#joke-header');
-
     // Unordered list for each category
     const $jokeList = document.querySelector('#jokes-list');
 
@@ -98,11 +95,10 @@ function displayJokeInformation(jokesArr) {
     const $button1 = document.createElement('button');
 
     // Assign text value for header and appends to content section
-    $jokeHeader.textContent = "Your Jokes:";
 
     // Assigns text value and attributes for buttons and appends them to their section
     $button1.textContent = "Regenerate";
-    $button1.setAttribute('type', 'click');
+    $button1.setAttribute('class', 'w3-right w3-col s12 l2 w3-margin-bottom');
     $button1.setAttribute('data-name', 'regenerate');
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
@@ -142,7 +138,7 @@ function displayExcuseInformation() {
 
 
     $button2.textContent = "Regenerate";
-    $button2.setAttribute('type', 'click');
+    $button2.setAttribute('class', ' w3-right w3-col s12 l2 w3-margin-bottom');
     $button2.setAttribute('data-name', 'regenerate');
     $button2.setAttribute('value', 'click');
     $excuseButtonSection.append($button2);
@@ -237,8 +233,6 @@ function displayTopFavorites() {
 
     }
 
-    //$contentSection.append($favoritesSection);
-    //$contentSection.append($buttonsSection);
 }
 
 function getRandomDrink(drinkData, prevDisplayedDrinks) {
