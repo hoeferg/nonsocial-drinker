@@ -1,4 +1,3 @@
-
 function init() {
     const alcholType = localStorage.getItem('alcholType');
     const wantJoke = JSON.parse(localStorage.getItem('wantJoke'));
@@ -17,9 +16,6 @@ function init() {
     }
 
 }
-
-// This function can be passed a parent element and will remove its children
-
 
 function displayDrinkInformation(drinkData, ingredient) {
 
@@ -172,7 +168,7 @@ function displayTopFavorites() {
     const favListsArray = [];
     const listsExistArray = [];
 
-    if (localStorage.getItem("gotoDrinksArr") !== null) {
+    if (localStorage.getItem("gotoDrinkList") !== null) {
         const topDrinksArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArray.push(topDrinksArray);
         listsExistArray.push(true);
@@ -181,7 +177,7 @@ function displayTopFavorites() {
         listsExistArray.push(false);
     }
 
-    if (localStorage.getItem("gotoJokesArr") !== null) {
+    if (localStorage.getItem("gotoJokeList") !== null) {
         const topJokesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArray.push(topJokesArray);
         listsExistArray.push(true);
@@ -190,7 +186,7 @@ function displayTopFavorites() {
         listsExistArray.push(false);
     }
 
-    if (localStorage.getItem("gotoFavExcusesArr") !== null) {
+    if (localStorage.getItem("gotoExcuseList") !== null) {
         const topExcusesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
         favListsArray.push(topExcusesArray);
         listsExistArray.push(true);
