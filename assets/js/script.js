@@ -3,15 +3,15 @@ const $contentSection = document.querySelector('#intro-1');
 
 
 function init() {
-  if (localStorage.getItem("likedDrinks") !== null) {
-    savedDrinks = JSON.parse(localStorage.getItem("likedDrinks"));
+  if (localStorage.getItem("savedDrinks") !== null) {
+    savedDrinks = JSON.parse(localStorage.getItem("savedDrinks"));
   }
-  if (localStorage.getItem("likedJokes") !== null) {
-    savedJokes = JSON.parse(localStorage.getItem("likedJokes"));
+  if (localStorage.getItem("savedJokes") !== null) {
+    savedJokes = JSON.parse(localStorage.getItem("savedJokes"));
   }
-  // if (localStorage.getItem('likedexcuses') !== null) {
-  //     savedExcuses = JSON.parse(localStorage.getItem('likedescuses'))
-  // }
+  if (localStorage.getItem('savedExcuses') !== null) {
+       savedExcuses = JSON.parse(localStorage.getItem('savedExcuses'))
+  }
   createAboutUs();
   createForm();
 }
