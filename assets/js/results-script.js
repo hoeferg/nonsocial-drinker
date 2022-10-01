@@ -43,7 +43,7 @@ function displayDrinkInformation(drinkData, ingredient) {
     // Assigns text value and attributes buttons and appends to section
     $button1.textContent = "Regenerate";
     $button1.setAttribute('type', 'click');
-    $button1.setAttribute('class', 'w3-col s12 l2 w3-margin-bottom');
+    $button1.setAttribute('class', 'w3-col s11 w3-margin-bottom w3-display-bottommiddle w3-round');
     $button1.setAttribute('data-name', ingredient);
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
@@ -58,8 +58,8 @@ function displayDrinkInformation(drinkData, ingredient) {
 
         $saveButton.textContent = "Save Drink";
         $saveButton.setAttribute('type', 'click');
-
-
+        $saveButton.setAttribute('value', 'click');
+        $saveButton.setAttribute("class", "w3-round")
 
         const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
 
@@ -93,7 +93,7 @@ function displayJokeInformation(jokesArr) {
 
     // Assigns text value and attributes for buttons and appends them to their section
     $button1.textContent = "Regenerate";
-    $button1.setAttribute('class', 'w3-right w3-col s12 l2 w3-margin-bottom');
+    $button1.setAttribute('class', ' w3-col s11 l2 w3-margin-bottom w3-display-bottomright w3-margin-right w3-round');
     $button1.setAttribute('data-name', 'regenerate');
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
@@ -109,6 +109,7 @@ function displayJokeInformation(jokesArr) {
         $saveButton.textContent = "Save Joke";
         $saveButton.setAttribute('type', 'click');
         $saveButton.setAttribute('value', 'click');
+        $saveButton.setAttribute('class', 'w3-round');
 
 
         $itemText.textContent = jokesArray[i]
@@ -133,7 +134,7 @@ function displayExcuseInformation() {
 
 
     $button2.textContent = "Regenerate";
-    $button2.setAttribute('class', 'w3-right w3-col s12 l2 w3-margin-bottom');
+    $button2.setAttribute('class', ' w3-col s11 l2 w3-margin-bottom w3-display-bottomright w3-margin-right w3-round');
     $button2.setAttribute('data-name', 'regenerate');
     $button2.setAttribute('value', 'click');
     $excuseButtonSection.append($button2);
@@ -154,6 +155,7 @@ function displayExcuseInformation() {
         $saveButton.textContent = "Save Excuse";
         $saveButton.setAttribute('type', 'click');
         $saveButton.setAttribute('value', 'click');
+        $saveButton.setAttribute('class', 'w3-round');
 
         $itemText.textContent = excuseArray[i]
         $saveButton.setAttribute('data-name', excuseArray[i]);

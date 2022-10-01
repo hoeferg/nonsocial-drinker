@@ -77,7 +77,7 @@ function createForm() {
     $submitBtn.setAttribute('type', 'submit');
     $submitBtn.setAttribute('value', 'submit');
     $submitBtn.setAttribute('id', 'submitBtn');
-    $submitBtn.classList.add('input-margin')
+    $submitBtn.classList.add('input-margin', "w3-round")
     $h2.setAttribute('class', 'w3-center');
     $description.setAttribute('class', 'w3-center');
     $description.setAttribute('class', 'w3-large');

@@ -2,9 +2,24 @@ header{
     min-height: 100px;
 }
 main{
-    min-height: 250px;
+    min-height: 00px;
 }
 
-#last-excuses{
-    margin-bottom: 70px;
+@media screen and (max-width: 480px){
+    #moreFunBtn{
+        margin: 16px;
+    }
+}
+
+@media screen and (min-width: 500px){
+    #moreFunBtn{
+        margin: 16px 26px 16px 0;
+
+    }
+}
+
+@media screen and (min-width: 950px){
+    #moreFunBtn{
+        margin: 16px;
+    }
 }
