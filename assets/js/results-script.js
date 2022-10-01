@@ -22,6 +22,7 @@ function init() {
         savedExcuses = JSON.parse(localStorage.getItem('savedExcuses'))
     }
 
+    displayTopFavorites();
     getCocktail(alcholType);
     if (wantJoke) {
         getJoke();
@@ -188,13 +189,13 @@ function displayExcuseInformation() {
 function displayTopFavorites() {
 
     //* ID NAMES HERE
-    const idName = ["last-drink-list", "last-joke-list", "last-excuses-list"];
+    const idName = ["#last-drink-list", "#last-jokes-list", "#last-excuses-list"];
 
     const favListsArray = [];
     const listsExistArray = [];
 
     if (localStorage.getItem("gotoDrinkList") !== null) {
-        const topDrinksArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
+        const topDrinksArray = JSON.parse(localStorage.getItem("gotoDrinkList"));
         favListsArray.push(topDrinksArray);
         listsExistArray.push(true);
     } else {
@@ -203,7 +204,7 @@ function displayTopFavorites() {
     }
 
     if (localStorage.getItem("gotoJokeList") !== null) {
-        const topJokesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
+        const topJokesArray = JSON.parse(localStorage.getItem("gotoJokeList"));
         favListsArray.push(topJokesArray);
         listsExistArray.push(true);
     } else {
@@ -212,7 +213,7 @@ function displayTopFavorites() {
     }
 
     if (localStorage.getItem("gotoExcuseList") !== null) {
-        const topExcusesArray = JSON.parse(localStorage.getItem("topFavDrinksArr"));
+        const topExcusesArray = JSON.parse(localStorage.getItem("gotoExcuseList"));
         favListsArray.push(topExcusesArray);
         listsExistArray.push(true);
     } else {
@@ -222,7 +223,7 @@ function displayTopFavorites() {
 
 
 
-    for (let i = 0; i < elementArray.length; i++) {
+    for (let i = 0; i < idName.length; i++) {
         const list = document.querySelector(idName[i]);
 
 
