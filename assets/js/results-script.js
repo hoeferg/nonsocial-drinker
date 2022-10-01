@@ -1,8 +1,4 @@
 
-
-
-
-
 function init() {
     const alcholType = localStorage.getItem('alcholType');
     const wantJoke = JSON.parse(localStorage.getItem('wantJoke'));
@@ -11,9 +7,13 @@ function init() {
     getCocktail(alcholType);
     if (wantJoke) {
         getJoke();
+    } else {
+        generateJokeBtn();
     }
     if (wantExcuse) {
         displayExcuseInformation();
+    } else {
+        generateExcuseBtn();
     }
 
 }
@@ -31,10 +31,6 @@ function refreshDisplay(parentElement) {
 
 function displayDrinkInformation(drinkData, ingredient) {
 
-
-    // These will be the main sections that will contain all content
-    const $section1 = document.createElement('section');
-    $section1.setAttribute('data-name', 'drinks');
 
     // Section for buttons, will use twice for each main section
     const $buttonSection = document.querySelector('#drinks-refresh');
@@ -245,8 +241,6 @@ function displayTopFavorites() {
 
     }
 
-    //$contentSection.append($favoritesSection);
-    //$contentSection.append($buttonsSection);
 }
 
 function getRandomDrink(drinkData, prevDisplayedDrinks) {
@@ -334,14 +328,39 @@ function getExcuse() {
     return `My ${who} ${did} my ${what}.`
 }
 
+function generateExcuseBtn() {
+    const $genExcuseBtn = document.createElement('button');
+    const $buttonSection = document.querySelector('#excuse-refresh');
+
+    $genExcuseBtn.setAttribute('type', 'submit');
+    $genExcuseBtn.setAttribute('value', 'Get An Excuse');
+    $genExcuseBtn.textContent = "Get An Excuse!"
+
+
+    $buttonSection.append($genExcuseBtn)
+
+    $genExcuseBtn.addEventListener('click', function () {
+        $genExcuseBtn.style.display = 'none'
+        displayExcuseInformation()
+    });
+}
+
+
 function generateJokeBtn() {
     const $genJokeBtn = document.createElement('button');
+    const $buttonSection = document.querySelector('#jokes-refresh');
 
     $genJokeBtn.setAttribute('type', 'submit');
-    $genJokeBtn.setAttribute('value', 'Get An Excuse');
+    $genJokeBtn.setAttribute('value', 'Get An Joke');
+    $genJokeBtn.textContent = "Get A Joke!"
 
 
+    $buttonSection.append($genJokeBtn)
 
+    $genJokeBtn.addEventListener('click', function () {
+        $genJokeBtn.style.display = 'none'
+        getJoke()
+    });
 }
 
 init();
