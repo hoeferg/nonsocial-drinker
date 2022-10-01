@@ -110,7 +110,7 @@ function displayJokeInformation(jokesArr) {
 
     // Assigns text value and attributes for buttons and appends them to their section
     $button1.textContent = "Regenerate";
-    $button1.setAttribute('type', 'click');
+    $button1.setAttribute('class', 'w3-right w3-col s12 l2 w3-margin-bottom');
     $button1.setAttribute('data-name', 'regenerate');
     $button1.setAttribute('value', 'click');
     $buttonSection.append($button1);
@@ -150,7 +150,7 @@ function displayExcuseInformation() {
 
 
     $button2.textContent = "Regenerate";
-    $button2.setAttribute('type', 'click');
+    $button2.setAttribute('class', ' w3-right w3-col s12 l2 w3-margin-bottom');
     $button2.setAttribute('data-name', 'regenerate');
     $button2.setAttribute('value', 'click');
     $excuseButtonSection.append($button2);
