@@ -6,7 +6,7 @@ let savedDrinks = [];
 const $refreshJokes = document.getElementById("jokes-refresh");
 const $refreshDrinks = document.getElementById("drinks-refresh");
 const $refreshExcuses = document.getElementById("excuses-refresh");
-const alcholType = localStorage.getItem("alcholType");
+const alcoholType = localStorage.getItem("alcholType");
 
 function init() {
     const alcoholType = localStorage.getItem('alcoholType');
@@ -38,7 +38,7 @@ function init() {
         generateExcuseBtn();
     }
 
-    getCocktail(alcholType);
+    getCocktail(alcoholType);
     if (wantJoke) {
         getJoke();
     } else {
@@ -71,27 +71,12 @@ function displayDrinkInformation(drinkData, ingredient) {
     // Assign text value for header and appends to content section
     $drinkHeader.textContent = `Here are some great cocktails with ${ingredient}:`;
 
-    // Assigns text value and attributes buttons and appends to section
-    //   $button1.textContent = "Regenerate";
-    //   $button1.setAttribute("type", "click");
-    //   $button1.setAttribute("class", "w3-col s12 l2 w3-margin-bottom");
-    //   $button1.setAttribute("data-name", ingredient);
-    //   $button1.setAttribute("value", "click");
-    //   refreshDisplay($buttonSection);
-    //   $buttonSection.append($button1);
-
-    // Uses for loops to iterate through drinkData array to get drink names and assigns them as text value for list item
-    // List items are then appended to the drinks list
-    // TODO: connect the drinks data properly
     for (let i = 0; i < 3; i++) {
 
         const $contentItem = document.createElement("li");
         const $itemText = document.createElement("p");
         const $saveButton = document.createElement("button");
 
-        // $saveButton.textContent = "Save Drink";
-        // $saveButton.setAttribute("type", "click");
-        // Assigns text value and attributes buttons and appends to section
         $button1.textContent = "Regenerate";
         $button1.setAttribute('type', 'click');
         $button1.setAttribute('class', 'w3-col s11 w3-margin-bottom w3-display-bottommiddle w3-round');
@@ -135,19 +120,7 @@ function displayJokeInformation(jokesArr) {
     // Both refresh and save button
     const $button1 = document.createElement("button");
 
-    // Assign text value for header and appends to content section
-
-    //   // Assigns text value and attributes for buttons and appends them to their section
-    //   $button1.textContent = "Regenerate";
-    //   $button1.setAttribute("class", "w3-right w3-col s12 l2 w3-margin-bottom");
-    //   $button1.setAttribute("data-name", "regenerate");
-    //   $button1.setAttribute("value", "click");
-    //   refreshDisplay($buttonSection); // removes existing button each time
-    //   $buttonSection.append($button1);
-
-    // Uses for loops to iterate through jokeData array to get jokes and assigns them as text value for list item
-    // List items are then appended to the jokes list
-    // TODO: connect the jokes data properly also may need to refactor if joke is a two liner
+    
     for (let i = 0; i < 3; i++) {
         const $contentItem = document.createElement("li");
         const $itemText = document.createElement("p");
@@ -191,17 +164,6 @@ function displayExcuseInformation() {
 
     const $button2 = document.createElement("button");
 
-    //   $button2.textContent = "Regenerate";
-    //   $button2.setAttribute("class", "w3-right w3-col s12 l2 w3-margin-bottom");
-    //   $button2.setAttribute("data-name", "regenerate");
-    //   $button2.setAttribute("value", "click");
-    //   refreshDisplay($excuseButtonSection);
-    //   $excuseButtonSection.append($button2);
-
-    //   while (excuseArray.length < 3) {
-    //     let excuseAr = getExcuse();
-    //     if (!excuseArray.includes(excuseAr)) {
-    //       excuseArray.push(excuseAr);
 
     $button2.textContent = "Regenerate";
     $button2.setAttribute('class', ' w3-col s11 l2 w3-margin-bottom w3-display-bottomright w3-margin-right w3-round');
@@ -240,8 +202,6 @@ function displayExcuseInformation() {
 }
 
 function displayTopFavorites() {
-    //   //* ID NAMES HERE
-    //   const idName = ["last-drink-list", "last-joke-list", "last-excuses-list"];
 
     const favListsArray = [];
     const listsExistArray = [];
@@ -488,7 +448,7 @@ $favBtn.addEventListener("click", function () {
 //   window.location.assign("../../index.html");
 // });
 
-function saveFavoritejokes() {
+function saveFavoriteJokes() {
     const $listOfJokes = document.getElementById("jokes-list");
     $listOfJokes.addEventListener("click", function (event) {
         let $jokeOptions = event.target.getAttribute("data-name");
@@ -549,7 +509,7 @@ $refreshDrinks.addEventListener("click", function (event) {
     refreshDisplay($drinkDisplay);
 
     // refreshDisplay($refreshJokes);
-    getCocktail(alcholType);
+    getCocktail(alcoholType);
     //displayJokeInformation();
 });
 
