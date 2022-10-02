@@ -1,7 +1,7 @@
-const $favoriteDrinksList = document.querySelector('#last-drink-list')
-const $favoriteJokesList = document.querySelector('#last-jokes-list')
-const $favoriteExcusesList = document.querySelector('#last-excuses-list')
-const $clearAllBtn = document.querySelector('#clear-all')
+const $favoriteDrinksList = document.querySelector('#last-drink-list');
+const $favoriteJokesList = document.querySelector('#last-jokes-list');
+const $favoriteExcusesList = document.querySelector('#last-excuses-list');
+const $clearAllBtn = document.querySelector('#clear-all');
 const homeBtn = document.querySelector('#moreFunBtn');
 
 
