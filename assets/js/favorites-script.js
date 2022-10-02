@@ -83,7 +83,7 @@ function displaySavedFavorites() {
             const $itemText = document.createElement('p');
             const $saveButton = document.createElement('button');
 
-            $saveButton.textContent = "Save Joke As Go To";
+            $saveButton.textContent = "Save Drink As Go To";
             $saveButton.setAttribute('type', 'click');
             $saveButton.setAttribute('value', 'click');
             $saveButton.setAttribute
@@ -128,7 +128,7 @@ function displaySavedFavorites() {
             const $itemText = document.createElement('p');
             const $saveButton = document.createElement('button');
 
-            $saveButton.textContent = "Save Joke As Go To";
+            $saveButton.textContent = "Save Excuse As Go To";
             $saveButton.setAttribute('type', 'click');
             $saveButton.setAttribute('value', 'click');
 

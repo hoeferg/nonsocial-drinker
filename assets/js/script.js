@@ -159,7 +159,7 @@ function creatQuickFavs() {
   $goToFavs.setAttribute('class', 'w3-button w3-border-black w3-white ')
   $goToFavs.classList.add('input-margin')
   $h2.textContent = 'Come Here Often?'
-  $description.textContent = "Been here before? Forget that delectable drink and knee-slapper of a joke? Dont worry, we got you covered! If you saved any of your options to your favorites just click the button below and we'll get you socializing in no time! Nothing saved? Use the menu above and be sure to save what works!"
+  $description.textContent = "Been here before? Forget that delectable drink and knee-slapper of a joke? Don't worry, we got you covered! If you saved any of your options to your favorites just click the button below and we'll get you socializing in no time! Nothing saved? Use the menu above and be sure to save what works!"
   $goToFavs.textContent = 'Go To Favorites!'
 
   $quickFavs.appendChild($h2)
