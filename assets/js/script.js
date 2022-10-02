@@ -137,7 +137,7 @@ function submitHandler(event) {
   const wantExcuse = document.getElementById('excuseCheck').checked;
 
 
-  localStorage.setItem('alcholType', alcoholType);
+  localStorage.setItem('alcoholType', alcoholType);
   localStorage.setItem('wantJoke', wantJoke);
   localStorage.setItem('wantExcuse', wantExcuse);
 
@@ -175,7 +175,7 @@ function createResponsibleFooter() {
   $text.setAttribute('class', 'w3-center');
   $hotline.setAttribute('class', 'w3-center');
 
-  $text.textContent = "All of us with Non-social drinker would like to remind you to please enjoy the app, and drinking, repsonsibly."
+  $text.textContent = "All of us with Non-social drinker would like to remind you to please enjoy the app, and drinking, responsibly."
   $hotline.textContent = " If you or a loved one is struggling with alcohol abuse please do not hesitate to call SAMHSA's national hotline @ 1 (800) 662-HELP (4357)! "
 
   $responsible.appendChild($text);
