@@ -38,17 +38,7 @@ function init() {
         generateExcuseBtn();
     }
 
-    // getCocktail(alcoholType);
-    // if (wantJoke) {
-    //     getJoke();
-    // } else {
-    //     generateJokeBtn();
-    // }
-    // if (wantExcuse) {
-    //     displayExcuseInformation();
-    // } else {
-    //     generateExcuseBtn();
-    // }
+
 }
 
 function displayDrinkInformation(drinkData, ingredient) {
@@ -246,15 +236,15 @@ function displayTopFavorites() {
         const $favText = document.createElement("p");
         const $removeButton = document.createElement("button");
 
-        $removeButton.textContent = "Add to Favorites";
-        $removeButton.setAttribute("type", "click");
-        $removeButton.setAttribute("value", "click");
+        //  $removeButton.textContent = "remove";
+        //  $removeButton.setAttribute("type", "click");
+        // $removeButton.setAttribute("value", "click");
 
-        $removeButton.setAttribute("data-name", favListsArray[i][y]);
+        // $removeButton.setAttribute("data-name", favListsArray[i][y]);
         $favText.textContent = favListsArray[i][y];
 
         $favItem.append($favText);
-        $favItem.append($removeButton);
+        // $favItem.append($removeButton);
 
         list.append($favItem);
       }
