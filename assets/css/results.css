@@ -37,6 +37,18 @@ header {
     min-height: 450px;
 }
 
+#gt-drink-bckgrnd{
+    min-height: 450px;
+}
+
+#gt-joke-bckgrnd{
+    min-height: 450px;
+}
+
+#gt-excuse-bckgrnd{
+    min-height: 450px;
+}
+
 @media screen and (max-width:480px) {
     #jokes-bckgrnd{
         min-height: 600px;
