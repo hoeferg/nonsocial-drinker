@@ -6,7 +6,7 @@ let savedDrinks = [];
 const $refreshJokes = document.getElementById("jokes-refresh");
 const $refreshDrinks = document.getElementById("drinks-refresh");
 const $refreshExcuses = document.getElementById("excuses-refresh");
-const alcoholType = localStorage.getItem("alcholType");
+const alcoholType = localStorage.getItem("alcoholType");
 
 function init() {
     const alcoholType = localStorage.getItem('alcoholType');
@@ -236,8 +236,8 @@ function displayTopFavorites() {
         const $favText = document.createElement("p");
         const $removeButton = document.createElement("button");
 
-        //  $removeButton.textContent = "remove";
-        //  $removeButton.setAttribute("type", "click");
+        // $removeButton.textContent = "";
+        // $removeButton.setAttribute("type", "click");
         // $removeButton.setAttribute("value", "click");
 
         // $removeButton.setAttribute("data-name", favListsArray[i][y]);
@@ -481,7 +481,7 @@ $refreshDrinks.addEventListener("click", function (event) {
   refreshDisplay($drinkDisplay);
 
   
-  getCocktail(alcholType);
+  getCocktail(alcoholType);
   
 });
 
