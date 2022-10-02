@@ -144,7 +144,7 @@ function displaySavedFavorites() {
 }
 
 $clearAllBtn.addEventListener('click', clearAll);
-homeBtn.addEventListener('click', function() {
+homeBtn.addEventListener('click', function () {
     window.location.assign('../../index.html');
 })
 
