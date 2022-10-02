@@ -17,19 +17,25 @@ header {
 
 label {
     display: block;
-    margin: 20px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
 }
 
 input {
-    left: 80px;
+    left: 20px;
 }
 
 .button-margin {
     margin-left: 20px;
 }
 
+.button-margin2 {
+    margin-left: -2px;
+}
+
+
 .input-margin {
-    margin-left: 46%;
     margin-bottom: 5px;
 }
 
@@ -39,4 +45,8 @@ input {
     width: 20%;
     border: none;
     border-bottom: 1px solid #ccc;
+}
+
+.favsh2 {
+    margin-top: 20px;
 }

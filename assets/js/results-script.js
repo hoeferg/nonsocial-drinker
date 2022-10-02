@@ -439,8 +439,15 @@ function saveFavoriteExcuses() {
 }
 
 function generateExcuseBtn() {
-    const $genExcuseBtn = document.createElement("button");
-    const $buttonSection = document.querySelector("#excuses-refresh");
+
+    const $genExcuseBtn = document.createElement('button');
+    const $buttonSection = document.querySelector('#excuse-refresh');
+
+    $genExcuseBtn.setAttribute('type', 'submit');
+    $genExcuseBtn.setAttribute('value', 'Get An Excuse');
+    $genExcuseBtn.classList.add('button-margin-excuse');
+    $genExcuseBtn.textContent = "Get An Excuse!"
+
 
     $genExcuseBtn.setAttribute("type", "submit");
     $genExcuseBtn.setAttribute("value", "Get An Excuse");
@@ -458,9 +465,11 @@ function generateJokeBtn() {
     const $genJokeBtn = document.createElement("button");
     const $buttonSection = document.querySelector("#jokes-refresh");
 
-    $genJokeBtn.setAttribute("type", "submit");
-    $genJokeBtn.setAttribute("value", "Get An Joke");
-    $genJokeBtn.textContent = "Get A Joke!";
+    $genJokeBtn.setAttribute('type', 'submit');
+    $genJokeBtn.setAttribute('value', 'Get An Joke');
+    $genJokeBtn.classList.add('button-margin-joke');
+    $genJokeBtn.textContent = "Get A Joke!"
+
 
     $buttonSection.append($genJokeBtn);
 
