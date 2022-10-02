@@ -15,7 +15,7 @@ $favoriteDrinksList.addEventListener('click', function (event) {
         emptyArray.push(btn)
         localStorage.setItem('gotoDrinkList', JSON.stringify(emptyArray))
     }
-})
+});
 
 $favoriteJokesList.addEventListener('click', function (event) {
     let btn = event.target.getAttribute('data-name')
@@ -145,7 +145,7 @@ function displaySavedFavorites() {
 }
 
 $clearAllBtn.addEventListener('click', clearAll);
-homeBtn.addEventListener('click', function() {
+homeBtn.addEventListener('click', function () {
     window.location.assign('../../index.html');
 })
 
