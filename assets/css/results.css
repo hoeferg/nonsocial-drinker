@@ -1,16 +1,15 @@
-
-header{
+header {
     margin-bottom: 30px;
     min-height: 200px;
     padding-top: 60px;
 }
 
-#last-selections-section{
+#last-selections-section {
     margin: 40px 16px;
 }
 
 
-#last-selection-title{
+#last-selection-title {
     margin: 20px 0;
 }
 
@@ -19,12 +18,12 @@ header{
     min-width: 100px;
 }
 
-#jokes-refresh button{
+#jokes-refresh button {
     min-width: 100px;
     
 }
 
-#excuses-refresh button{
+#excuse-refresh button {
     min-width: 100px;
   
 }
@@ -35,6 +34,18 @@ header{
 
 
 #excuses-bckgrnd{
+    min-height: 450px;
+}
+
+#gt-drink-bckgrnd{
+    min-height: 450px;
+}
+
+#gt-joke-bckgrnd{
+    min-height: 450px;
+}
+
+#gt-excuse-bckgrnd{
     min-height: 450px;
 }
 

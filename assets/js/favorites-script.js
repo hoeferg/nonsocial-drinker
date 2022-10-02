@@ -86,6 +86,7 @@ function displaySavedFavorites() {
             $saveButton.textContent = "Save Joke As Go To";
             $saveButton.setAttribute('type', 'click');
             $saveButton.setAttribute('value', 'click');
+            $saveButton.setAttribute
 
 
             $itemText.textContent = favDrinksArray[i];
