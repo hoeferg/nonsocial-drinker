@@ -120,7 +120,7 @@ function submitHandler(event) {
     const wantExcuse = document.getElementById('excuseCheck').checked;
 
 
-    localStorage.setItem('alcholType', alcoholType);
+    localStorage.setItem('alcoholType', alcoholType);
     localStorage.setItem('wantJoke', wantJoke);
     localStorage.setItem('wantExcuse', wantExcuse);
 

@@ -6,7 +6,7 @@ let savedDrinks = [];
 
 
 function init() {
-    const alcholType = localStorage.getItem('alcholType');
+    const alcoholType = localStorage.getItem('alcoholType');
     const wantJoke = JSON.parse(localStorage.getItem('wantJoke'));
     const wantExcuse = JSON.parse(localStorage.getItem('wantExcuse'));
 
@@ -23,7 +23,7 @@ function init() {
     }
 
     displayTopFavorites();
-    getCocktail(alcholType);
+    getCocktail(alcoholType);
     if (wantJoke) {
         getJoke();
     } else {
@@ -140,7 +140,7 @@ function displayJokeInformation(jokesArr) {
         $jokeList.append($contentItem);
     }
 
-    saveFavoritejokes();
+    saveFavoriteJokes();
 
 }
 
@@ -340,17 +340,17 @@ function getExcuse() {
     return `My ${who} ${did} my ${what}.`
 }
 
-function saveFavoritejokes() {
+function saveFavoriteJokes() {
     const $listOfJokes = document.getElementById("jokes-list");
 
     $listOfJokes.addEventListener("click", function (event) {
-      let $jokeOptions = event.target.getAttribute("data-name");
-      console.log($jokeOptions);
+        let $jokeOptions = event.target.getAttribute("data-name");
+        console.log($jokeOptions);
 
-      if (!savedJokes.includes($jokeOptions)) {
-        savedJokes.push($jokeOptions);
-        localStorage.setItem("savedJokes", JSON.stringify(savedJokes));
-      }
+        if (!savedJokes.includes($jokeOptions)) {
+            savedJokes.push($jokeOptions);
+            localStorage.setItem("savedJokes", JSON.stringify(savedJokes));
+        }
     });
 }
 
@@ -358,14 +358,14 @@ function saveFavoriteDrink() {
     const $listOfDrinks = document.getElementById("generated-drinks-list");
 
     $listOfDrinks.addEventListener("click", function (event) {
-      let $drinkOptions = event.target.getAttribute("data-name");
-      console.log($drinkOptions);
+        let $drinkOptions = event.target.getAttribute("data-name");
+        console.log($drinkOptions);
 
-      if (!savedDrinks.includes($drinkOptions)) {
-        savedDrinks.push($drinkOptions);
-        localStorage.setItem("savedDrinks", JSON.stringify(savedDrinks));
-        console.log(savedDrinks);
-      }
+        if (!savedDrinks.includes($drinkOptions)) {
+            savedDrinks.push($drinkOptions);
+            localStorage.setItem("savedDrinks", JSON.stringify(savedDrinks));
+            console.log(savedDrinks);
+        }
     });
 }
 
@@ -373,14 +373,14 @@ function saveFavoriteExcuses() {
     const $listOfExcuses = document.getElementById("excuses-list");
 
     $listOfExcuses.addEventListener("click", function (event) {
-      let $excuseOptions = event.target.getAttribute("data-name");
+        let $excuseOptions = event.target.getAttribute("data-name");
 
-      console.log($excuseOptions);
-      if (!savedExcuses.includes($excuseOptions)) {
-        savedExcuses.push($excuseOptions);
-        localStorage.setItem("savedExcuses", JSON.stringify(savedExcuses));
-        console.log(savedExcuses);
-      }
+        console.log($excuseOptions);
+        if (!savedExcuses.includes($excuseOptions)) {
+            savedExcuses.push($excuseOptions);
+            localStorage.setItem("savedExcuses", JSON.stringify(savedExcuses));
+            console.log(savedExcuses);
+        }
     });
 }
 
