@@ -54,7 +54,15 @@ function displayDrinkInformation(drinkData, ingredient) {
     // Refresh button
     const $button1 = document.createElement("button");
 
-    const prevDisplayedDrinks = [];
+    const prevDisplayedDrinks = []; 
+
+    while (prevDisplayedDrinks.length < 3) {
+        const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
+
+        if(drinkName !== undefined) {
+            prevDisplayedDrinks.push(drinkName);
+        }
+    }
 
     // Assign text value for header and appends to content section
     $drinkHeader.textContent = `Here are some great cocktails with ${ingredient}:`;
@@ -84,14 +92,14 @@ function displayDrinkInformation(drinkData, ingredient) {
     $saveButton.setAttribute("value", "click");
     $saveButton.setAttribute("class", "w3-round");
 
-    const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
-    $saveButton.setAttribute("data-name", drinkName);
-    console.log(prevDisplayedDrinks);
-    console.log(drinkData);
+    //const drinkName = getRandomDrink(drinkData, prevDisplayedDrinks);
+    $saveButton.setAttribute("data-name", prevDisplayedDrinks[i]);
+    //console.log(prevDisplayedDrinks);
+    //console.log(drinkData);
 
-        prevDisplayedDrinks.push(drinkName);
+    //prevDisplayedDrinks.push(drinkName);
 
-    $itemText.textContent = drinkName;
+    $itemText.textContent = prevDisplayedDrinks[i];
     $contentItem.append($itemText);
     $contentItem.append($saveButton);
 
@@ -169,9 +177,9 @@ function displayExcuseInformation() {
     }
   }
 
-  console.log(excuseArray);
+  //console.log(excuseArray);
 
-    console.log(excuseArray);
+    //console.log(excuseArray);
 
     for (let i = 0; i < 3; i++) {
         const $contentItem = document.createElement("li");
@@ -253,11 +261,10 @@ function displayTopFavorites() {
 }
 
 function getRandomDrink(drinkData, prevDisplayedDrinks) {
-    const drinkName =
-        drinkData[Math.floor(Math.random() * drinkData.length) + 0].name;
+    const drinkName = drinkData[Math.floor(Math.random() * drinkData.length) + 0].name;
     console.log(drinkName);
 
-    if (!prevDisplayedDrinks.includes(drinkName)) {
+    if (!prevDisplayedDrinks.includes(drinkName) && drinkName !== undefined) {
         return drinkName;
     } else {
         getRandomDrink(drinkData, prevDisplayedDrinks); // reutrn any random
@@ -290,7 +297,7 @@ function getJoke(jokeArr) {
         if (response.ok) {
             response.json().then(function (data) {
                 let jokeResponse = data.joke;
-                console.log(jokeResponse);
+                //console.log(jokeResponse);
                 createJokeArray(jokeResponse, jokeArr);
             });
         }
@@ -306,11 +313,9 @@ function getCocktail(userIngredient) {
         headers: { "X-Api-Key": "OuLOQXkRIPUQZ/oPSLdQaA==newehym4gENucVSM" },
     }).then(function (response) {
         if (response.ok) {
-            response
-                .json()
-
+            response.json()
         .then(function (data) {
-          console.log("response", data);
+          //console.log("response", data);
           displayDrinkInformation(data, ingredients);
         });
     }
@@ -335,7 +340,7 @@ function saveFavoriteJokes() {
 
   $listOfJokes.addEventListener("click", function (event) {
     let $jokeOptions = event.target.getAttribute("data-name");
-    console.log($jokeOptions);
+    //console.log($jokeOptions);
 
     if (!savedJokes.includes($jokeOptions)) {
       savedJokes.push($jokeOptions);
@@ -349,12 +354,12 @@ function saveFavoriteDrink() {
 
   $listOfDrinks.addEventListener("click", function (event) {
     let $drinkOptions = event.target.getAttribute("data-name");
-    console.log($drinkOptions);
+    //console.log($drinkOptions);
 
     if (!savedDrinks.includes($drinkOptions)) {
       savedDrinks.push($drinkOptions);
       localStorage.setItem("savedDrinks", JSON.stringify(savedDrinks));
-      console.log(savedDrinks);
+      //console.log(savedDrinks);
     }
   });
 }
@@ -365,11 +370,11 @@ function saveFavoriteExcuses() {
   $listOfExcuses.addEventListener("click", function (event) {
     let $excuseOptions = event.target.getAttribute("data-name");
 
-    console.log($excuseOptions);
+    //console.log($excuseOptions);
     if (!savedExcuses.includes($excuseOptions)) {
       savedExcuses.push($excuseOptions);
       localStorage.setItem("savedExcuses", JSON.stringify(savedExcuses));
-      console.log(savedExcuses);
+      //console.log(savedExcuses);
     }
   });
 }
@@ -426,7 +431,7 @@ function saveFavoriteJokes() {
     const $listOfJokes = document.getElementById("jokes-list");
     $listOfJokes.addEventListener("click", function (event) {
         let $jokeOptions = event.target.getAttribute("data-name");
-        console.log($jokeOptions);
+        //console.log($jokeOptions);
         if (!savedJokes.includes($jokeOptions)) {
             savedJokes.push($jokeOptions);
             localStorage.setItem("savedJokes", JSON.stringify(savedJokes));
@@ -438,11 +443,11 @@ function saveFavoriteDrink() {
     const $listOfDrinks = document.getElementById("generated-drinks-list");
     $listOfDrinks.addEventListener("click", function (event) {
         let $drinkOptions = event.target.getAttribute("data-name");
-        console.log($drinkOptions);
+        //console.log($drinkOptions);
         if (!savedDrinks.includes($drinkOptions)) {
             savedDrinks.push($drinkOptions);
             localStorage.setItem("savedDrinks", JSON.stringify(savedDrinks));
-            console.log(savedDrinks);
+            //console.log(savedDrinks);
         }
     });
 }
@@ -451,11 +456,11 @@ function saveFavoriteExcuses() {
     const $listOfExcuses = document.getElementById("excuses-list");
     $listOfExcuses.addEventListener("click", function (event) {
         let $excuseOptions = event.target.getAttribute("data-name");
-        console.log($excuseOptions);
+        //console.log($excuseOptions);
         if (!savedExcuses.includes($excuseOptions)) {
             savedExcuses.push($excuseOptions);
             localStorage.setItem("savedExcuses", JSON.stringify(savedExcuses));
-            console.log(savedExcuses);
+            //console.log(savedExcuses);
         }
     });
 }

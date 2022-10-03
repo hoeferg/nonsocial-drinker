@@ -8,9 +8,9 @@ const homeBtn = document.querySelector('#moreFunBtn');
 $favoriteDrinksList.addEventListener('click', function (event) {
     let btn = event.target.getAttribute('data-name')
     let emptyArray = []
-    if (localStorage.getItem('gotoDrinkList') !== null) (
-        emptyArray = localStorage.getItem('gotoDrinkList')
-    )
+    if (localStorage.getItem('gotoDrinkList') !== null) {
+        emptyArray = JSON.parse(localStorage.getItem('gotoDrinkList'))
+    }
     if (!emptyArray.includes(btn)) {
         emptyArray.push(btn)
         localStorage.setItem('gotoDrinkList', JSON.stringify(emptyArray))
@@ -20,9 +20,9 @@ $favoriteDrinksList.addEventListener('click', function (event) {
 $favoriteJokesList.addEventListener('click', function (event) {
     let btn = event.target.getAttribute('data-name')
     let emptyArray = []
-    if (localStorage.getItem('gotoJokeList') !== null) (
-        emptyArray = localStorage.getItem('gotoJokeList')
-    )
+    if (localStorage.getItem('gotoJokeList') !== null) {
+        emptyArray = JSON.parse(localStorage.getItem('gotoJokeList'));
+    }
     if (!emptyArray.includes(btn)) {
         emptyArray.push(btn)
         localStorage.setItem('gotoJokeList', JSON.stringify(emptyArray))
@@ -32,9 +32,9 @@ $favoriteJokesList.addEventListener('click', function (event) {
 $favoriteExcusesList.addEventListener('click', function (event) {
     let btn = event.target.getAttribute('data-name')
     let emptyArray = []
-    if (localStorage.getItem('gotoExcuseList') !== null) (
-        emptyArray = localStorage.getItem('gotoExcuseList')
-    )
+    if (localStorage.getItem('gotoExcuseList') !== null) {
+        emptyArray = JSON.parse(localStorage.getItem('gotoExcuseList'));
+    }
     if (!emptyArray.includes(btn)) {
         emptyArray.push(btn)
         localStorage.setItem('gotoExcuseList', JSON.stringify(emptyArray))
