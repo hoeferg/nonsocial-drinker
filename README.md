@@ -1,6 +1,7 @@
 # The nonsocial-drinker app
  _An Application for Nonsocial People_
-
+ 
+![THis is an image of the home page of the nonsocial drinker app. It shose a how it works section containing a drop down menu for drink selection and check boxes to confirm choise of jokes or excuses or both.](./assets/images/nonsocial.png)
 ---
 ## Overview
 
@@ -33,10 +34,6 @@ Give it a try and may find that this app will take away the friction in those aw
 ---
 
 ## Mockup
-
-![THis is an image of the home page of the nonsocial drinker app. It shose a how it works section containing a drop down menu for drink selection and check boxes to confirm choise of jokes or excuses or both.](./assets/images/nonsocial.png)
-
-
 ![This image is of the result page presenting you with the generated options for drinks, jokes and excuses based on your selections in the home page.](./assets/images/nonsocial.1.png)
 
 ![This image is of the favorites page where one can review their favorite drinks, jokes, and excuses.](./assets/images/nonsocial.2.png)
